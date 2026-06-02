@@ -3,98 +3,196 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pubs With Playgrounds</title>
+  <title>Pubs With Playgrounds | Find family-friendly pubs near you</title>
   <meta
     name="description"
-    content="Pubs With Playgrounds helps families find pubs and hotels with on-site playgrounds, play areas, and child-friendly facilities."
+    content="Pubs With Playgrounds helps parents find UK pubs and hotels with on-site playgrounds, play areas, photos, facilities, and family-friendly details."
   >
+  <meta property="og:title" content="Pubs With Playgrounds">
+  <meta
+    property="og:description"
+    content="Find pubs with real play spaces, useful family facilities, and details parents actually need before setting off."
+  >
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.pubswithplaygrounds.com/">
+  <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="shell">
-    <header class="hero">
+  <div class="site-shell">
+    <header class="site-header" aria-label="Main navigation">
       <a class="brand" href="index.html">
         <span class="brand-mark" aria-hidden="true"></span>
         <span>Pubs With Playgrounds</span>
       </a>
-
-      <div class="hero-grid">
-        <section class="panel hero-copy">
-          <p class="eyebrow">Family pub finder</p>
-          <h1>Find pubs with real play spaces.</h1>
-          <p class="lead">
-            Pubs With Playgrounds helps families discover pubs and hotels with on-site
-            playgrounds, play equipment, and genuinely useful child-friendly facilities.
-          </p>
-          <div class="actions">
-            <a class="button button-primary" href="privacy.html">Privacy policy</a>
-            <a class="button button-secondary" href="#support">Support</a>
-            <a class="button button-secondary" href="account-deletion.html">Account deletion</a>
-          </div>
-        </section>
-
-        <aside class="panel hero-card">
-          <h2>Useful links</h2>
-          <ul>
-            <li><a href="privacy.html">Privacy Policy</a></li>
-            <li><a href="terms.html">Terms of Use</a></li>
-            <li><a href="account-deletion.html">Account Deletion</a></li>
-          </ul>
-          <div class="meta-grid">
-            <div class="meta-item">
-              <span class="meta-label">Support email</span>
-              <a href="mailto:hello@pubswithplaygrounds.com">hello@pubswithplaygrounds.com</a>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Website</span>
-              <a href="https://www.pubswithplaygrounds.com/">www.pubswithplaygrounds.com</a>
-            </div>
-          </div>
-        </aside>
-      </div>
+      <nav class="nav-links" aria-label="Page links">
+        <a href="#features">Features</a>
+        <a href="#support">Support</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
     </header>
 
-    <main class="section">
-      <div class="card-grid">
-        <section class="card" id="support">
-          <h3>Support</h3>
-          <p>
-            For help with the app, account questions, incorrect listings, or content reports,
-            email <a href="mailto:hello@pubswithplaygrounds.com">hello@pubswithplaygrounds.com</a>.
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Family pub finder app</p>
+          <h1 id="hero-title">Find a pub where the kids can actually play.</h1>
+          <p class="lead">
+            Discover pubs and hotels with on-site playgrounds, play areas, photos,
+            and practical family details before you leave the house.
           </p>
-          <p>
-            If you are contacting us about a pub listing, include the venue name, town, and a
-            short description of the issue.
-          </p>
-        </section>
+          <div class="store-actions" aria-label="Download links">
+            <a
+              class="store-button store-button-primary"
+              href="https://apps.apple.com/gb/app/pubs-with-playgrounds/id6757747311"
+            >
+              <span class="store-kicker">Download on the</span>
+              <span class="store-name">App Store</span>
+            </a>
+            <a
+              class="store-button"
+              href="https://play.google.com/store/apps/details?id=com.pubswithplaygrounds.app"
+            >
+              <span class="store-kicker">Get it on</span>
+              <span class="store-name">Google Play</span>
+            </a>
+          </div>
+          <p class="hero-note">Built for UK parents planning meals out, weekends away, and emergency pit stops.</p>
+        </div>
 
-        <section class="card">
-          <h3>Privacy</h3>
-          <p>
-            The app can be browsed without creating an account. If you sign in, we may store your
-            favourites, reviews, uploaded photos, and venue contributions.
-          </p>
-          <p><a href="privacy.html">Read the full Privacy Policy</a></p>
-        </section>
+        <div class="app-preview" aria-label="App preview">
+          <div class="phone phone-map" aria-hidden="true">
+            <div class="phone-bar"></div>
+            <div class="map-ui">
+              <span class="map-pin pin-one"></span>
+              <span class="map-pin pin-two"></span>
+              <span class="map-pin pin-three"></span>
+              <div class="search-pill">Pubs near Preston</div>
+              <div class="venue-sheet">
+                <span class="venue-photo"></span>
+                <div>
+                  <strong>The Garden Arms</strong>
+                  <span>Outdoor play area &middot; Food served &middot; Parking</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="phone phone-detail" aria-hidden="true">
+            <div class="phone-bar"></div>
+            <div class="detail-photo"></div>
+            <div class="detail-content">
+              <span class="rating">4.8 parent rating</span>
+              <h2>The Meadow Inn</h2>
+              <div class="facility-list">
+                <span>Playground</span>
+                <span>Kids menu</span>
+                <span>Baby change</span>
+                <span>Garden</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <section class="card">
-          <h3>Account deletion</h3>
-          <p>
-            You can delete your account directly in the app from the <strong>Account</strong>
-            screen.
-          </p>
-          <p><a href="account-deletion.html">Read the account deletion details</a></p>
-        </section>
+      <section class="proof-strip" aria-label="Why families use it">
+        <div>
+          <strong>Plan faster</strong>
+          <span>See nearby pubs on a map.</span>
+        </div>
+        <div>
+          <strong>Avoid guesswork</strong>
+          <span>Check play spaces and facilities first.</span>
+        </div>
+        <div>
+          <strong>Help other parents</strong>
+          <span>Add photos, reviews, and missing pubs.</span>
+        </div>
+      </section>
 
-        <section class="card">
-          <h3>Terms</h3>
+      <section class="section" id="features" aria-labelledby="features-title">
+        <div class="section-heading">
+          <p class="eyebrow">What the app does</p>
+          <h2 id="features-title">Designed for the moment a parent asks, &ldquo;Where can we go?&rdquo;</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="card">
+            <span class="feature-icon" aria-hidden="true">Map</span>
+            <h3>Find nearby options</h3>
+            <p>
+              Open the map and see pubs with playgrounds and play areas near your current location
+              or the place you are visiting.
+            </p>
+          </article>
+          <article class="card">
+            <span class="feature-icon" aria-hidden="true">Info</span>
+            <h3>Check the useful details</h3>
+            <p>
+              Look for child-friendly facilities such as outdoor play space, kids menus, gardens,
+              parking, baby change, and more.
+            </p>
+          </article>
+          <article class="card">
+            <span class="feature-icon" aria-hidden="true">Photos</span>
+            <h3>Preview before you commit</h3>
+            <p>
+              Photos and parent contributions help you understand whether a venue is right for
+              toddlers, older children, or a relaxed family meal.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="download-section" aria-labelledby="download-title">
+        <div>
+          <p class="eyebrow">Free to download</p>
+          <h2 id="download-title">Make the next pub lunch easier.</h2>
           <p>
-            Venue information is partly community-contributed and may change. We work to keep it
-            useful, but cannot guarantee every listing is complete or current.
+            Keep Pubs With Playgrounds ready for holidays, weekend trips, and last-minute lunch
+            plans with children in tow.
           </p>
-          <p><a href="terms.html">Read the Terms of Use</a></p>
-        </section>
-      </div>
+        </div>
+        <div class="store-actions compact" aria-label="Download links">
+          <a
+            class="store-button store-button-primary"
+            href="https://apps.apple.com/gb/app/pubs-with-playgrounds/id6757747311"
+          >
+            <span class="store-kicker">Download on the</span>
+            <span class="store-name">App Store</span>
+          </a>
+          <a
+            class="store-button"
+            href="https://play.google.com/store/apps/details?id=com.pubswithplaygrounds.app"
+          >
+            <span class="store-kicker">Get it on</span>
+            <span class="store-name">Google Play</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="section support-section" id="support" aria-labelledby="support-title">
+        <div class="section-heading">
+          <p class="eyebrow">Support and policies</p>
+          <h2 id="support-title">Need help or app store information?</h2>
+        </div>
+        <div class="support-grid">
+          <article class="card">
+            <h3>Support</h3>
+            <p>
+              For app help, account questions, incorrect listings, or content reports,
+              email <a href="mailto:hello@pubswithplaygrounds.com">hello@pubswithplaygrounds.com</a>.
+            </p>
+            <p>
+              For listing corrections, include the venue name, town, and a short description of the issue.
+            </p>
+          </article>
+          <article class="card link-card">
+            <h3>Important links</h3>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <a href="account-deletion.html">Account Deletion</a>
+          </article>
+        </div>
+      </section>
     </main>
 
     <footer class="footer">
