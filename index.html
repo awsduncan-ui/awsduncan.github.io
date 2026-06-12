@@ -1,206 +1,291 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pubs With Playgrounds | Find family-friendly pubs near you</title>
-  <meta
-    name="description"
-    content="Pubs With Playgrounds helps parents find UK pubs and hotels with on-site playgrounds, play areas, photos, facilities, and family-friendly details."
-  >
+  <title>Pubs With Playgrounds — Find a pub where the kids can actually play</title>
+  <meta name="description" content="Pubs With Playgrounds is the UK family pub finder. Over 1,000 pubs and hotels with real playgrounds and play areas — checked, mapped and ready before you leave the house.">
   <meta property="og:title" content="Pubs With Playgrounds">
-  <meta
-    property="og:description"
-    content="Find pubs with real play spaces, useful family facilities, and details parents actually need before setting off."
-  >
+  <meta property="og:description" content="The UK family pub finder. Over 1,000 pubs with real playgrounds — checked, mapped and ready before you leave the house.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.pubswithplaygrounds.com/">
+  <meta property="og:image" content="https://www.pubswithplaygrounds.com/assets/app-logo.png">
+  <meta name="theme-color" content="#173527">
   <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="site-shell">
-    <header class="site-header" aria-label="Main navigation">
+
+  <header class="nav-wrap">
+    <div class="shell nav">
       <a class="brand" href="index.html">
-        <img class="brand-logo" src="assets/app-logo.png" alt="" width="40" height="40">
-        <span>Pubs With Playgrounds</span>
+        <img class="brand-logo" src="assets/app-logo.png" alt="" width="38" height="38">
+        <span>Pubs With<br>Playgrounds</span>
       </a>
       <nav class="nav-links" aria-label="Page links">
-        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#facilities">What's listed</a>
+        <a href="#community">Community</a>
         <a href="#support">Support</a>
-        <a href="privacy.html">Privacy</a>
       </nav>
-    </header>
+      <a class="btn btn-coral btn-nav" href="https://apps.apple.com/gb/app/pubs-with-playgrounds/id6757747311">Get the app</a>
+    </div>
+  </header>
 
-    <main>
-      <section class="hero" aria-labelledby="hero-title">
+  <main>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-map" aria-hidden="true">
+        <svg class="hero-roads" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
+          <path d="M-40 620 C 220 560, 380 700, 640 640 S 1100 520, 1480 600" stroke="rgba(255,255,255,0.85)" stroke-width="14"/>
+          <path d="M-40 620 C 220 560, 380 700, 640 640 S 1100 520, 1480 600" stroke="rgba(23,53,39,0.10)" stroke-width="2" stroke-dasharray="14 18"/>
+          <path d="M180 -40 C 240 240, 120 420, 320 660 S 420 880, 380 980" stroke="rgba(255,255,255,0.75)" stroke-width="9"/>
+          <path d="M1240 -60 C 1140 200, 1320 380, 1180 560 S 1060 840, 1120 980" stroke="rgba(255,255,255,0.75)" stroke-width="9"/>
+          <path d="M-40 260 C 320 300, 560 180, 900 240 S 1300 320, 1480 270" stroke="rgba(255,255,255,0.6)" stroke-width="6"/>
+          <ellipse cx="1300" cy="160" rx="190" ry="110" fill="rgba(178,222,236,0.55)"/>
+          <ellipse cx="90" cy="820" rx="230" ry="120" fill="rgba(178,222,236,0.4)"/>
+          <circle cx="500" cy="430" r="120" fill="rgba(196,228,196,0.5)"/>
+          <circle cx="1050" cy="720" r="150" fill="rgba(196,228,196,0.45)"/>
+        </svg>
+        <img class="map-pin pin-a" src="assets/pub-marker.png" alt="" width="44" height="44">
+        <img class="map-pin pin-b" src="assets/pub-marker.png" alt="" width="34" height="34">
+        <img class="map-pin pin-c" src="assets/pub-marker.png" alt="" width="28" height="28">
+        <img class="map-pin pin-d" src="assets/pub-marker.png" alt="" width="38" height="38">
+      </div>
+
+      <div class="shell hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">Family pub finder app</p>
-          <h1 id="hero-title">Find a pub where the kids can actually play.</h1>
+          <p class="eyebrow">The UK family pub finder</p>
+          <h1 id="hero-title">Find a pub where the kids can <em>actually</em> play.</h1>
           <p class="lead">
-            Discover pubs and hotels with on-site playgrounds, play areas, photos,
-            and practical family details before you leave the house.
+            Over 1,000 pubs and hotels with real playgrounds and play areas —
+            checked, mapped, and ready before you leave the house.
           </p>
-          <div class="store-actions" aria-label="Download links">
-            <a
-              class="store-button store-button-primary"
-              href="https://apps.apple.com/gb/app/pubs-with-playgrounds/id6757747311"
-            >
-              <span class="store-kicker">Download on the</span>
-              <span class="store-name">App Store</span>
+          <div class="store-actions">
+            <a class="btn-store" href="https://apps.apple.com/gb/app/pubs-with-playgrounds/id6757747311">
+              <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M17.05 12.54c-.03-2.89 2.36-4.28 2.47-4.35-1.35-1.97-3.44-2.24-4.18-2.27-1.78-.18-3.47 1.05-4.37 1.05-.9 0-2.29-1.02-3.76-1-1.94.03-3.72 1.13-4.72 2.86-2.01 3.49-.51 8.66 1.45 11.49.96 1.39 2.1 2.94 3.6 2.88 1.45-.06 2-.93 3.75-.93s2.25.93 3.78.9c1.56-.03 2.55-1.41 3.5-2.8 1.1-1.61 1.55-3.17 1.58-3.25-.04-.02-3.03-1.16-3.1-4.58zM14.16 4.04c.8-.97 1.34-2.32 1.19-3.66-1.15.05-2.55.77-3.38 1.74-.74.86-1.39 2.23-1.22 3.55 1.29.1 2.6-.65 3.41-1.63z"/></svg>
+              <span><small>Download on the</small><strong>App Store</strong></span>
             </a>
-            <a
-              class="store-button store-button-beta"
-              href="android-beta.html"
-            >
-              <span class="store-kicker">Android app</span>
-              <span class="store-name">Coming soon</span>
-              <span class="store-note">Join the beta list</span>
+            <a class="btn-store btn-store-ghost" href="android-beta.html">
+              <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill="currentColor" d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85a.637.637 0 0 0-.83.22l-1.88 3.24a11.46 11.46 0 0 0-8.94 0L5.65 5.67a.637.637 0 0 0-.83-.22c-.3.16-.42.54-.26.85L6.4 9.48A10.78 10.78 0 0 0 1 18h22a10.78 10.78 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>
+              <span><small>Android beta</small><strong>Join the list</strong></span>
             </a>
           </div>
-          <p class="hero-note">Built for UK parents planning meals out, weekends away, and emergency pit stops.</p>
+          <ul class="hero-trust" aria-label="App highlights">
+            <li><span class="dot" aria-hidden="true"></span>Free to download</li>
+            <li><span class="star" aria-hidden="true">&#9733;</span>5.0 on the App Store</li>
+            <li><span class="dot" aria-hidden="true"></span>Built by UK parents</li>
+          </ul>
         </div>
 
-        <div class="app-preview" aria-label="App preview">
-          <div class="phone phone-map" aria-hidden="true">
-            <div class="phone-bar"></div>
-            <div class="map-ui">
-              <img class="map-pin pin-one" src="assets/pub-marker.png" alt="">
-              <img class="map-pin pin-two" src="assets/pub-marker.png" alt="">
-              <img class="map-pin pin-three" src="assets/pub-marker.png" alt="">
-              <div class="search-pill">Pubs near Preston</div>
-              <div class="venue-sheet">
-                <span class="venue-photo"></span>
-                <div>
-                  <strong>The Garden Arms</strong>
-                  <span>Outdoor play area &middot; Food served &middot; Parking</span>
-                </div>
-              </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="phone phone-hero">
+            <img src="assets/shot1.png" alt="" loading="eager" width="600" height="1298">
+          </div>
+          <div class="float-card float-card-pub">
+            <img class="float-thumb" src="assets/thumb-playground.jpg" alt="" width="52" height="52">
+            <div>
+              <strong>The Old Thatch</strong>
+              <span class="float-meta">&#9733; 4.7 &nbsp;&middot;&nbsp; Open until 22:30</span>
+              <span class="float-chips"><i>Playground</i><i>Beer garden</i></span>
             </div>
           </div>
-          <div class="phone phone-detail" aria-hidden="true">
-            <div class="phone-bar"></div>
-            <div class="detail-photo"></div>
-            <div class="detail-content">
-              <span class="rating">4.8 parent rating</span>
-              <h2>The Meadow Inn</h2>
-              <div class="facility-list">
-                <span>Playground</span>
-                <span>Kids menu</span>
-                <span>Baby change</span>
-                <span>Garden</span>
-              </div>
-            </div>
+          <div class="float-card float-card-found">
+            <img src="assets/pub-marker.png" alt="" width="30" height="30">
+            <span><strong>14 pubs found</strong><br>near Wareham</span>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="proof-strip" aria-label="Why families use it">
-        <div>
-          <strong>Plan faster</strong>
-          <span>See nearby pubs on a map.</span>
+    <!-- ============ STATS ============ -->
+    <section class="stats" aria-label="Key numbers">
+      <div class="shell stats-grid">
+        <div class="stat">
+          <strong>1,000+</strong>
+          <span>pubs and hotels mapped across the UK</span>
         </div>
-        <div>
-          <strong>Avoid guesswork</strong>
-          <span>Check play spaces and facilities first.</span>
+        <div class="stat">
+          <strong>Every listing</strong>
+          <span>checked for a genuine playground or play area</span>
         </div>
-        <div>
-          <strong>Help other parents</strong>
-          <span>Add photos, reviews, and missing pubs.</span>
+        <div class="stat">
+          <strong>Growing daily</strong>
+          <span>with photos, reviews and new pubs from parents</span>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="section" id="features" aria-labelledby="features-title">
+    <!-- ============ HOW IT WORKS ============ -->
+    <section class="section" id="how" aria-labelledby="how-title">
+      <div class="shell">
         <div class="section-heading">
-          <p class="eyebrow">What the app does</p>
-          <h2 id="features-title">Designed for the moment a parent asks, &ldquo;Where can we go?&rdquo;</h2>
+          <p class="eyebrow">How it works</p>
+          <h2 id="how-title">From &ldquo;where can we go?&rdquo; to out the door in two minutes.</h2>
         </div>
-        <div class="feature-grid">
-          <article class="card">
-            <span class="feature-icon" aria-hidden="true">Map</span>
-            <h3>Find nearby options</h3>
-            <p>
-              Open the map and see pubs with playgrounds and play areas near your current location
-              or the place you are visiting.
-            </p>
-          </article>
-          <article class="card">
-            <span class="feature-icon" aria-hidden="true">Info</span>
-            <h3>Check the useful details</h3>
-            <p>
-              Look for child-friendly facilities such as outdoor play space, kids menus, gardens,
-              parking, baby change, and more.
-            </p>
-          </article>
-          <article class="card">
-            <span class="feature-icon" aria-hidden="true">Photos</span>
-            <h3>Preview before you commit</h3>
-            <p>
-              Photos and parent contributions help you understand whether a venue is right for
-              toddlers, older children, or a relaxed family meal.
-            </p>
-          </article>
-        </div>
-      </section>
 
-      <section class="download-section" aria-labelledby="download-title">
+        <div class="how-grid">
+          <article class="how-card reveal">
+            <div class="phone phone-small"><img src="assets/shot4.png" alt="App screen showing a list of nearby pubs with playgrounds, distances and facilities" loading="lazy" width="600" height="1298"></div>
+            <h3>See what's nearby</h3>
+            <p>Open the app and instantly see pubs with play areas around you — or anywhere you're heading — with distance and facilities at a glance.</p>
+          </article>
+          <article class="how-card reveal">
+            <div class="phone phone-small"><img src="assets/shot2.png" alt="App screen showing a pub detail page with photos of the playground, opening hours and family facilities" loading="lazy" width="600" height="1298"></div>
+            <h3>Check before you commit</h3>
+            <p>Real photos of the actual play equipment, opening hours, and the details parents need — kids' menus, baby change, high chairs, parking.</p>
+          </article>
+          <article class="how-card reveal">
+            <div class="phone phone-small"><img src="assets/shot3.png" alt="App screen showing saved favourite pubs" loading="lazy" width="600" height="1298"></div>
+            <h3>Save your favourites</h3>
+            <p>Build your own shortlist for weekends, holidays and emergency pit stops — ready for whenever the question comes up.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FACILITIES ============ -->
+    <section class="section section-mint" id="facilities" aria-labelledby="facilities-title">
+      <div class="shell facilities-grid">
         <div>
-          <p class="eyebrow">Free to download</p>
-          <h2 id="download-title">Make the next pub lunch easier.</h2>
-          <p>
-            Keep Pubs With Playgrounds ready for holidays, weekend trips, and last-minute lunch
-            plans with children in tow.
+          <p class="eyebrow">What's listed</p>
+          <h2 id="facilities-title">The details that make or break a family lunch.</h2>
+          <p class="body-copy">
+            &ldquo;Family friendly&rdquo; can mean anything. Pubs With Playgrounds tells you exactly
+            what's there — from the climbing frame in the garden to whether you'll get the
+            pram through the door.
+          </p>
+          <p class="body-copy">
+            Each listing is checked against real evidence — the pub's own website, photos and
+            parent reviews — so a playground in the app means a playground at the pub.
           </p>
         </div>
-        <div class="store-actions compact" aria-label="Download links">
-          <a
-            class="store-button store-button-primary"
-            href="https://apps.apple.com/gb/app/pubs-with-playgrounds/id6757747311"
-          >
-            <span class="store-kicker">Download on the</span>
-            <span class="store-name">App Store</span>
-          </a>
-          <a
-            class="store-button store-button-beta"
-            href="android-beta.html"
-          >
-            <span class="store-kicker">Android app</span>
-            <span class="store-name">Coming soon</span>
-            <span class="store-note">Join the beta list</span>
-          </a>
+        <div class="chip-cloud" aria-label="Facilities tracked by the app">
+          <span class="chip chip-hero">Playground</span>
+          <span class="chip">Beer garden</span>
+          <span class="chip">Kids' menu</span>
+          <span class="chip">Baby change</span>
+          <span class="chip">High chairs</span>
+          <span class="chip">Soft play</span>
+          <span class="chip">Indoor play area</span>
+          <span class="chip">Car park</span>
+          <span class="chip">Dog friendly</span>
+          <span class="chip">Cask ales</span>
+          <span class="chip">Farm animals</span>
+          <span class="chip">Miniature railway</span>
+          <span class="chip">Accessible</span>
+          <span class="chip">Open fire</span>
+          <span class="chip">Bouncy castle</span>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="section support-section" id="support" aria-labelledby="support-title">
+    <!-- ============ COMMUNITY ============ -->
+    <section class="section" id="community" aria-labelledby="community-title">
+      <div class="shell community">
         <div class="section-heading">
-          <p class="eyebrow">Support and policies</p>
-          <h2 id="support-title">Need help or app store information?</h2>
+          <p class="eyebrow">Community</p>
+          <h2 id="community-title">Built by parents, for parents.</h2>
+          <p class="body-copy centered">
+            Know a brilliant pub that's missing? Spotted a new slide in the garden?
+            Add pubs, photos and reviews in the app and help thousands of other
+            families find their new favourite.
+          </p>
+        </div>
+        <div class="community-grid">
+          <div class="community-card">
+            <span class="community-icon" aria-hidden="true">+</span>
+            <h3>Add missing pubs</h3>
+            <p>Suggest a pub in under a minute. We check it and add it to the map.</p>
+          </div>
+          <div class="community-card">
+            <span class="community-icon" aria-hidden="true">&#9998;</span>
+            <h3>Share photos &amp; reviews</h3>
+            <p>A quick photo of the play area is gold for the next parent planning a trip.</p>
+          </div>
+          <div class="community-card">
+            <span class="community-icon" aria-hidden="true">&#10003;</span>
+            <h3>Keep listings honest</h3>
+            <p>Flag anything that's changed and we'll put it right.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BIG CTA ============ -->
+    <section class="cta-band" aria-labelledby="cta-title">
+      <div class="shell cta-grid">
+        <div>
+          <h2 id="cta-title">The next pub lunch is already sorted.</h2>
+          <p>Free to download. No subscription. Just better Sundays.</p>
+          <div class="store-actions">
+            <a class="btn-store btn-store-light" href="https://apps.apple.com/gb/app/pubs-with-playgrounds/id6757747311">
+              <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M17.05 12.54c-.03-2.89 2.36-4.28 2.47-4.35-1.35-1.97-3.44-2.24-4.18-2.27-1.78-.18-3.47 1.05-4.37 1.05-.9 0-2.29-1.02-3.76-1-1.94.03-3.72 1.13-4.72 2.86-2.01 3.49-.51 8.66 1.45 11.49.96 1.39 2.1 2.94 3.6 2.88 1.45-.06 2-.93 3.75-.93s2.25.93 3.78.9c1.56-.03 2.55-1.41 3.5-2.8 1.1-1.61 1.55-3.17 1.58-3.25-.04-.02-3.03-1.16-3.1-4.58zM14.16 4.04c.8-.97 1.34-2.32 1.19-3.66-1.15.05-2.55.77-3.38 1.74-.74.86-1.39 2.23-1.22 3.55 1.29.1 2.6-.65 3.41-1.63z"/></svg>
+              <span><small>Download on the</small><strong>App Store</strong></span>
+            </a>
+            <a class="btn-store btn-store-outline" href="android-beta.html">
+              <span><small>Android beta</small><strong>Join the list</strong></span>
+            </a>
+          </div>
+        </div>
+        <div class="cta-pin" aria-hidden="true">
+          <img src="assets/app-logo.png" alt="" width="180" height="180">
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SUPPORT ============ -->
+    <section class="section" id="support" aria-labelledby="support-title">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">Support &amp; policies</p>
+          <h2 id="support-title">Need a hand?</h2>
         </div>
         <div class="support-grid">
-          <article class="card">
-            <h3>Support</h3>
+          <article class="support-card">
+            <h3>Get in touch</h3>
             <p>
-              For app help, account questions, incorrect listings, or content reports,
-              email <a href="mailto:hello@pubswithplaygrounds.com">hello@pubswithplaygrounds.com</a>.
+              For app help, account questions, incorrect listings or content reports, email
+              <a href="mailto:hello@pubswithplaygrounds.com">hello@pubswithplaygrounds.com</a>.
             </p>
-            <p>
-              For listing corrections, include the venue name, town, and a short description of the issue.
-            </p>
+            <p>For listing corrections, include the venue name, town and a short note on what's wrong.</p>
           </article>
-          <article class="card link-card">
+          <article class="support-card">
             <h3>Important links</h3>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Use</a>
-            <a href="account-deletion.html">Account Deletion</a>
+            <ul class="link-list">
+              <li><a href="privacy.html">Privacy Policy</a></li>
+              <li><a href="terms.html">Terms of Use</a></li>
+              <li><a href="account-deletion.html">Account Deletion</a></li>
+            </ul>
           </article>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
 
-    <footer class="footer">
-      <p>Pubs With Playgrounds</p>
+  </main>
+
+  <footer class="footer">
+    <div class="shell footer-grid">
+      <div class="footer-brand">
+        <img src="assets/app-logo.png" alt="" width="34" height="34">
+        <span>Pubs With Playgrounds</span>
+      </div>
       <p>Contact: <a href="mailto:hello@pubswithplaygrounds.com">hello@pubswithplaygrounds.com</a></p>
-    </footer>
-  </div>
+      <p class="footer-fine">&copy; 2026 Pubs With Playgrounds. Made in the UK, mostly in beer gardens.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll-triggered reveals (progressive enhancement; respects reduced motion via CSS)
+    document.body.classList.add('js');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.18 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
 </body>
 </html>
