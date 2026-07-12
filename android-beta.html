@@ -1,18 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Android Beta | Pubs With Playgrounds</title>
+  <meta name="robots" content="noindex, follow">
+  <title>Android App | Pubs With Playgrounds</title>
   <meta
     name="description"
-    content="Sign up to help test the Android version of Pubs With Playgrounds."
+    content="Pubs With Playgrounds is now live on Android. Download it from Google Play."
   >
   <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="shell legal beta-page">
+  <div class="shell legal android-page">
     <a class="brand" href="index.html">
       <img class="brand-logo" src="assets/app-logo.png" alt="" width="40" height="40">
       <span>Pubs With Playgrounds</span>
@@ -25,64 +29,25 @@
     </div>
 
     <main>
-      <section class="beta-intro">
-        <p class="eyebrow">Android beta</p>
-        <h1>Help test Pubs With Playgrounds on Android.</h1>
+      <section class="android-intro">
+        <p class="eyebrow">Android app</p>
+        <h1>Pubs With Playgrounds is now live on Android.</h1>
         <p>
-          The Android app is still being tested. Sign up below and enter the email address you use
-          for your Google Play Store account so we can invite the right account when beta places are
-          available.
+          The wait is over — the Android app has fully launched and is available to everyone.
+          Download it from Google Play to find family-friendly pubs and hotels with real
+          playgrounds and play areas near you.
         </p>
       </section>
 
       <section>
-        <form class="beta-form" id="android-beta-form">
-          <label for="tester-name">Name</label>
-          <input
-            id="tester-name"
-            name="name"
-            type="text"
-            autocomplete="name"
-            required
-          >
-
-          <label for="tester-email">Google Play Store email address</label>
-          <input
-            id="tester-email"
-            name="email"
-            type="email"
-            autocomplete="email"
-            required
-          >
-
-          <button class="form-button" type="submit">Sign up to be a beta tester</button>
-          <p class="form-note">
-            This opens an email to Pubs With Playgrounds with your details filled in.
-          </p>
-        </form>
+        <div class="store-actions">
+          <a class="btn-store btn-store-ghost" href="https://play.google.com/store/apps/details?id=com.pubswithplaygrounds.app" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill="currentColor" d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85a.637.637 0 0 0-.83.22l-1.88 3.24a11.46 11.46 0 0 0-8.94 0L5.65 5.67a.637.637 0 0 0-.83-.22c-.3.16-.42.54-.26.85L6.4 9.48A10.78 10.78 0 0 0 1 18h22a10.78 10.78 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>
+            <span><small>Get it on</small><strong>Google Play</strong></span>
+          </a>
+        </div>
       </section>
     </main>
   </div>
-
-  <script>
-    document.getElementById('android-beta-form').addEventListener('submit', function (event) {
-      event.preventDefault();
-      var name = document.getElementById('tester-name').value.trim();
-      var email = document.getElementById('tester-email').value.trim();
-      var subject = 'Android beta tester signup';
-      var body = [
-        'Please add me to the Pubs With Playgrounds Android beta tester list.',
-        '',
-        'Name: ' + name,
-        'Google Play Store email: ' + email
-      ].join('\n');
-
-      window.location.href =
-        'mailto:hello@pubswithplaygrounds.com?subject=' +
-        encodeURIComponent(subject) +
-        '&body=' +
-        encodeURIComponent(body);
-    });
-  </script>
 </body>
 </html>

@@ -17,7 +17,8 @@ usually live within a couple of minutes.
   download CTA, support links.
 - `privacy.html`, `terms.html`, `account-deletion.html` — legal pages required by
   the App Store. Do not change their content without being asked explicitly.
-- `android-beta.html` — Android beta signup page.
+- `android-beta.html` — legacy Android page, kept so old links and emails don't
+  break; it now points to the live Google Play listing and is marked `noindex`.
 - `styles.css` — the single shared stylesheet for ALL pages. The top half styles
   the homepage; the section at the bottom marked "Legacy pages" styles the legal
   and beta pages. Changes to shared tokens (`:root` variables) affect every page.
@@ -51,8 +52,8 @@ usually live within a couple of minutes.
   database genuinely passes the next round number.
 - The "5.0 on the App Store" line reflects the current rating; check it is still
   true before any copy refresh, and remove it if the rating drops.
-- Android is in beta ("coming soon") — update both hero and CTA buttons together
-  when it launches.
+- Google Play link: https://play.google.com/store/apps/details?id=com.pubswithplaygrounds.app
+  (Android is live — both the hero and CTA buttons link here.)
 
 ## Conventions
 
