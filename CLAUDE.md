@@ -26,7 +26,13 @@ usually live within a couple of minutes.
 ## Design system
 
 - Palette (CSS variables in `:root`): deep pub green `--green-deep #173527`,
-  map mint `--mint #e9f4ea`, brand coral `--coral #e8654a`, paper `--paper #fdfcf9`.
+  map mint `--mint #e9f4ea`, brand orange `--coral #e06b2a` (accents) with
+  `--coral-deep #c0551a` for filled buttons (matches the app's lib/app.dart —
+  white on the bright orange fails WCAG AA), paper `--paper #fdfcf9`.
+- Facility chips mirror the app's badge style: brand orange at 9% alpha fill,
+  22% border, orange icon, near-black text. Facility names must match the
+  app's labels in `packages/pub_facilities` (e.g. "Outdoor play", not
+  "Playground"; "Children's menu", not "Kids' menu").
 - Type: Bricolage Grotesque for headings (`--display`), Nunito Sans for body
   (`--body`), loaded from Google Fonts in each page's `<head>`.
 - Keep the established look: rounded cards, pill buttons, soft shadows, generous

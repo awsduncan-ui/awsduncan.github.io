@@ -1,6 +1,8 @@
 /* ==========================================================
    Pubs With Playgrounds — site styles
-   Palette: deep pub green / map mint / brand coral / paper
+   Palette: deep pub green / map mint / brand orange / paper
+   Brand orange values mirror the app (lib/app.dart):
+   #e06b2a accents, #c0551a for filled buttons (WCAG AA on white)
    Type: Bricolage Grotesque (display) + Nunito Sans (body)
    ========================================================== */
 
@@ -10,8 +12,8 @@
   --mint: #e9f4ea;
   --mint-deep: #d8ecd9;
   --paper: #fdfcf9;
-  --coral: #e8654a;
-  --coral-deep: #c94a30;
+  --coral: #e06b2a;
+  --coral-deep: #c0551a;
   --ink: #1b231c;
   --muted: #58675b;
   --line: #dde7dd;
@@ -188,13 +190,13 @@ h3 {
 }
 
 .btn-coral {
-  background: var(--coral);
+  background: var(--coral-deep);
   color: #fff;
-  box-shadow: 0 8px 20px rgba(232, 101, 74, 0.35);
+  box-shadow: 0 8px 20px rgba(224, 107, 42, 0.35);
 }
 
 .btn-coral:hover {
-  background: var(--coral-deep);
+  background: #a64712;
   color: #fff;
   transform: translateY(-1px);
 }
@@ -394,8 +396,9 @@ h3 {
   font-style: normal;
   font-size: 0.72rem;
   font-weight: 800;
-  color: var(--coral-deep);
-  background: rgba(232, 101, 74, 0.12);
+  color: var(--ink);
+  background: rgba(224, 107, 42, 0.09);
+  border: 1px solid rgba(224, 107, 42, 0.22);
   padding: 3px 9px;
   border-radius: 99px;
 }
@@ -494,23 +497,31 @@ body.js .reveal.in { opacity: 1; transform: none; }
   align-content: center;
 }
 
+/* Facility chips — mirror the app's badge style:
+   brand orange at 9% for the fill, 18% for the border, orange icon */
 .chip {
-  padding: 11px 20px;
-  background: #fff;
-  border: 1px solid var(--line);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 18px;
+  background: rgba(224, 107, 42, 0.09);
+  border: 1px solid rgba(224, 107, 42, 0.22);
   border-radius: 99px;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.95rem;
   color: var(--ink);
-  box-shadow: 0 4px 12px rgba(23, 53, 39, 0.05);
 }
 
+.chip svg { color: var(--coral); flex: none; }
+
 .chip-hero {
-  background: var(--coral);
-  border-color: var(--coral);
+  background: var(--coral-deep);
+  border-color: var(--coral-deep);
   color: #fff;
-  box-shadow: 0 8px 20px rgba(232, 101, 74, 0.35);
+  box-shadow: 0 8px 20px rgba(224, 107, 42, 0.35);
 }
+
+.chip-hero svg { color: #fff; }
 
 /* Community */
 
@@ -843,34 +854,36 @@ body.js .reveal.in { opacity: 1; transform: none; }
 .listing-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
 .listing-head h3 { margin: 0; font-size: 1.3rem; }
 .listing-meta { margin: 2px 0 0; color: var(--muted); font-size: 0.92rem; font-weight: 600; }
+/* Rating in the app is a plain gold star + number, no pill */
 .listing-rating {
   flex: none;
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 5px 11px;
-  border-radius: 99px;
-  background: var(--mint);
-  color: var(--green-deep);
+  color: var(--ink);
   font-weight: 800;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
 }
-.listing-rating span { color: #e9a13b; }
-.listing-sub { margin: 12px 0 0; color: var(--muted); font-size: 0.92rem; font-weight: 600; }
-
-.listing-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-.listing-chips .chip { padding: 7px 14px; font-size: 0.85rem; box-shadow: none; }
-
-.listing-facilities {
+.listing-rating span { color: #e9a13b; font-size: 1.1rem; }
+.listing-sub {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-top: 18px;
-  padding-top: 16px;
-  border-top: 1px solid var(--line);
-  color: var(--green-mid);
+  gap: 7px;
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 600;
 }
-.listing-more { margin-left: auto; color: var(--muted); font-size: 0.85rem; font-weight: 800; }
+.open-dot {
+  width: 9px;
+  height: 9px;
+  flex: none;
+  border-radius: 99px;
+  background: #2e9e4f;
+}
+
+.listing-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.listing-chips .chip { padding: 7px 13px; font-size: 0.85rem; gap: 6px; }
 
 /* Numbered steps */
 .steps {
