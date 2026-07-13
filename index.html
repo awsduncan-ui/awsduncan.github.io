@@ -26,9 +26,9 @@
         <span>Pubs With<br>Playgrounds</span>
       </a>
       <nav class="nav-links" aria-label="Page links">
+        <a href="#showcase">The app</a>
         <a href="#how">How it works</a>
         <a href="#facilities">What's listed</a>
-        <a href="#community">Community</a>
         <a href="#support">Support</a>
       </nav>
       <a class="btn btn-coral btn-nav" href="https://apps.apple.com/gb/app/pubs-with-playgrounds/id6757747311">Get the app</a>
@@ -59,10 +59,10 @@
 
       <div class="shell hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">The UK family pub finder</p>
+          <span class="pill-rating"><span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> Rated 5.0 on the App Store</span>
           <h1 id="hero-title">Find a pub where the kids can <em>actually</em> play.</h1>
           <p class="lead">
-            Over 1,000 pubs and hotels with real playgrounds and play areas —
+            Over 1,000 UK pubs and hotels with real playgrounds and play areas —
             checked, mapped, and ready before you leave the house.
           </p>
           <div class="store-actions">
@@ -76,9 +76,9 @@
             </a>
           </div>
           <ul class="hero-trust" aria-label="App highlights">
-            <li><span class="dot" aria-hidden="true"></span>Free to download</li>
-            <li><span class="star" aria-hidden="true">&#9733;</span>5.0 on the App Store</li>
-            <li><span class="dot" aria-hidden="true"></span>Built by UK parents</li>
+            <li><span class="tick" aria-hidden="true">&#10003;</span>Free to download</li>
+            <li><span class="tick" aria-hidden="true">&#10003;</span>No subscription</li>
+            <li><span class="tick" aria-hidden="true">&#10003;</span>Built by UK parents</li>
           </ul>
         </div>
 
@@ -114,32 +114,85 @@
           <span>checked for a genuine playground or play area</span>
         </div>
         <div class="stat">
-          <strong>Growing daily</strong>
-          <span>with photos, reviews and new pubs from parents</span>
+          <strong>5.0 stars</strong>
+          <span>from parents on the App Store</span>
         </div>
       </div>
     </section>
 
+    <!-- ============ PRODUCT SHOWCASE ============ -->
+    <section class="section showcase" id="showcase" aria-labelledby="showcase-title">
+      <div class="shell showcase-grid">
+        <div class="showcase-copy">
+          <p class="eyebrow">Know before you go</p>
+          <h2 id="showcase-title">See exactly what you're walking into.</h2>
+          <p class="body-copy">
+            Every listing shows the things that decide a family day out — the actual play
+            equipment, whether there's a beer garden, a kids' menu, baby change and parking —
+            with real photos and honest details, not vague &ldquo;family friendly&rdquo; tags.
+          </p>
+          <ul class="check-list">
+            <li><span class="tick" aria-hidden="true">&#10003;</span>Real photos of the play area, not stock images</li>
+            <li><span class="tick" aria-hidden="true">&#10003;</span>Opening hours, food times and facilities at a glance</li>
+            <li><span class="tick" aria-hidden="true">&#10003;</span>Distance and directions from wherever you are</li>
+          </ul>
+        </div>
+
+        <figure class="listing-card" aria-label="Example pub listing">
+          <div class="listing-photo">
+            <img src="assets/thumb-playground.jpg" alt="A pub garden with a wooden climbing frame and slide" loading="lazy">
+            <span class="listing-badge">Open until 22:30</span>
+          </div>
+          <figcaption class="listing-body">
+            <div class="listing-head">
+              <div>
+                <h3>The Old Thatch</h3>
+                <p class="listing-meta">Wareham, Dorset</p>
+              </div>
+              <span class="listing-rating"><span aria-hidden="true">&#9733;</span> 4.7</span>
+            </div>
+            <p class="listing-sub">1.2 miles away &middot; Food served all day</p>
+            <div class="listing-chips">
+              <span class="chip chip-hero">Playground</span>
+              <span class="chip">Beer garden</span>
+              <span class="chip">Kids' menu</span>
+              <span class="chip">Baby change</span>
+            </div>
+            <div class="listing-facilities" aria-hidden="true">
+              <span title="Parking"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M13 3H6v18h4v-6h3a6 6 0 0 0 0-12Zm.2 8H10V7h3.2a2 2 0 0 1 0 4Z"/></svg></span>
+              <span title="Dog friendly"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M4.5 9.5 3 6l3 1 2-2 1 3-1.5 2.5Zm15-3.5 3-1-1.5 3.5L18.5 12 17 9.5l-1-3ZM12 9c3.3 0 6 2.9 6 6.5 0 1.9-1.3 2.5-3 2.5-1.2 0-1.8-.5-3-.5s-1.8.5-3 .5c-1.7 0-3-.6-3-2.5C6 11.9 8.7 9 12 9Z"/></svg></span>
+              <span title="High chairs"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M7 2h6l-.5 7h2.5v2h-2.7l-.6 8H10l.3-4H8.2L8 21H6L7 9H5V7h2.2L7 2Zm2.1 5h2.3l.3-3H8.9l.2 3Z"/></svg></span>
+              <span title="Accessible"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M12 4a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM6 9l4 .8V13h3.5c.8 0 1.4.5 1.7 1.2L17 19l-1.8.8-1.6-3.8H9c-1.1 0-2-.9-2-2V9Zm3.2 6.2a3.5 3.5 0 1 0 4.3 4.6l-1.7-.7a1.8 1.8 0 1 1-2.2-2.3l-.4-1.6Z"/></svg></span>
+              <span class="listing-more">+6 more</span>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
     <!-- ============ HOW IT WORKS ============ -->
-    <section class="section" id="how" aria-labelledby="how-title">
+    <section class="section section-mint" id="how" aria-labelledby="how-title">
       <div class="shell">
         <div class="section-heading">
           <p class="eyebrow">How it works</p>
           <h2 id="how-title">From &ldquo;where can we go?&rdquo; to out the door in two minutes.</h2>
         </div>
 
-        <div class="how-grid">
-          <article class="how-card reveal">
+        <div class="steps">
+          <article class="step reveal">
+            <span class="step-num">01</span>
             <div class="phone phone-small"><img src="assets/shot4.png" alt="App screen showing a list of nearby pubs with playgrounds, distances and facilities" loading="lazy" width="600" height="1298"></div>
             <h3>See what's nearby</h3>
             <p>Open the app and instantly see pubs with play areas around you — or anywhere you're heading — with distance and facilities at a glance.</p>
           </article>
-          <article class="how-card reveal">
+          <article class="step reveal">
+            <span class="step-num">02</span>
             <div class="phone phone-small"><img src="assets/shot2.png" alt="App screen showing a pub detail page with photos of the playground, opening hours and family facilities" loading="lazy" width="600" height="1298"></div>
             <h3>Check before you commit</h3>
-            <p>Real photos of the actual play equipment, opening hours, and the details parents need — kids' menus, baby change, high chairs, parking.</p>
+            <p>Real photos of the play equipment, opening hours, and the details parents need — kids' menus, baby change, high chairs, parking.</p>
           </article>
-          <article class="how-card reveal">
+          <article class="step reveal">
+            <span class="step-num">03</span>
             <div class="phone phone-small"><img src="assets/shot3.png" alt="App screen showing saved favourite pubs" loading="lazy" width="600" height="1298"></div>
             <h3>Save your favourites</h3>
             <p>Build your own shortlist for weekends, holidays and emergency pit stops — ready for whenever the question comes up.</p>
@@ -149,7 +202,7 @@
     </section>
 
     <!-- ============ FACILITIES ============ -->
-    <section class="section section-mint" id="facilities" aria-labelledby="facilities-title">
+    <section class="section" id="facilities" aria-labelledby="facilities-title">
       <div class="shell facilities-grid">
         <div>
           <p class="eyebrow">What's listed</p>
@@ -185,7 +238,7 @@
     </section>
 
     <!-- ============ COMMUNITY ============ -->
-    <section class="section" id="community" aria-labelledby="community-title">
+    <section class="section section-mint" id="community" aria-labelledby="community-title">
       <div class="shell community">
         <div class="section-heading">
           <p class="eyebrow">Community</p>
@@ -196,19 +249,19 @@
             families find their new favourite.
           </p>
         </div>
-        <div class="community-grid">
-          <div class="community-card">
-            <span class="community-icon" aria-hidden="true">+</span>
+        <div class="value-grid">
+          <div class="value-card">
+            <span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg></span>
             <h3>Add missing pubs</h3>
             <p>Suggest a pub in under a minute. We check it and add it to the map.</p>
           </div>
-          <div class="community-card">
-            <span class="community-icon" aria-hidden="true">&#9998;</span>
+          <div class="value-card">
+            <span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 17V7a2 2 0 0 1 2-2h2l1.5-2h5L18 5h0a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
             <h3>Share photos &amp; reviews</h3>
             <p>A quick photo of the play area is gold for the next parent planning a trip.</p>
           </div>
-          <div class="community-card">
-            <span class="community-icon" aria-hidden="true">&#10003;</span>
+          <div class="value-card">
+            <span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg></span>
             <h3>Keep listings honest</h3>
             <p>Flag anything that's changed and we'll put it right.</p>
           </div>
@@ -271,12 +324,36 @@
 
   <footer class="footer">
     <div class="shell footer-grid">
-      <div class="footer-brand">
-        <img src="assets/app-logo.png" alt="" width="34" height="34">
-        <span>Pubs With Playgrounds</span>
+      <div class="footer-col footer-about">
+        <div class="footer-brand">
+          <img src="assets/app-logo.png" alt="" width="34" height="34">
+          <span>Pubs With Playgrounds</span>
+        </div>
+        <p class="footer-fine">The UK family pub finder. Made in the UK, mostly in beer gardens.</p>
       </div>
-      <p>Contact: <a href="mailto:hello@pubswithplaygrounds.com">hello@pubswithplaygrounds.com</a></p>
-      <p class="footer-fine">&copy; 2026 Pubs With Playgrounds. Made in the UK, mostly in beer gardens.</p>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="#showcase">The app</a>
+        <a href="#how">How it works</a>
+        <a href="#facilities">What's listed</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="account-deletion.html">Account Deletion</a>
+      </div>
+      <div class="footer-col">
+        <h4>Get in touch</h4>
+        <a href="mailto:hello@pubswithplaygrounds.com">hello@pubswithplaygrounds.com</a>
+        <div class="footer-stores">
+          <a href="https://apps.apple.com/gb/app/pubs-with-playgrounds/id6757747311" aria-label="Download on the App Store">App Store</a>
+          <a href="https://play.google.com/store/apps/details?id=com.pubswithplaygrounds.app" target="_blank" rel="noopener" aria-label="Get it on Google Play">Google Play</a>
+        </div>
+      </div>
+    </div>
+    <div class="shell footer-base">
+      <p>&copy; 2026 Pubs With Playgrounds. All rights reserved.</p>
     </div>
   </footer>
 
