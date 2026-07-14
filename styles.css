@@ -697,23 +697,7 @@ body.js .reveal.in { opacity: 1; transform: none; }
    numbered steps, value cards, multi-column footer
    ========================================================== */
 
-/* Hero rating badge + ticks */
-.pill-rating {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0 0 22px;
-  padding: 7px 14px 7px 12px;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 99px;
-  box-shadow: 0 6px 16px rgba(23, 53, 39, 0.06);
-  font-size: 0.82rem;
-  font-weight: 800;
-  color: var(--green-deep);
-}
-.pill-rating .stars { color: #e9a13b; letter-spacing: 1px; font-size: 0.9rem; }
-
+/* Hero ticks */
 .hero-trust { gap: 10px 22px; }
 .hero-trust .tick,
 .check-list .tick {

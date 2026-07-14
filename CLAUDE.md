@@ -56,8 +56,9 @@ usually live within a couple of minutes.
 - Contact email: hello@pubswithplaygrounds.com
 - The "1,000+ pubs" claim reflects the Firestore database; only raise it when the
   database genuinely passes the next round number.
-- The "5.0 on the App Store" line reflects the current rating; check it is still
-  true before any copy refresh, and remove it if the rating drops.
+- The App Store rating claim was removed in July 2026 when the rating dropped
+  below 5.0. Only reinstate a rating on the site with a number verified against
+  the store listing on the day of the change, and remove it again if it drops.
 - Google Play link: https://play.google.com/store/apps/details?id=com.pubswithplaygrounds.app
   (Android is live — both the hero and CTA buttons link here.)
 
