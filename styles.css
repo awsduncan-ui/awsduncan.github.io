@@ -369,6 +369,69 @@ h3 {
   font-weight: 600;
 }
 
+/* ---------- Coverage ---------- */
+
+.coverage {
+  background: #fff;
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+
+.coverage-heading {
+  margin-bottom: 28px;
+}
+
+.coverage-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.coverage-card {
+  display: grid;
+  gap: 12px;
+  padding: 28px;
+  color: var(--ink);
+  text-decoration: none;
+  background: var(--paper);
+  border: 1px solid rgba(23, 53, 39, 0.12);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.coverage-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-soft);
+}
+
+.coverage-card:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 3px;
+}
+
+.coverage-outlet,
+.coverage-link {
+  color: var(--coral-deep);
+  font-weight: 800;
+}
+
+.coverage-outlet {
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.coverage-card strong {
+  font-family: var(--display);
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  line-height: 1.22;
+}
+
+.coverage-link {
+  margin-top: 4px;
+}
+
 /* ---------- Sections ---------- */
 
 .section { padding: 96px 0; }
@@ -599,6 +662,7 @@ body.js .reveal.in { opacity: 1; transform: none; }
 @media (max-width: 640px) {
   .nav-links { display: none; }
   .section { padding: 64px 0; }
+  .coverage-grid { grid-template-columns: 1fr; }
   .how-card { grid-template-columns: 1fr; }
   .how-card .phone-small { width: min(220px, 70vw); }
   .btn-store { width: 100%; justify-content: center; }
