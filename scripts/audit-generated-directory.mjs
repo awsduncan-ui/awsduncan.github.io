@@ -127,10 +127,11 @@ async function main() {
   const homepage = await readFile(path.join(ROOT, "index.html"), "utf8");
   homepage.includes("Explore regional pub guides") &&
   homepage.includes("/pubs-with-playgrounds/") &&
+  homepage.includes("https://www.bournemouthecho.co.uk/news/26289263.father-two-poole-creates-pubs-playgrounds/") &&
   !homepage.includes("data-postcode-finder") &&
   !/<input\b[^>]*type=["']search["']/i.test(homepage)
-    ? pass("Homepage is a crawlable directory gateway")
-    : fail("Homepage regional-guide gateway is missing or still contains search controls");
+    ? pass("Homepage is a crawlable directory gateway with press proof")
+    : fail("Homepage regional-guide gateway or press proof is missing, or search controls remain");
 
   const fileCache = new Map();
   let internalLinks = 0;

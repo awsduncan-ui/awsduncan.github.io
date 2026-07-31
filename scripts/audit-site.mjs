@@ -127,6 +127,10 @@ async function main() {
       ? pass(`Homepage JSON-LD includes ${type}`)
       : fail(`Homepage JSON-LD is missing ${type}`);
   }
+  homepage.includes("https://www.bournemouthecho.co.uk/news/26289263.father-two-poole-creates-pubs-playgrounds/") &&
+  schemaText.includes('"@type":"NewsArticle"')
+    ? pass("Homepage links its Bournemouth Echo coverage in HTML and JSON-LD")
+    : fail("Homepage is missing its Bournemouth Echo press coverage");
 
   const robotsResponse = await fetchPage(ROBOTS_URL);
   const robots = await robotsResponse.text();
