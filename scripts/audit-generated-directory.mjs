@@ -110,14 +110,27 @@ async function main() {
     html.includes("Last checked") && html.includes("Report a correction")
       ? pass(`${url} exposes freshness and correction information`)
       : fail(`${url} is missing freshness or correction information`);
+    !/<input\b[^>]*type=["']search["']/i.test(html) &&
+    !html.includes("data-directory-filter")
+      ? pass(`${url} contains no search or filter bar`)
+      : fail(`${url} still contains a search or filter bar`);
+    const heroStart = html.indexOf('<section class="directory-hero">');
+    const heroEnd = html.indexOf("</section>", heroStart);
+    const hero = html.slice(heroStart, heroEnd);
+    hero.includes("apps.apple.com") &&
+    hero.includes("play.google.com") &&
+    hero.includes("phone-directory")
+      ? pass(`${url} leads with app download actions and product imagery`)
+      : fail(`${url} is missing the app-first directory hero`);
   }
 
   const homepage = await readFile(path.join(ROOT, "index.html"), "utf8");
-  homepage.includes("Find pubs with playgrounds near you") &&
+  homepage.includes("Explore regional pub guides") &&
   homepage.includes("/pubs-with-playgrounds/") &&
-  !homepage.includes("data-postcode-finder")
+  !homepage.includes("data-postcode-finder") &&
+  !/<input\b[^>]*type=["']search["']/i.test(homepage)
     ? pass("Homepage is a crawlable directory gateway")
-    : fail("Homepage regional-guide gateway is missing or still contains postcode routing");
+    : fail("Homepage regional-guide gateway is missing or still contains search controls");
 
   const fileCache = new Map();
   let internalLinks = 0;

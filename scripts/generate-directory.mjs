@@ -74,7 +74,7 @@ const regions = [
     radiusKm: 30,
     places: "Manchester, Salford, Stockport, Wigan, Bolton and nearby towns",
     intro:
-      "Greater Manchester’s checked listings include outdoor playgrounds, indoor play areas and soft-play venues. Filter the list by pub name, town or facility to find a practical stop for lunch, a rainy day or a family meet-up.",
+      "Greater Manchester’s checked listings include outdoor playgrounds, indoor play areas and soft-play venues. Browse the guide to find a practical stop for lunch, a rainy day or a family meet-up.",
     tip:
       "The radius includes border towns because the nearest useful pub is often outside a borough boundary. Every card shows its full address so that choice remains clear.",
   },
@@ -402,13 +402,27 @@ function pageShell({ title, description, canonicalPath, h1, eyebrow, lead, conte
   </header>
   <main>
     <section class="directory-hero">
-      <div class="shell">
-        <nav class="breadcrumbs" aria-label="Breadcrumb">
-          <a href="/">Home</a><span aria-hidden="true">/</span><a href="/pubs-with-playgrounds/">Pubs with playgrounds</a>${canonicalPath === "/pubs-with-playgrounds/" ? "" : `<span aria-hidden="true">/</span><span>${escapeHtml(eyebrow)}</span>`}
-        </nav>
-        <p class="eyebrow">${escapeHtml(eyebrow)}</p>
-        <h1>${escapeHtml(h1)}</h1>
-        <p class="lead">${escapeHtml(lead)}</p>
+      <div class="shell directory-hero-grid">
+        <div class="directory-hero-copy">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="/">Home</a><span aria-hidden="true">/</span><a href="/pubs-with-playgrounds/">Pubs with playgrounds</a>${canonicalPath === "/pubs-with-playgrounds/" ? "" : `<span aria-hidden="true">/</span><span>${escapeHtml(eyebrow)}</span>`}
+          </nav>
+          <p class="eyebrow">${escapeHtml(eyebrow)}</p>
+          <h1>${escapeHtml(h1)}</h1>
+          <p class="lead">${escapeHtml(lead)}</p>
+          <div class="store-actions directory-store-actions">
+            <a class="btn-store" href="${appStoreUrl}"><span><small>Download on the</small><strong>App Store</strong></span></a>
+            <a class="btn-store btn-store-ghost" href="${playStoreUrl}" target="_blank" rel="noopener"><span><small>Get it on</small><strong>Google Play</strong></span></a>
+          </div>
+          <ul class="hero-trust directory-hero-trust">
+            <li><span class="dot"></span>Free to download</li>
+            <li><span class="dot"></span>Complete UK map</li>
+            <li><span class="dot"></span>No subscription</li>
+          </ul>
+        </div>
+        <div class="directory-hero-visual" aria-hidden="true">
+          <div class="phone phone-directory"><img src="/assets/shot1.png" alt="" width="600" height="1240"></div>
+        </div>
       </div>
     </section>
     ${content}
@@ -432,17 +446,6 @@ function footerHtml() {
     </div>
     <div class="shell footer-base"><p>&copy; 2026 Pubs With Playgrounds. All rights reserved.</p></div>
   </footer>`;
-}
-
-function filterFormHtml({ count, regionName = "this guide" }) {
-  return `<form class="directory-filter" role="search" data-directory-filter>
-    <label for="directory-search">Filter ${escapeHtml(regionName)}</label>
-    <div class="directory-filter-row">
-      <input id="directory-search" name="q" type="search" autocomplete="postal-code" placeholder="Pub, town, postcode or facility">
-      <button class="btn btn-coral" type="submit">Search</button>
-    </div>
-    <p class="directory-results" data-directory-results aria-live="polite">Showing ${count} checked ${count === 1 ? "venue" : "venues"}.</p>
-  </form>`;
 }
 
 function methodologyHtml(manifest) {
@@ -475,8 +478,8 @@ function regionalPage(region, pubs, regionCounts, manifest) {
     .slice(0, 4)
     .map((item) => regionCardHtml(item, regionCounts.get(item.slug)))
     .join("\n");
-  const content = `<section class="section directory-intro"><div class="shell directory-intro-grid"><div><h2>A practical family-pub shortlist</h2><p class="body-copy">${escapeHtml(region.intro)}</p><p class="coverage-note"><strong>Coverage:</strong> ${escapeHtml(region.places)}, using an approximately ${region.radiusKm} km search radius from ${escapeHtml(region.centre)}. Border areas can overlap neighbouring guides.</p></div>${filterFormHtml({ count: pubs.length, regionName: `the ${displayName} guide` })}</div></section>
-  <section class="section section-mint directory-list" id="listings" aria-labelledby="listings-title"><div class="shell"><div class="directory-list-heading"><div><p class="eyebrow">Checked listings</p><h2 id="listings-title">${pubs.length} pubs with play facilities in and around ${escapeHtml(displayName)}</h2></div><p>${escapeHtml(region.tip)}</p></div><div class="directory-pub-grid" data-directory-grid>${cards}</div><div class="directory-empty" data-directory-empty hidden><h3>No matching venues in this guide</h3><p>Try a town, postcode or broader facility term—or use the app for the full UK map.</p></div></div></section>
+  const content = `<section class="section directory-intro"><div class="shell directory-intro-grid directory-intro-no-search"><div><h2>A practical family-pub shortlist</h2><p class="body-copy">${escapeHtml(region.intro)}</p><p class="coverage-note"><strong>Coverage:</strong> ${escapeHtml(region.places)}, using an approximately ${region.radiusKm} km guide radius from ${escapeHtml(region.centre)}. Border areas can overlap neighbouring guides.</p></div></div></section>
+  <section class="section section-mint directory-list" id="listings" aria-labelledby="listings-title"><div class="shell"><div class="directory-list-heading"><div><p class="eyebrow">Checked listings</p><h2 id="listings-title">${pubs.length} pubs with play facilities in and around ${escapeHtml(displayName)}</h2></div><p>${escapeHtml(region.tip)}</p></div><div class="directory-pub-grid">${cards}</div></div></section>
   <section class="section"><div class="shell"><div class="section-heading"><p class="eyebrow">Keep exploring</p><h2>More regional guides</h2></div><div class="region-grid">${neighbourCards}</div></div></section>
   ${methodologyHtml(manifest)}${appCtaHtml()}`;
   return pageShell({
@@ -485,7 +488,7 @@ function regionalPage(region, pubs, regionCounts, manifest) {
     canonicalPath: pathName,
     h1: `Pubs with playgrounds in ${displayName}`,
     eyebrow: `${displayName} family pub guide`,
-    lead: `${pubs.length} checked venues with a recorded outdoor playground, indoor play area or soft play within approximately ${region.radiusKm} km of ${region.centre}.`,
+    lead: `Download the free app for the complete UK map, nearby results, saved favourites and directions. Preview ${pubs.length} checked venues in and around ${displayName} in the guide below.`,
     content,
     graph: [
       breadcrumbJson([
@@ -523,9 +526,8 @@ function nationalPage(regionPubs, regionCounts, manifest) {
       }),
     )
     .join("\n");
-  const content = `<section class="section directory-intro"><div class="shell directory-intro-grid directory-intro-no-search"><div><h2>Start with a regional guide</h2><p class="body-copy">Each guide is built from checked public listings and shows the full address, recorded play type, practical facilities and last verification date. Choose an area below to browse the first wave of regional guides.</p></div></div></section>
-  <section class="section section-mint" aria-labelledby="regions-title"><div class="shell"><div class="section-heading"><p class="eyebrow">Regional directory</p><h2 id="regions-title">Browse pubs with playgrounds by area</h2></div><div class="region-grid">${regionCards}</div></div></section>
-  <section class="section directory-list" id="listings" aria-labelledby="featured-title"><div class="shell"><div class="directory-list-heading"><div><p class="eyebrow">A useful starting point</p><h2 id="featured-title">Checked pubs from across the first regional guides</h2></div><p>These are substantial listings with useful facility information. Follow a card to see it in its full regional guide.</p></div>${filterFormHtml({ count: selected.length, regionName: "this featured selection" })}<div class="directory-pub-grid directory-featured-grid" data-directory-grid>${cards}</div><div class="directory-empty" data-directory-empty hidden><h3>No matching featured venue</h3><p>Browse a regional guide above or use the app for all current UK listings.</p></div></div></section>
+  const content = `<section class="section section-mint" aria-labelledby="regions-title"><div class="shell"><div class="section-heading"><p class="eyebrow">Regional directory</p><h2 id="regions-title">Choose a regional guide</h2><p class="body-copy">Preview checked pub listings, full addresses, recorded play types, practical facilities and verification dates on the web.</p></div><div class="region-grid">${regionCards}</div></div></section>
+  <section class="section directory-list" id="listings" aria-labelledby="featured-title"><div class="shell"><div class="directory-list-heading"><div><p class="eyebrow">A useful starting point</p><h2 id="featured-title">Checked pubs from across the first regional guides</h2></div><p>These are substantial listings with useful facility information. Follow a card to see it in its full regional guide.</p></div><div class="directory-pub-grid directory-featured-grid">${cards}</div></div></section>
   ${methodologyHtml(manifest)}${appCtaHtml()}`;
   return pageShell({
     title: "Browse UK Pubs With Playgrounds | Checked Regional Guides",
@@ -533,7 +535,7 @@ function nationalPage(regionPubs, regionCounts, manifest) {
     canonicalPath: "/pubs-with-playgrounds/",
     h1: "Browse UK pubs with playgrounds by region",
     eyebrow: "UK family pub directory",
-    lead: "Browse real, checked pub listings on the web—then use the free app when you want the complete UK map in your pocket.",
+    lead: "Download the free app for the complete UK map, nearby results, saved favourites and directions. The regional web guides begin below.",
     content,
     graph: [
       breadcrumbJson([
@@ -573,7 +575,7 @@ function homepageGateway(regionPubs, regionCounts) {
     <section class="section directory-gateway" id="directory" aria-labelledby="directory-title">
       <div class="shell">
         <div class="directory-intro-grid directory-intro-no-search">
-          <div><p class="eyebrow">Browse on the web</p><h2 id="directory-title">Find pubs with playgrounds near you</h2><p class="body-copy">Start with checked pub listings, addresses and family facilities—no app installation required. Choose one of the regional guides below.</p></div>
+          <div><p class="eyebrow">Preview the directory</p><h2 id="directory-title">Explore regional pub guides</h2><p class="body-copy">The free app is the quickest way to search the complete UK map, see what is nearby and save favourites. These regional guides let you preview checked listings on the web.</p></div>
         </div>
         <div class="region-grid homepage-region-grid">${regionCards}</div>
         <div class="directory-list-heading homepage-listing-heading"><div><p class="eyebrow">Real listings</p><h2>Recently checked family pubs</h2></div><a class="text-link" href="/pubs-with-playgrounds/">Open the UK directory <span aria-hidden="true">→</span></a></div>
