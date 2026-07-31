@@ -149,6 +149,12 @@ async function main() {
   sitemapUrls.length > 0
     ? pass(`Sitemap contains ${sitemapUrls.length} URLs`)
     : fail("Sitemap contains no URLs");
+  const directoryUrls = sitemapUrls.filter((url) =>
+    url.startsWith(`${CANONICAL_URL}pubs-with-playgrounds/`),
+  );
+  directoryUrls.length >= 9
+    ? pass(`Sitemap contains ${directoryUrls.length} directory URLs`)
+    : fail(`Sitemap contains only ${directoryUrls.length} directory URLs; expected at least 9`);
 
   for (const url of sitemapUrls) {
     const response = await fetchPage(url);
@@ -156,6 +162,27 @@ async function main() {
       pass(`Sitemap URL is healthy: ${url}`);
     } else {
       fail(`Sitemap URL ${url} resolved to ${response.url} (${response.status})`);
+      continue;
+    }
+    if ((response.headers.get("content-type") ?? "").includes("text/html")) {
+      const html = await response.text();
+      const pageCanonical = attributeFromTag(
+        html,
+        /<link\b[^>]*rel=["']canonical["'][^>]*>/i,
+        "href",
+      );
+      const pageTitle = plainText(
+        firstMatch(html, /<title[^>]*>([\s\S]*?)<\/title>/i),
+      );
+      const pageH1 = plainText(
+        firstMatch(html, /<h1\b[^>]*>([\s\S]*?)<\/h1>/i),
+      );
+      pageCanonical === url
+        ? pass(`Self-referencing canonical is correct: ${url}`)
+        : fail(`Canonical for ${url} is ${pageCanonical || "missing"}`);
+      pageTitle && pageH1
+        ? pass(`Title and H1 present: ${url}`)
+        : fail(`Title or H1 missing: ${url}`);
     }
   }
 

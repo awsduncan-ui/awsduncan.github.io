@@ -1,0 +1,38 @@
+name: Refresh public directory
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 06 * * 1"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-public-directory
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Generate from the approved public feed
+        run: node scripts/generate-directory.mjs
+      - name: Audit generated pages
+        run: node scripts/audit-generated-directory.mjs
+      - name: Commit a changed feed snapshot
+        run: |
+          if git diff --quiet; then
+            echo "Directory is already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html sitemap.xml pubs-with-playgrounds
+          git commit -m "Refresh public directory from approved feed"
+          git push
