@@ -125,13 +125,16 @@ async function main() {
   }
 
   const homepage = await readFile(path.join(ROOT, "index.html"), "utf8");
+  const coverageStart = homepage.indexOf('<div class="coverage-grid">');
+  const coverageEnd = homepage.indexOf("</div>", coverageStart);
+  const coverageHtml = homepage.slice(coverageStart, coverageEnd);
   homepage.includes("Explore regional pub guides") &&
   homepage.includes("/pubs-with-playgrounds/") &&
-  homepage.includes("https://www.bournemouthecho.co.uk/news/26289263.father-two-poole-creates-pubs-playgrounds/") &&
+  coverageHtml.includes("https://www.bournemouthecho.co.uk/news/26289263.father-two-poole-creates-pubs-playgrounds/") &&
   !homepage.includes("data-postcode-finder") &&
   !/<input\b[^>]*type=["']search["']/i.test(homepage)
-    ? pass("Homepage is a crawlable directory gateway with press proof")
-    : fail("Homepage regional-guide gateway or press proof is missing, or search controls remain");
+    ? pass("Homepage is a crawlable directory gateway with grouped media coverage")
+    : fail("Homepage regional-guide gateway or grouped media coverage is missing, or search controls remain");
 
   const fileCache = new Map();
   let internalLinks = 0;
