@@ -1028,6 +1028,10 @@ body.js .reveal.in { opacity: 1; transform: none; }
   align-items: start;
 }
 
+.directory-intro-no-search {
+  grid-template-columns: minmax(0, 760px);
+}
+
 .coverage-note {
   max-width: 48rem;
   margin: 24px 0 0;
@@ -1038,7 +1042,6 @@ body.js .reveal.in { opacity: 1; transform: none; }
   color: var(--muted);
 }
 
-.postcode-finder,
 .directory-filter {
   padding: 24px;
   border: 1px solid var(--line);
@@ -1047,7 +1050,6 @@ body.js .reveal.in { opacity: 1; transform: none; }
   box-shadow: var(--shadow-card);
 }
 
-.postcode-finder label,
 .directory-filter label {
   display: block;
   margin-bottom: 10px;
@@ -1074,8 +1076,7 @@ body.js .reveal.in { opacity: 1; transform: none; }
 
 .directory-filter-row input::placeholder { color: #718076; }
 
-.directory-results,
-.postcode-finder [data-postcode-status] {
+.directory-results {
   margin: 12px 2px 0;
   color: var(--muted);
   font-size: 0.9rem;

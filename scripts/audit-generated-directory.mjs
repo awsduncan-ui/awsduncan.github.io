@@ -114,9 +114,10 @@ async function main() {
 
   const homepage = await readFile(path.join(ROOT, "index.html"), "utf8");
   homepage.includes("Find pubs with playgrounds near you") &&
-  homepage.includes("/pubs-with-playgrounds/")
+  homepage.includes("/pubs-with-playgrounds/") &&
+  !homepage.includes("data-postcode-finder")
     ? pass("Homepage is a crawlable directory gateway")
-    : fail("Homepage directory gateway is missing");
+    : fail("Homepage regional-guide gateway is missing or still contains postcode routing");
 
   const fileCache = new Map();
   let internalLinks = 0;
