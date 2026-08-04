@@ -384,6 +384,7 @@ function pageShell({ title, description, canonicalPath, h1, eyebrow, lead, conte
   <link rel="stylesheet" href="/styles.css">
   <script type="application/ld+json">${jsonLd(graph)}</script>
   <script src="/directory.js" defer></script>
+  <script src="/marketing.js" defer></script>
 </head>
 <body class="directory-page">
   <header class="nav-wrap">

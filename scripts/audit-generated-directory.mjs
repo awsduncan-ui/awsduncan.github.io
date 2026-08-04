@@ -114,6 +114,9 @@ async function main() {
     !html.includes("data-directory-filter")
       ? pass(`${url} contains no search or filter bar`)
       : fail(`${url} still contains a search or filter bar`);
+    html.includes('<script src="/marketing.js" defer></script>')
+      ? pass(`${url} includes campaign measurement`)
+      : fail(`${url} is missing campaign measurement`);
     const heroStart = html.indexOf('<section class="directory-hero">');
     const heroEnd = html.indexOf("</section>", heroStart);
     const hero = html.slice(heroStart, heroEnd);
@@ -135,6 +138,10 @@ async function main() {
   !/<input\b[^>]*type=["']search["']/i.test(homepage)
     ? pass("Homepage is a crawlable directory gateway with grouped media coverage")
     : fail("Homepage regional-guide gateway or grouped media coverage is missing, or search controls remain");
+  homepage.includes('<script src="/marketing.js" defer></script>') &&
+  await exists(path.join(ROOT, "marketing.js"))
+    ? pass("Homepage campaign measurement assets are present")
+    : fail("Homepage campaign measurement assets are missing");
 
   const fileCache = new Map();
   let internalLinks = 0;

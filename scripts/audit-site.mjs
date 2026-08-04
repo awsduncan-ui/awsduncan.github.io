@@ -110,6 +110,17 @@ async function main() {
   /noindex/i.test(robotsMeta)
     ? fail("Homepage contains a noindex robots directive")
     : pass("Homepage is indexable");
+  homepage.includes('<script src="/marketing.js" defer></script>')
+    ? pass("Homepage loads campaign measurement")
+    : fail("Homepage is missing campaign measurement");
+
+  const marketingResponse = await fetchPage(`${CANONICAL_URL}marketing.js`);
+  const marketingScript = await marketingResponse.text();
+  marketingResponse.status === 200 &&
+  marketingScript.includes("G-X59GR96YDR") &&
+  marketingScript.includes("store_click")
+    ? pass("Campaign measurement script is live")
+    : fail("Campaign measurement script is missing or incomplete");
 
   const schemaBlocks = [...homepage.matchAll(
     /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi,
