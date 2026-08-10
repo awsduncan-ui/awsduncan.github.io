@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
@@ -12,6 +12,23 @@ const MANIFEST_URL =
   "https://firebasestorage.googleapis.com/v0/b/pubs-with-playgrounds-8b9d4.firebasestorage.app/o/public_feeds%2Fpubs_manifest.json?alt=media";
 
 const regions = [
+  {
+    slug: "dorset-bournemouth-and-poole",
+    name: "Dorset, Bournemouth and Poole",
+    shortName: "Dorset, Bournemouth and Poole",
+    seoTitle: "Pubs With Playgrounds in Dorset, Bournemouth & Poole",
+    centre: "Poole",
+    lat: 50.7192,
+    lng: -1.8808,
+    radiusKm: 55,
+    postcodePrefixes: ["BH", "DT"],
+    places:
+      "Poole, Bournemouth, Christchurch, Wimborne, Wareham, Dorchester and Weymouth",
+    intro:
+      "This local guide covers checked pubs with genuine playgrounds, indoor play or soft play across Bournemouth, Poole and the wider Dorset area. It draws on the same verified public data as the app, while giving families a useful web shortlist before they download.",
+    tip:
+      "Dorset journeys can cross busy coastal roads and rural lanes. Check the verification date, current food service and directions before setting off.",
+  },
   {
     slug: "london",
     name: "London",
@@ -137,6 +154,12 @@ function cleanGeneratedHtml(value) {
   return value.replace(/[ \t]+$/gm, "");
 }
 
+function limitMetaDescription(value, maxLength = 160) {
+  if (value.length <= maxLength) return value;
+  const clipped = value.slice(0, maxLength - 1);
+  return `${clipped.slice(0, clipped.lastIndexOf(" ")).replace(/[,:;—-]+$/, "")}.`;
+}
+
 function safeUrl(value) {
   if (!value) return "";
   try {
@@ -195,9 +218,115 @@ function pubsForRegion(pubs, region) {
     .filter(
       (pub) =>
         distanceKm(region.lat, region.lng, pub.lat, pub.lng) <=
-        region.radiusKm,
+          region.radiusKm &&
+        (!region.postcodePrefixes ||
+          region.postcodePrefixes.some((prefix) =>
+            new RegExp(`\\b${prefix}\\d`, "i").test(pub.address),
+          )),
     )
     .sort((a, b) => a.name.localeCompare(b.name, "en-GB"));
+}
+
+function slugify(value) {
+  return String(value)
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 72);
+}
+
+function localityFor(pub) {
+  const parts = String(pub.address)
+    .split(",")
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .filter((part) => !/^(?:uk|united kingdom)$/i.test(part));
+  const postcodePattern = /\b[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}\b/i;
+  for (let index = parts.length - 1; index >= 0; index -= 1) {
+    if (!postcodePattern.test(parts[index])) continue;
+    const locality = parts[index].replace(postcodePattern, "").trim();
+    if (locality) return locality;
+    if (index > 0) return parts[index - 1];
+  }
+  return parts.at(-1) || "the local area";
+}
+
+function detailCandidate(pub) {
+  return Boolean(
+    pub.description &&
+      pub.lastVerifiedAt &&
+      photoFor(pub).url &&
+      safeUrl(pub.website),
+  );
+}
+
+function selectDetailPages(regionPubs, limit = 25) {
+  const selected = [];
+  const selectedIds = new Set();
+  const addFromRegion = (region, target) => {
+    const candidates = [...regionPubs.get(region.slug)]
+      .filter(detailCandidate)
+      .sort(
+        (a, b) =>
+          qualityScore(b) - qualityScore(a) ||
+          new Date(b.lastVerifiedAt) - new Date(a.lastVerifiedAt) ||
+          a.name.localeCompare(b.name, "en-GB"),
+      );
+    for (const pub of candidates) {
+      if (selectedIds.has(pub.id)) continue;
+      selectedIds.add(pub.id);
+      selected.push({ pub, region });
+      if (
+        selected.filter((item) => item.region.slug === region.slug).length >=
+        target
+      ) {
+        break;
+      }
+    }
+  };
+
+  for (const region of regions) {
+    addFromRegion(
+      region,
+      region.slug === "dorset-bournemouth-and-poole" ? 5 : 2,
+    );
+  }
+
+  const remaining = regions
+    .flatMap((region) =>
+      regionPubs
+        .get(region.slug)
+        .filter(detailCandidate)
+        .map((pub) => ({ pub, region })),
+    )
+    .sort(
+      (a, b) =>
+        qualityScore(b.pub) - qualityScore(a.pub) ||
+        new Date(b.pub.lastVerifiedAt) - new Date(a.pub.lastVerifiedAt) ||
+        a.pub.name.localeCompare(b.pub.name, "en-GB"),
+    );
+  for (const item of remaining) {
+    if (selected.length >= limit) break;
+    if (selectedIds.has(item.pub.id)) continue;
+    selectedIds.add(item.pub.id);
+    selected.push(item);
+  }
+
+  const usedSlugs = new Set();
+  return selected.slice(0, limit).map((item) => {
+    const nameSlug = slugify(item.pub.name);
+    const localitySlug = slugify(localityFor(item.pub));
+    const base = nameSlug.endsWith(localitySlug)
+      ? nameSlug
+      : `${nameSlug}-${localitySlug}`;
+    let slug = base;
+    if (usedSlugs.has(slug)) slug = `${base}-${item.pub.id.slice(0, 6).toLowerCase()}`;
+    usedSlugs.add(slug);
+    return { ...item, slug };
+  });
 }
 
 function qualityScore(pub) {
@@ -341,7 +470,7 @@ function breadcrumbJson(items) {
   };
 }
 
-function itemListJson(pubs, pagePath) {
+function itemListJson(pubs, pagePath, urlForPub = null) {
   return {
     "@type": "ItemList",
     numberOfItems: pubs.length,
@@ -349,7 +478,9 @@ function itemListJson(pubs, pagePath) {
       "@type": "ListItem",
       position: index + 1,
       name: pub.name,
-      url: `${SITE_ORIGIN}${pagePath}#pub-${pub.id.replace(/[^a-zA-Z0-9_-]/g, "")}`,
+      url: urlForPub
+        ? `${SITE_ORIGIN}${urlForPub(pub)}`
+        : `${SITE_ORIGIN}${pagePath}#pub-${pub.id.replace(/[^a-zA-Z0-9_-]/g, "")}`,
     })),
   };
 }
@@ -359,8 +490,37 @@ function jsonLd(graph) {
     .replaceAll("<", "\\u003c");
 }
 
-function pageShell({ title, description, canonicalPath, h1, eyebrow, lead, content, graph }) {
+function pageShell({
+  title,
+  description,
+  canonicalPath,
+  h1,
+  eyebrow,
+  lead,
+  content,
+  graph,
+  breadcrumbs = [],
+  bodyClass = "directory-page",
+}) {
   const canonical = `${SITE_ORIGIN}${canonicalPath}`;
+  const pageBreadcrumbs = breadcrumbs.length
+    ? breadcrumbs
+    : [
+        { name: "Home", path: "/" },
+        { name: "Pubs with playgrounds", path: "/pubs-with-playgrounds/" },
+        ...(canonicalPath === "/pubs-with-playgrounds/"
+          ? []
+          : [{ name: eyebrow }]),
+      ];
+  const breadcrumbHtml = pageBreadcrumbs
+    .map((item, index) => {
+      const separator = index
+        ? '<span aria-hidden="true">/</span>'
+        : "";
+      const label = escapeHtml(item.name);
+      return `${separator}${item.path ? `<a href="${escapeHtml(item.path)}">${label}</a>` : `<span>${label}</span>`}`;
+    })
+    .join("");
   return `<!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -386,7 +546,7 @@ function pageShell({ title, description, canonicalPath, h1, eyebrow, lead, conte
   <script src="/directory.js" defer></script>
   <script src="/marketing.js" defer></script>
 </head>
-<body class="directory-page">
+<body class="${escapeHtml(bodyClass)}">
   <header class="nav-wrap">
     <div class="shell nav">
       <a class="brand" href="/">
@@ -406,7 +566,7 @@ function pageShell({ title, description, canonicalPath, h1, eyebrow, lead, conte
       <div class="shell directory-hero-grid">
         <div class="directory-hero-copy">
           <nav class="breadcrumbs" aria-label="Breadcrumb">
-            <a href="/">Home</a><span aria-hidden="true">/</span><a href="/pubs-with-playgrounds/">Pubs with playgrounds</a>${canonicalPath === "/pubs-with-playgrounds/" ? "" : `<span aria-hidden="true">/</span><span>${escapeHtml(eyebrow)}</span>`}
+            ${breadcrumbHtml}
           </nav>
           <p class="eyebrow">${escapeHtml(eyebrow)}</p>
           <h1>${escapeHtml(h1)}</h1>
@@ -441,7 +601,7 @@ function footerHtml() {
         <div class="footer-brand"><img src="/assets/app-logo.png" alt="" width="34" height="34"><span>Pubs With Playgrounds</span></div>
         <p class="footer-fine">The UK family pub finder. Made in the UK, mostly in beer gardens.</p>
       </div>
-      <div class="footer-col"><h4>Explore</h4><a href="/pubs-with-playgrounds/">Browse pubs</a><a href="/#showcase">The app</a><a href="/#facilities">What’s listed</a></div>
+      <div class="footer-col"><h4>Explore</h4><a href="/pubs-with-playgrounds/">Browse pubs with playgrounds</a><a href="/#showcase">The app</a><a href="/#facilities">What’s listed</a></div>
       <div class="footer-col"><h4>Policies</h4><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Use</a><a href="/account-deletion.html">Account Deletion</a></div>
       <div class="footer-col"><h4>Get in touch</h4><a href="mailto:hello@pubswithplaygrounds.com">hello@pubswithplaygrounds.com</a><div class="footer-stores"><a href="${appStoreUrl}">App Store</a><a href="${playStoreUrl}" target="_blank" rel="noopener">Google Play</a></div></div>
     </div>
@@ -470,21 +630,150 @@ function appCtaHtml() {
   return `<section class="cta-band directory-cta" aria-labelledby="directory-cta-title"><div class="shell cta-grid"><div><h2 id="directory-cta-title">Take every listing with you</h2><p>The free app covers the wider UK directory, live map browsing, saved pubs and directions from wherever you are.</p><div class="store-actions"><a class="btn-store btn-store-light" href="${appStoreUrl}"><span><small>Download on the</small><strong>App Store</strong></span></a><a class="btn-store btn-store-outline" href="${playStoreUrl}" target="_blank" rel="noopener"><span><small>Get it on</small><strong>Google Play</strong></span></a></div></div><div class="cta-pin" aria-hidden="true"><img src="/assets/app-logo.png" alt="" width="160" height="160"></div></div></section>`;
 }
 
-function regionalPage(region, pubs, regionCounts, manifest) {
+function detailPath(entry) {
+  return `/pubs-with-playgrounds/pub/${entry.slug}/`;
+}
+
+function playFacilityPhrase(pub) {
+  const labels = featureLabels(pub);
+  if (labels.includes("Soft play")) return "soft play";
+  if (labels.includes("Indoor play")) return "indoor play";
+  if (labels.includes("Outdoor playground")) return "a playground";
+  return "a children’s play area";
+}
+
+function pubEntityJson(entry) {
+  const { pub } = entry;
+  const pagePath = detailPath(entry);
+  const pageUrl = `${SITE_ORIGIN}${pagePath}`;
+  const photo = photoFor(pub);
+  const website = safeUrl(pub.website);
+  const tags = featureLabels(pub);
+  return {
+    "@type": "BarOrPub",
+    "@id": `${pageUrl}#pub`,
+    name: pub.name,
+    url: pageUrl,
+    mainEntityOfPage: pageUrl,
+    address: pub.address,
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: pub.lat,
+      longitude: pub.lng,
+    },
+    ...(photo.url ? { image: photo.url } : {}),
+    ...(pub.phone ? { telephone: String(pub.phone) } : {}),
+    ...(website ? { sameAs: website } : {}),
+    amenityFeature: tags.map((tag) => ({
+      "@type": "LocationFeatureSpecification",
+      name: tag,
+      value: true,
+    })),
+  };
+}
+
+function pubDetailPage(entry, relatedEntries, manifest) {
+  const { pub, region } = entry;
+  const pagePath = detailPath(entry);
+  const displayRegion = region.shortName || region.name;
+  const locality = localityFor(pub);
+  const facilityPhrase = playFacilityPhrase(pub);
+  const tags = featureLabels(pub);
+  const photo = photoFor(pub);
+  const website = safeUrl(pub.website);
+  const menu = safeUrl(pub.childrensMenuUrls?.[0]);
+  const directions = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${pub.lat},${pub.lng}`)}`;
+  const correctionSubject = encodeURIComponent(`Listing correction: ${pub.name}`);
+  const relatedCards = relatedEntries
+    .map((related) =>
+      cardHtml(related.pub, {
+        heading: "h3",
+        internalHref: detailPath(related),
+      }),
+    )
+    .join("\n");
+  const detailImage = photo.url
+    ? `<figure class="pub-detail-photo"><img src="${escapeHtml(photo.url)}" alt="${escapeHtml(`${pub.name} family pub and play facilities`)}" loading="eager" decoding="async" width="960" height="640">${photo.attribution ? `<figcaption>Photo: ${escapeHtml(photo.attribution)}</figcaption>` : ""}</figure>`
+    : `<div class="pub-detail-photo pub-detail-photo-placeholder" aria-hidden="true"><img src="/assets/pub-marker.png" alt="" width="120" height="120"></div>`;
+  const content = `<section class="section pub-detail-section" id="listings" aria-labelledby="pub-details-title"><div class="shell pub-detail-grid">${detailImage}<div class="pub-detail-copy"><p class="eyebrow">Checked family-pub listing</p><h2 id="pub-details-title">What families can check before visiting</h2><address>${escapeHtml(pub.address)}</address><p class="body-copy">${escapeHtml(pub.description)}</p>${tags.length ? `<ul class="pub-features pub-detail-features" aria-label="Recorded facilities">${tags.map((tag) => `<li>${escapeHtml(tag)}</li>`).join("")}</ul>` : ""}<p class="verification-date pub-detail-verification">Last checked ${escapeHtml(formatDate(pub.lastVerifiedAt))}. Play equipment, opening times and food service can change, so confirm the latest arrangements with the venue.</p><div class="pub-actions pub-detail-actions">${website ? `<a href="${escapeHtml(website)}" target="_blank" rel="noopener">Official website</a>` : ""}${menu ? `<a href="${escapeHtml(menu)}" target="_blank" rel="noopener">Children’s menu</a>` : ""}<a href="${escapeHtml(directions)}" target="_blank" rel="noopener">Directions</a>${pub.phone ? `<a href="tel:${escapeHtml(String(pub.phone).replace(/[^+\d]/g, ""))}">Call venue</a>` : ""}<a href="mailto:hello@pubswithplaygrounds.com?subject=${correctionSubject}">Report a correction</a></div><aside class="pub-app-panel"><h3>Find ${escapeHtml(pub.name)} in the free app</h3><p>Use the complete UK map, check nearby alternatives and save pubs for later.</p><div class="pub-app-links"><a class="btn btn-coral" href="${appStoreUrl}">Download for iPhone</a><a class="btn btn-outline" href="${playStoreUrl}" target="_blank" rel="noopener">Get it on Android</a></div></aside><p class="back-to-guide"><a href="/pubs-with-playgrounds/${region.slug}/">Browse all pubs in the ${escapeHtml(displayRegion)} guide <span aria-hidden="true">→</span></a></p></div></div></section>
+  <section class="section section-mint related-pubs" aria-labelledby="related-pubs-title"><div class="shell"><div class="directory-list-heading"><div><p class="eyebrow">Nearby ideas</p><h2 id="related-pubs-title">More checked pubs from this guide</h2></div><a class="text-link" href="/pubs-with-playgrounds/${region.slug}/">Open the ${escapeHtml(displayRegion)} guide <span aria-hidden="true">→</span></a></div><div class="directory-pub-grid directory-featured-grid">${relatedCards}</div></div></section>
+  ${methodologyHtml(manifest)}${appCtaHtml()}`;
+  const titleWithQualifier = `${pub.name}, ${locality} | Family Pub`;
+  const pageTitle =
+    titleWithQualifier.length <= 65
+      ? titleWithQualifier
+      : `${pub.name}, ${locality}`;
+  const pageDescription = limitMetaDescription(
+    `Check ${facilityPhrase} at ${pub.name} in ${locality}, with its address, recorded family facilities and verification date. Download the free app for the complete UK map.`,
+  );
+  return pageShell({
+    title: pageTitle,
+    description: pageDescription,
+    canonicalPath: pagePath,
+    h1: `${pub.name}: a family pub with ${facilityPhrase} in ${locality}`,
+    eyebrow: `${locality} checked pub guide`,
+    lead: `Download the free app for the complete map and nearby choices, or review the checked details for ${pub.name} below.`,
+    content,
+    bodyClass: "directory-page pub-detail-page",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Pubs with playgrounds", path: "/pubs-with-playgrounds/" },
+      {
+        name: displayRegion,
+        path: `/pubs-with-playgrounds/${region.slug}/`,
+      },
+      { name: pub.name },
+    ],
+    graph: [
+      breadcrumbJson([
+        { name: "Home", path: "/" },
+        { name: "Pubs with playgrounds", path: "/pubs-with-playgrounds/" },
+        {
+          name: displayRegion,
+          path: `/pubs-with-playgrounds/${region.slug}/`,
+        },
+        { name: pub.name, path: pagePath },
+      ]),
+      {
+        "@type": "WebPage",
+        "@id": `${SITE_ORIGIN}${pagePath}`,
+        name: `${pub.name}: a family pub with ${facilityPhrase} in ${locality}`,
+        description: pageDescription,
+        dateModified: pub.lastVerifiedAt,
+        mainEntity: { "@id": `${SITE_ORIGIN}${pagePath}#pub` },
+      },
+      pubEntityJson(entry),
+    ],
+  });
+}
+
+function regionalPage(region, pubs, regionCounts, manifest, detailEntryById) {
   const pathName = `/pubs-with-playgrounds/${region.slug}/`;
   const displayName = region.shortName || region.name;
-  const cards = pubs.map((pub) => cardHtml(pub)).join("\n");
+  const cards = pubs
+    .map((pub) => {
+      const detailEntry = detailEntryById.get(pub.id);
+      return cardHtml(pub, {
+        internalHref: detailEntry ? detailPath(detailEntry) : "",
+      });
+    })
+    .join("\n");
   const neighbourCards = regions
     .filter((item) => item.slug !== region.slug)
     .slice(0, 4)
     .map((item) => regionCardHtml(item, regionCounts.get(item.slug)))
     .join("\n");
-  const content = `<section class="section directory-intro"><div class="shell directory-intro-grid directory-intro-no-search"><div><h2>A practical family-pub shortlist</h2><p class="body-copy">${escapeHtml(region.intro)}</p><p class="coverage-note"><strong>Coverage:</strong> ${escapeHtml(region.places)}, using an approximately ${region.radiusKm} km guide radius from ${escapeHtml(region.centre)}. Border areas can overlap neighbouring guides.</p></div></div></section>
+  const coverageMethod = region.postcodePrefixes
+    ? `using ${region.postcodePrefixes.join(" and ")} postcode areas within an approximately ${region.radiusKm} km guide radius from ${region.centre}`
+    : `using an approximately ${region.radiusKm} km guide radius from ${region.centre}`;
+  const content = `<section class="section directory-intro"><div class="shell directory-intro-grid directory-intro-no-search"><div><h2>A practical family-pub shortlist</h2><p class="body-copy">${escapeHtml(region.intro)}</p><p class="coverage-note"><strong>Coverage:</strong> ${escapeHtml(region.places)}, ${escapeHtml(coverageMethod)}. Border areas can overlap neighbouring guides.</p></div></div></section>
   <section class="section section-mint directory-list" id="listings" aria-labelledby="listings-title"><div class="shell"><div class="directory-list-heading"><div><p class="eyebrow">Checked listings</p><h2 id="listings-title">${pubs.length} pubs with play facilities in and around ${escapeHtml(displayName)}</h2></div><p>${escapeHtml(region.tip)}</p></div><div class="directory-pub-grid">${cards}</div></div></section>
   <section class="section"><div class="shell"><div class="section-heading"><p class="eyebrow">Keep exploring</p><h2>More regional guides</h2></div><div class="region-grid">${neighbourCards}</div></div></section>
   ${methodologyHtml(manifest)}${appCtaHtml()}`;
   return pageShell({
-    title: `Pubs With Playgrounds in ${displayName} | Checked Family Pubs`,
+    title:
+      region.seoTitle ||
+      `Pubs With Playgrounds in ${displayName} | Checked Family Pubs`,
     description: `Browse ${pubs.length} checked pubs with playgrounds, indoor play or soft play in and around ${displayName}. Compare addresses, facilities and verification dates.`,
     canonicalPath: pathName,
     h1: `Pubs with playgrounds in ${displayName}`,
@@ -497,12 +786,17 @@ function regionalPage(region, pubs, regionCounts, manifest) {
         { name: "Pubs with playgrounds", path: "/pubs-with-playgrounds/" },
         { name: displayName, path: pathName },
       ]),
-      itemListJson(pubs, pathName),
+      itemListJson(pubs, pathName, (pub) => {
+        const detailEntry = detailEntryById.get(pub.id);
+        return detailEntry
+          ? detailPath(detailEntry)
+          : `${pathName}#pub-${pub.id.replace(/[^a-zA-Z0-9_-]/g, "")}`;
+      }),
     ],
   });
 }
 
-function nationalPage(regionPubs, regionCounts, manifest) {
+function nationalPage(regionPubs, regionCounts, manifest, detailEntryById) {
   const selected = [];
   const seen = new Set();
   for (const region of regions) {
@@ -520,12 +814,15 @@ function nationalPage(regionPubs, regionCounts, manifest) {
     .map((region) => regionCardHtml(region, regionCounts.get(region.slug)))
     .join("\n");
   const cards = selected
-    .map(({ pub, region }) =>
-      cardHtml(pub, {
+    .map(({ pub, region }) => {
+      const detailEntry = detailEntryById.get(pub.id);
+      return cardHtml(pub, {
         heading: "h3",
-        internalHref: `/pubs-with-playgrounds/${region.slug}/#pub-${pub.id.replace(/[^a-zA-Z0-9_-]/g, "")}`,
-      }),
-    )
+        internalHref: detailEntry
+          ? detailPath(detailEntry)
+          : `/pubs-with-playgrounds/${region.slug}/#pub-${pub.id.replace(/[^a-zA-Z0-9_-]/g, "")}`,
+      });
+    })
     .join("\n");
   const content = `<section class="section section-mint" aria-labelledby="regions-title"><div class="shell"><div class="section-heading"><p class="eyebrow">Regional directory</p><h2 id="regions-title">Choose a regional guide</h2><p class="body-copy">Preview checked pub listings, full addresses, recorded play types, practical facilities and verification dates on the web.</p></div><div class="region-grid">${regionCards}</div></div></section>
   <section class="section directory-list" id="listings" aria-labelledby="featured-title"><div class="shell"><div class="directory-list-heading"><div><p class="eyebrow">A useful starting point</p><h2 id="featured-title">Checked pubs from across the first regional guides</h2></div><p>These are substantial listings with useful facility information. Follow a card to see it in its full regional guide.</p></div><div class="directory-pub-grid directory-featured-grid">${cards}</div></div></section>
@@ -546,12 +843,18 @@ function nationalPage(regionPubs, regionCounts, manifest) {
       itemListJson(
         selected.map((item) => item.pub),
         "/pubs-with-playgrounds/",
+        (pub) => {
+          const detailEntry = detailEntryById.get(pub.id);
+          if (detailEntry) return detailPath(detailEntry);
+          const selectedItem = selected.find((item) => item.pub.id === pub.id);
+          return `/pubs-with-playgrounds/${selectedItem.region.slug}/#pub-${pub.id.replace(/[^a-zA-Z0-9_-]/g, "")}`;
+        },
       ),
     ],
   });
 }
 
-function homepageGateway(regionPubs, regionCounts) {
+function homepageGateway(regionPubs, regionCounts, detailEntryById) {
   const chosen = [];
   const seen = new Set();
   for (const region of regions.slice(0, 6)) {
@@ -565,18 +868,21 @@ function homepageGateway(regionPubs, regionCounts) {
     .map((region) => regionCardHtml(region, regionCounts.get(region.slug)))
     .join("\n");
   const cards = chosen
-    .map(({ pub, region }) =>
-      cardHtml(pub, {
+    .map(({ pub, region }) => {
+      const detailEntry = detailEntryById.get(pub.id);
+      return cardHtml(pub, {
         heading: "h3",
-        internalHref: `/pubs-with-playgrounds/${region.slug}/#pub-${pub.id.replace(/[^a-zA-Z0-9_-]/g, "")}`,
-      }),
-    )
+        internalHref: detailEntry
+          ? detailPath(detailEntry)
+          : `/pubs-with-playgrounds/${region.slug}/#pub-${pub.id.replace(/[^a-zA-Z0-9_-]/g, "")}`,
+      });
+    })
     .join("\n");
   return `<!-- DIRECTORY_GATEWAY_START -->
     <section class="section directory-gateway" id="directory" aria-labelledby="directory-title">
       <div class="shell">
         <div class="directory-intro-grid directory-intro-no-search">
-          <div><p class="eyebrow">Preview the directory</p><h2 id="directory-title">Explore regional pub guides</h2><p class="body-copy">The free app is the quickest way to search the complete UK map, see what is nearby and save favourites. These regional guides let you preview checked listings on the web.</p></div>
+          <div><p class="eyebrow">Preview the directory</p><h2 id="directory-title">Browse pubs with playgrounds by region</h2><p class="body-copy">The free app is the quickest way to search the complete UK map, see what is nearby and save favourites. These regional guides let you preview checked listings on the web.</p></div>
         </div>
         <div class="region-grid homepage-region-grid">${regionCards}</div>
         <div class="directory-list-heading homepage-listing-heading"><div><p class="eyebrow">Real listings</p><h2>Recently checked family pubs</h2></div><a class="text-link" href="/pubs-with-playgrounds/">Open the UK directory <span aria-hidden="true">→</span></a></div>
@@ -586,13 +892,17 @@ function homepageGateway(regionPubs, regionCounts) {
     <!-- DIRECTORY_GATEWAY_END -->`;
 }
 
-function sitemapXml(lastmod) {
+function sitemapXml(lastmod, detailEntries) {
   const urls = [
     { path: "/", lastmod },
     { path: "/pubs-with-playgrounds/", lastmod },
     ...regions.map((region) => ({
       path: `/pubs-with-playgrounds/${region.slug}/`,
       lastmod,
+    })),
+    ...detailEntries.map((entry) => ({
+      path: detailPath(entry),
+      lastmod: new Date(entry.pub.lastVerifiedAt).toISOString().slice(0, 10),
     })),
     { path: "/privacy.html" },
     { path: "/terms.html" },
@@ -626,13 +936,24 @@ async function main() {
   const regionCounts = new Map(
     regions.map((region) => [region.slug, regionPubs.get(region.slug).length]),
   );
+  const detailEntries = selectDetailPages(regionPubs, 25);
+  if (detailEntries.length !== 25) {
+    throw new Error(
+      `Expected 25 high-quality detail-page candidates; found ${detailEntries.length}`,
+    );
+  }
+  const detailEntryById = new Map(
+    detailEntries.map((entry) => [entry.pub.id, entry]),
+  );
   const feedUpdatedOn = new Date(manifest.updatedAt).toISOString().slice(0, 10);
 
   const directoryRoot = path.join(ROOT, "pubs-with-playgrounds");
   await mkdir(directoryRoot, { recursive: true });
   await writeFile(
     path.join(directoryRoot, "index.html"),
-    cleanGeneratedHtml(nationalPage(regionPubs, regionCounts, manifest)),
+    cleanGeneratedHtml(
+      nationalPage(regionPubs, regionCounts, manifest, detailEntryById),
+    ),
   );
   for (const region of regions) {
     const output = path.join(directoryRoot, region.slug);
@@ -640,14 +961,55 @@ async function main() {
     await writeFile(
       path.join(output, "index.html"),
       cleanGeneratedHtml(
-        regionalPage(region, regionPubs.get(region.slug), regionCounts, manifest),
+        regionalPage(
+          region,
+          regionPubs.get(region.slug),
+          regionCounts,
+          manifest,
+          detailEntryById,
+        ),
       ),
+    );
+  }
+
+  const pubDetailRoot = path.join(directoryRoot, "pub");
+  await rm(pubDetailRoot, { recursive: true, force: true });
+  await mkdir(pubDetailRoot, { recursive: true });
+  for (const entry of detailEntries) {
+    const relatedEntries = detailEntries
+      .filter(
+        (candidate) =>
+          candidate.pub.id !== entry.pub.id &&
+          candidate.region.slug === entry.region.slug,
+      )
+      .sort(
+        (a, b) =>
+          distanceKm(entry.pub.lat, entry.pub.lng, a.pub.lat, a.pub.lng) -
+          distanceKm(entry.pub.lat, entry.pub.lng, b.pub.lat, b.pub.lng),
+      );
+    const fallbackEntries = detailEntries
+      .filter(
+        (candidate) =>
+          candidate.pub.id !== entry.pub.id &&
+          !relatedEntries.some((related) => related.pub.id === candidate.pub.id),
+      )
+      .sort(
+        (a, b) =>
+          distanceKm(entry.pub.lat, entry.pub.lng, a.pub.lat, a.pub.lng) -
+          distanceKm(entry.pub.lat, entry.pub.lng, b.pub.lat, b.pub.lng),
+      );
+    const related = [...relatedEntries, ...fallbackEntries].slice(0, 3);
+    const output = path.join(pubDetailRoot, entry.slug);
+    await mkdir(output, { recursive: true });
+    await writeFile(
+      path.join(output, "index.html"),
+      cleanGeneratedHtml(pubDetailPage(entry, related, manifest)),
     );
   }
 
   const homepagePath = path.join(ROOT, "index.html");
   const homepage = await readFile(homepagePath, "utf8");
-  const gateway = homepageGateway(regionPubs, regionCounts);
+  const gateway = homepageGateway(regionPubs, regionCounts, detailEntryById);
   const start = "<!-- DIRECTORY_GATEWAY_START -->";
   const end = "<!-- DIRECTORY_GATEWAY_END -->";
   if (!homepage.includes(start) || !homepage.includes(end)) {
@@ -657,9 +1019,13 @@ async function main() {
     homepage.replace(new RegExp(`${start}[\\s\\S]*?${end}`), gateway),
   );
   await writeFile(homepagePath, nextHomepage);
-  await writeFile(path.join(ROOT, "sitemap.xml"), sitemapXml(feedUpdatedOn));
+  await writeFile(
+    path.join(ROOT, "sitemap.xml"),
+    sitemapXml(feedUpdatedOn, detailEntries),
+  );
 
   console.log(`Generated national directory and ${regions.length} regional guides.`);
+  console.log(`Generated ${detailEntries.length} verified pub detail pages.`);
   console.log(`Loaded ${pubs.length} verified venues from feed revision ${manifest.revision}.`);
   for (const region of regions) {
     console.log(`${region.slug}: ${regionCounts.get(region.slug)}`);

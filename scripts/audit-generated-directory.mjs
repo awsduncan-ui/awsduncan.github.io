@@ -49,13 +49,22 @@ async function main() {
   const directoryUrls = urls.filter((url) =>
     url.startsWith(`${ORIGIN}/pubs-with-playgrounds/`),
   );
+  const pubDetailUrls = directoryUrls.filter((url) =>
+    url.startsWith(`${ORIGIN}/pubs-with-playgrounds/pub/`),
+  );
+  const guideUrls = directoryUrls.filter(
+    (url) => !url.startsWith(`${ORIGIN}/pubs-with-playgrounds/pub/`),
+  );
 
-  urls.length === 13
-    ? pass("Sitemap contains the expected 13 canonical URLs")
-    : fail(`Sitemap contains ${urls.length} URLs; expected 13`);
-  directoryUrls.length === 9
-    ? pass("Sitemap contains the national directory and eight regional guides")
-    : fail(`Sitemap contains ${directoryUrls.length} directory URLs; expected 9`);
+  urls.length === 39
+    ? pass("Sitemap contains the expected 39 canonical URLs")
+    : fail(`Sitemap contains ${urls.length} URLs; expected 39`);
+  guideUrls.length === 10
+    ? pass("Sitemap contains the national directory and nine regional guides")
+    : fail(`Sitemap contains ${guideUrls.length} guide URLs; expected 10`);
+  pubDetailUrls.length === 25
+    ? pass("Sitemap contains 25 verified pub detail pages")
+    : fail(`Sitemap contains ${pubDetailUrls.length} pub detail URLs; expected 25`);
 
   for (const url of urls) {
     const file = localFileFor(url);
@@ -101,7 +110,7 @@ async function main() {
       : pass(`Unique element IDs: ${url}`);
   }
 
-  for (const url of directoryUrls) {
+  for (const url of guideUrls) {
     const html = await readFile(localFileFor(url), "utf8");
     const cards = matches(html, /\bdata-directory-card(?:\s|>)/g).length;
     cards > 0
@@ -127,11 +136,41 @@ async function main() {
       : fail(`${url} is missing the app-first directory hero`);
   }
 
+  for (const url of pubDetailUrls) {
+    const html = await readFile(localFileFor(url), "utf8");
+    const schemaText = matches(
+      html,
+      /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi,
+    )
+      .map((item) => item[1])
+      .join(" ");
+    html.includes("Checked family-pub listing") &&
+    html.includes("Last checked") &&
+    html.includes("Report a correction")
+      ? pass(`${url} exposes a checked, correctable venue profile`)
+      : fail(`${url} is missing checked venue detail content`);
+    html.includes("Find ") &&
+    html.includes(" in the free app") &&
+    html.includes("apps.apple.com") &&
+    html.includes("play.google.com")
+      ? pass(`${url} retains prominent app download actions`)
+      : fail(`${url} is missing its app conversion panel`);
+    schemaText.includes('"@type":"BarOrPub"') &&
+    schemaText.includes('"@type":"WebPage"') &&
+    schemaText.includes('"@type":"BreadcrumbList"')
+      ? pass(`${url} includes venue, page and breadcrumb structured data`)
+      : fail(`${url} is missing required structured data`);
+    !/<input\b[^>]*type=["']search["']/i.test(html) &&
+    !html.includes("data-directory-filter")
+      ? pass(`${url} contains no search or filter bar`)
+      : fail(`${url} contains an unwanted search or filter bar`);
+  }
+
   const homepage = await readFile(path.join(ROOT, "index.html"), "utf8");
   const coverageStart = homepage.indexOf('<div class="coverage-grid">');
   const coverageEnd = homepage.indexOf("</div>", coverageStart);
   const coverageHtml = homepage.slice(coverageStart, coverageEnd);
-  homepage.includes("Explore regional pub guides") &&
+  homepage.includes("Browse pubs with playgrounds by region") &&
   homepage.includes("/pubs-with-playgrounds/") &&
   coverageHtml.includes("https://www.bournemouthecho.co.uk/news/26289263.father-two-poole-creates-pubs-playgrounds/") &&
   !homepage.includes("data-postcode-finder") &&

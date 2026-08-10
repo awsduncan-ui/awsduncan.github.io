@@ -19,8 +19,9 @@ Search Console and deployment baseline.
 
 ## Directory generation
 
-The national directory, eight regional guides, homepage directory gateway and
-sitemap are generated from the approved Firebase Storage public feed:
+The national directory, nine regional guides, 25 selected pub detail pages,
+homepage directory gateway and sitemap are generated from the approved Firebase
+Storage public feed:
 
 ```sh
 node scripts/generate-directory.mjs
@@ -29,9 +30,11 @@ node scripts/audit-site.mjs
 ```
 
 The generator publishes only human- or community-verified venues that are not
-marked permanently closed. It does not read Firestore or expose the private
-`/pubs` collection. Generated region pages use documented distance radii so
-border coverage remains transparent.
+marked permanently closed. Detail pages are limited to the strongest verified
+records with a description, verification date, official website and usable photo.
+It does not read Firestore or expose the private `/pubs` collection. Generated
+region pages use documented distance radii and postcode constraints so border
+coverage remains transparent.
 
 The `Refresh public directory` workflow runs each Monday before the production
 SEO audit. It commits only when the approved feed changes, leaving a reviewable
