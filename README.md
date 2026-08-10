@@ -31,7 +31,9 @@ node scripts/audit-site.mjs
 
 The generator publishes only human- or community-verified venues that are not
 marked permanently closed. Detail pages are limited to the strongest verified
-records with a description, verification date, official website and usable photo.
+records with a description, verification date, official website and a usable
+first-party photo. Restricted Google Places fallback URLs are deliberately not
+embedded on the static website.
 It does not read Firestore or expose the private `/pubs` collection. Generated
 region pages use documented distance radii and postcode constraints so border
 coverage remains transparent.

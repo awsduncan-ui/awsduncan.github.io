@@ -1189,16 +1189,24 @@ body.js .reveal.in { opacity: 1; transform: none; }
   padding: 38px;
 }
 
-.directory-photo-placeholder img {
-  width: 84px;
-  height: 84px;
-  object-fit: contain;
-  opacity: 0.8;
+.directory-photo-placeholder span,
+.photo-placeholder-label {
+  max-width: 9rem;
+  color: var(--green-mid);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .directory-photo.photo-missing {
+  display: grid;
+  place-items: center;
   min-height: 190px;
-  background: var(--mint-deep) url("assets/pub-marker.png") center / 74px no-repeat;
+  padding: 38px;
+  background: var(--mint-deep);
 }
 
 .directory-pub-body { min-width: 0; padding: 22px; }
@@ -1354,12 +1362,14 @@ body.js .reveal.in { opacity: 1; transform: none; }
 .pub-detail-photo-placeholder {
   display: grid;
   place-items: center;
+  padding: 48px;
 }
 
-.pub-detail-photo-placeholder img {
-  width: 120px;
-  min-height: 0;
-  object-fit: contain;
+.pub-detail-photo.photo-missing {
+  display: grid;
+  place-items: center;
+  padding: 48px;
+  background: var(--mint-deep);
 }
 
 .pub-detail-copy h2 { margin-bottom: 18px; }

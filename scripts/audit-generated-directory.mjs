@@ -108,6 +108,17 @@ async function main() {
     duplicates.length
       ? fail(`${url} has duplicate IDs: ${duplicates.join(", ")}`)
       : pass(`Unique element IDs: ${url}`);
+
+    const embedsGoogleFallback =
+      /<img\b[^>]*src=["'][^"']*(?:maps\.googleapis\.com\/maps\/api\/place\/photo|googleusercontent\.com\/place-photos)/i.test(
+        html,
+      );
+    embedsGoogleFallback
+      ? fail(`${url} embeds a restricted Google fallback photo`)
+      : pass(`No restricted Google fallback photos: ${url}`);
+    /<div\b[^>]*photo-placeholder[^>]*>[\s\S]*?pub-marker\.png/i.test(html)
+      ? fail(`${url} uses a branded marker as a missing-photo placeholder`)
+      : pass(`Missing-photo placeholders are clearly labelled: ${url}`);
   }
 
   for (const url of guideUrls) {

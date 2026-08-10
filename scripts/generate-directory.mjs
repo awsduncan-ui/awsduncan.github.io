@@ -258,7 +258,7 @@ function detailCandidate(pub) {
   return Boolean(
     pub.description &&
       pub.lastVerifiedAt &&
-      photoFor(pub).url &&
+      hasFeedPhoto(pub) &&
       safeUrl(pub.website),
   );
 }
@@ -332,7 +332,7 @@ function selectDetailPages(regionPubs, limit = 25) {
 function qualityScore(pub) {
   return (
     (pub.description ? 6 : 0) +
-    (photoFor(pub).url ? 5 : 0) +
+    (hasFeedPhoto(pub) ? 5 : 0) +
     (safeUrl(pub.website) ? 3 : 0) +
     (pub.lastVerifiedAt ? 2 : 0) +
     ((pub.childrensMenuUrls?.length ?? 0) > 0 ? 2 : 0) +
@@ -340,17 +340,32 @@ function qualityScore(pub) {
   );
 }
 
+function hasFeedPhoto(pub) {
+  return Boolean(
+    safeImageUrl(pub.photoUrl) ||
+      (pub.photoUrls ?? []).some((url) => safeImageUrl(url)) ||
+      safeImageUrl(pub.googleFallbackPhotoUrl),
+  );
+}
+
+function isRestrictedGooglePhotoUrl(value) {
+  return /(?:maps\.googleapis\.com\/maps\/api\/place\/photo|googleusercontent\.com\/place-photos)/i.test(
+    value,
+  );
+}
+
 function photoFor(pub) {
-  const ownPhoto =
-    safeImageUrl(pub.photoUrl) || safeImageUrl(pub.photoUrls?.[0]);
+  const ownPhoto = [pub.photoUrl, ...(pub.photoUrls ?? [])]
+    .map((value) => safeImageUrl(value))
+    .find((url) => url && !isRestrictedGooglePhotoUrl(url));
   if (ownPhoto) return { url: ownPhoto, attribution: "" };
-  const fallback = safeImageUrl(pub.googleFallbackPhotoUrl);
-  return {
-    url: fallback,
-    attribution: fallback
-      ? pub.googleFallbackPhotoAttribution || pub.name
-      : "",
-  };
+
+  // Google Places photo URLs in the public feed are intended as an app
+  // fallback. They currently return restricted or expired responses when
+  // embedded on the static website, including a valid 100x100 error image
+  // that does not fire the browser's `error` event. Use the neutral website
+  // placeholder instead so a failed image is never paired with a photo credit.
+  return { url: "", attribution: "" };
 }
 
 function featureLabels(pub) {
@@ -422,7 +437,7 @@ function cardHtml(pub, { heading = "h2", internalHref = "" } = {}) {
         <img src="${escapeHtml(photo.url)}" alt="${escapeHtml(pub.name)}" loading="lazy" decoding="async" width="480" height="320">
         ${photo.attribution ? `<figcaption>Photo: ${escapeHtml(photo.attribution)}</figcaption>` : ""}
       </figure>`
-    : `<div class="directory-photo directory-photo-placeholder" aria-hidden="true"><img src="/assets/pub-marker.png" alt="" loading="lazy" width="96" height="96"></div>`;
+    : `<div class="directory-photo directory-photo-placeholder" role="img" aria-label="Photo coming soon"><span aria-hidden="true">Photo coming soon</span></div>`;
   const description = pub.description
     ? `<p class="pub-description">${escapeHtml(pub.description)}</p>`
     : `<p class="pub-description">This checked listing has a recorded children’s play facility. Confirm the latest details with the venue before travelling.</p>`;
@@ -694,7 +709,7 @@ function pubDetailPage(entry, relatedEntries, manifest) {
     .join("\n");
   const detailImage = photo.url
     ? `<figure class="pub-detail-photo"><img src="${escapeHtml(photo.url)}" alt="${escapeHtml(`${pub.name} family pub and play facilities`)}" loading="eager" decoding="async" width="960" height="640">${photo.attribution ? `<figcaption>Photo: ${escapeHtml(photo.attribution)}</figcaption>` : ""}</figure>`
-    : `<div class="pub-detail-photo pub-detail-photo-placeholder" aria-hidden="true"><img src="/assets/pub-marker.png" alt="" width="120" height="120"></div>`;
+    : `<div class="pub-detail-photo pub-detail-photo-placeholder" role="img" aria-label="Photo coming soon"><span aria-hidden="true">Photo coming soon</span></div>`;
   const content = `<section class="section pub-detail-section" id="listings" aria-labelledby="pub-details-title"><div class="shell pub-detail-grid">${detailImage}<div class="pub-detail-copy"><p class="eyebrow">Checked family-pub listing</p><h2 id="pub-details-title">What families can check before visiting</h2><address>${escapeHtml(pub.address)}</address><p class="body-copy">${escapeHtml(pub.description)}</p>${tags.length ? `<ul class="pub-features pub-detail-features" aria-label="Recorded facilities">${tags.map((tag) => `<li>${escapeHtml(tag)}</li>`).join("")}</ul>` : ""}<p class="verification-date pub-detail-verification">Last checked ${escapeHtml(formatDate(pub.lastVerifiedAt))}. Play equipment, opening times and food service can change, so confirm the latest arrangements with the venue.</p><div class="pub-actions pub-detail-actions">${website ? `<a href="${escapeHtml(website)}" target="_blank" rel="noopener">Official website</a>` : ""}${menu ? `<a href="${escapeHtml(menu)}" target="_blank" rel="noopener">Children’s menu</a>` : ""}<a href="${escapeHtml(directions)}" target="_blank" rel="noopener">Directions</a>${pub.phone ? `<a href="tel:${escapeHtml(String(pub.phone).replace(/[^+\d]/g, ""))}">Call venue</a>` : ""}<a href="mailto:hello@pubswithplaygrounds.com?subject=${correctionSubject}">Report a correction</a></div><aside class="pub-app-panel"><h3>Find ${escapeHtml(pub.name)} in the free app</h3><p>Use the complete UK map, check nearby alternatives and save pubs for later.</p><div class="pub-app-links"><a class="btn btn-coral" href="${appStoreUrl}">Download for iPhone</a><a class="btn btn-outline" href="${playStoreUrl}" target="_blank" rel="noopener">Get it on Android</a></div></aside><p class="back-to-guide"><a href="/pubs-with-playgrounds/${region.slug}/">Browse all pubs in the ${escapeHtml(displayRegion)} guide <span aria-hidden="true">→</span></a></p></div></div></section>
   <section class="section section-mint related-pubs" aria-labelledby="related-pubs-title"><div class="shell"><div class="directory-list-heading"><div><p class="eyebrow">Nearby ideas</p><h2 id="related-pubs-title">More checked pubs from this guide</h2></div><a class="text-link" href="/pubs-with-playgrounds/${region.slug}/">Open the ${escapeHtml(displayRegion)} guide <span aria-hidden="true">→</span></a></div><div class="directory-pub-grid directory-featured-grid">${relatedCards}</div></div></section>
   ${methodologyHtml(manifest)}${appCtaHtml()}`;
