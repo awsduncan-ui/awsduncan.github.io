@@ -56,9 +56,19 @@ async function main() {
     (url) => !url.startsWith(`${ORIGIN}/pubs-with-playgrounds/pub/`),
   );
 
-  urls.length === 39
-    ? pass("Sitemap contains the expected 39 canonical URLs")
-    : fail(`Sitemap contains ${urls.length} URLs; expected 39`);
+  urls.length === 43
+    ? pass("Sitemap contains the expected 43 canonical URLs")
+    : fail(`Sitemap contains ${urls.length} URLs; expected 43`);
+  for (const pathName of [
+    "/about/",
+    "/contact/",
+    "/support/",
+    "/affiliate-disclosure/",
+  ]) {
+    urls.includes(`${ORIGIN}${pathName}`)
+      ? pass(`Sitemap contains ${pathName}`)
+      : fail(`Sitemap is missing ${pathName}`);
+  }
   guideUrls.length === 10
     ? pass("Sitemap contains the national directory and nine regional guides")
     : fail(`Sitemap contains ${guideUrls.length} guide URLs; expected 10`);

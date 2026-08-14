@@ -616,8 +616,9 @@ function footerHtml() {
         <div class="footer-brand"><img src="/assets/app-logo.png" alt="" width="34" height="34"><span>Pubs With Playgrounds</span></div>
         <p class="footer-fine">The UK family pub finder. Made in the UK, mostly in beer gardens.</p>
       </div>
-      <div class="footer-col"><h4>Explore</h4><a href="/pubs-with-playgrounds/">Browse pubs with playgrounds</a><a href="/#showcase">The app</a><a href="/#facilities">What’s listed</a></div>
-      <div class="footer-col"><h4>Policies</h4><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Use</a><a href="/account-deletion.html">Account Deletion</a></div>
+      <div class="footer-col"><h4>Explore</h4><a href="/pubs-with-playgrounds/">Browse pubs with playgrounds</a><a href="/about/">About</a><a href="/#showcase">The app</a><a href="/#facilities">What’s listed</a></div>
+      <div class="footer-col"><h4>Help</h4><a href="/support/">Support</a><a href="/contact/">Contact</a><a href="/account-deletion.html">Account Deletion</a></div>
+      <div class="footer-col"><h4>Policies</h4><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Use</a><a href="/affiliate-disclosure/">Affiliate Disclosure</a></div>
       <div class="footer-col"><h4>Get in touch</h4><a href="mailto:hello@pubswithplaygrounds.com">hello@pubswithplaygrounds.com</a><div class="footer-stores"><a href="${appStoreUrl}">App Store</a><a href="${playStoreUrl}" target="_blank" rel="noopener">Google Play</a></div></div>
     </div>
     <div class="shell footer-base"><p>&copy; 2026 Pubs With Playgrounds. All rights reserved.</p></div>
@@ -919,6 +920,10 @@ function sitemapXml(lastmod, detailEntries) {
       path: detailPath(entry),
       lastmod: new Date(entry.pub.lastVerifiedAt).toISOString().slice(0, 10),
     })),
+    { path: "/about/" },
+    { path: "/contact/" },
+    { path: "/support/" },
+    { path: "/affiliate-disclosure/" },
     { path: "/privacy.html" },
     { path: "/terms.html" },
     { path: "/account-deletion.html" },
