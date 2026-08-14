@@ -747,6 +747,15 @@ body.js .reveal.in { opacity: 1; transform: none; }
 
 .home-nav-links a:hover { color: var(--coral-deep); }
 
+.home-nav-instagram {
+  color: var(--coral-deep);
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.home-nav-instagram:hover { color: #963d2a; }
+
 .home-nav-cta,
 .home-primary-action {
   display: inline-flex;
@@ -781,32 +790,7 @@ body.js .reveal.in { opacity: 1; transform: none; }
   align-items: center;
 }
 
-.home-hero-intro {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 12px 18px;
-  margin-bottom: 18px;
-}
-
-.home-hero-copy .home-hero-intro .eyebrow { margin: 0; }
-
-.home-hero-instagram {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 8px 12px;
-  border: 1px solid rgba(185, 79, 55, 0.34);
-  border-radius: 999px;
-  color: var(--coral-deep);
-  background: rgba(255, 253, 247, 0.72);
-  font-size: 0.77rem;
-  font-weight: 800;
-  text-decoration: none;
-}
-
-.home-hero-instagram span { font-size: 1rem; }
-.home-hero-instagram:hover { color: #963d2a; border-color: var(--coral-deep); }
+.home-hero-copy .eyebrow { margin-bottom: 18px; }
 
 .home-lead {
   max-width: 38rem;
@@ -1287,6 +1271,7 @@ body.js .reveal.in { opacity: 1; transform: none; }
 @media (max-width: 720px) {
   .home-nav { min-height: 68px; }
   .home-nav-links { display: none; }
+  .home-nav-instagram { margin-left: auto; }
   .home-hero { padding: 49px 0 48px; }
   .home-page h1 { font-size: clamp(2.85rem, 13vw, 4.25rem); }
   .home-hero-media { min-height: 390px; }
@@ -1329,8 +1314,6 @@ body.js .reveal.in { opacity: 1; transform: none; }
   .home-hero-media { min-height: 345px; }
   .home-playground-photo { right: 22px; bottom: 22px; border-width: 6px; }
   .home-hero-phone { width: 108px; }
-  .home-hero-intro { align-items: flex-start; }
-  .home-hero-instagram { max-width: 100%; }
   .home-checked-note { max-width: 155px; padding: 10px 12px; font-size: 0.68rem; }
   .home-region-card { min-height: 98px; padding: 14px; }
   .home-region-card strong { font-size: 0.86rem; }
