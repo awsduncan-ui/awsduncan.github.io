@@ -140,6 +140,14 @@ const appStoreUrl =
   "https://apps.apple.com/gb/app/pubs-with-playgrounds/id6757747311";
 const playStoreUrl =
   "https://play.google.com/store/apps/details?id=com.pubswithplaygrounds.app";
+const appStoreBadgeUrl =
+  "https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg";
+const playStoreBadgeUrl =
+  "https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png";
+
+function storeBadgesHtml() {
+  return `<div class="store-actions official-store-actions" aria-label="Download the app"><a class="official-store-badge official-store-badge-apple" href="${appStoreUrl}" aria-label="Download Pubs With Playgrounds on the App Store"><img src="${appStoreBadgeUrl}" alt="Download on the App Store" width="135" height="40"></a><a class="official-store-badge official-store-badge-google" href="${playStoreUrl}" target="_blank" rel="noopener" aria-label="Get Pubs With Playgrounds on Google Play"><img src="${playStoreBadgeUrl}" alt="Get it on Google Play" width="150" height="58"></a></div>`;
+}
 
 function escapeHtml(value = "") {
   return String(value)
@@ -604,14 +612,11 @@ function pageShell({
           <p class="eyebrow">${escapeHtml(eyebrow)}</p>
           <h1>${escapeHtml(h1)}</h1>
           <p class="lead">${escapeHtml(lead)}</p>
-          <div class="store-actions directory-store-actions">
-            <a class="btn-store" href="${appStoreUrl}"><span><small>Download on the</small><strong>App Store</strong></span></a>
-            <a class="btn-store btn-store-ghost" href="${playStoreUrl}" target="_blank" rel="noopener"><span><small>Get it on</small><strong>Google Play</strong></span></a>
-          </div>
+          ${storeBadgesHtml()}
           <ul class="hero-trust directory-hero-trust">
             <li><span class="dot"></span>Free to download</li>
             <li><span class="dot"></span>Complete UK map</li>
-            <li><span class="dot"></span>No subscription</li>
+            <li><span class="dot"></span>Photos and family details</li>
           </ul>
         </div>
         <div class="directory-hero-visual" aria-hidden="true">
@@ -661,7 +666,7 @@ function methodologyHtml(manifest) {
 }
 
 function appCtaHtml() {
-  return `<section class="cta-band directory-cta" aria-labelledby="directory-cta-title"><div class="shell cta-grid"><div><h2 id="directory-cta-title">Take every listing with you</h2><p>The free app covers the wider UK directory, live map browsing, saved pubs and directions from wherever you are.</p><div class="store-actions"><a class="btn-store btn-store-light" href="${appStoreUrl}"><span><small>Download on the</small><strong>App Store</strong></span></a><a class="btn-store btn-store-outline" href="${playStoreUrl}" target="_blank" rel="noopener"><span><small>Get it on</small><strong>Google Play</strong></span></a></div></div><div class="cta-pin" aria-hidden="true"><img src="/assets/app-logo.png" alt="" width="160" height="160"></div></div></section>`;
+  return `<section class="cta-band directory-cta" aria-labelledby="directory-cta-title"><div class="shell cta-grid"><div><h2 id="directory-cta-title">Take every listing with you</h2><p>The free app covers the wider UK directory, live map browsing, saved pubs and directions from wherever you are.</p>${storeBadgesHtml()}</div><div class="cta-pin" aria-hidden="true"><img src="/assets/app-logo.png" alt="" width="160" height="160"></div></div></section>`;
 }
 
 function detailPath(entry) {
@@ -729,7 +734,7 @@ function pubDetailPage(entry, relatedEntries, manifest) {
   const detailImage = photo.url
     ? `<figure class="pub-detail-photo"><img src="${escapeHtml(photo.url)}" alt="${escapeHtml(`${pub.name} family pub and play facilities`)}" loading="eager" decoding="async" width="960" height="640">${photo.attribution ? `<figcaption>Photo: ${escapeHtml(photo.attribution)}</figcaption>` : ""}</figure>`
     : `<div class="pub-detail-photo pub-detail-photo-placeholder" role="img" aria-label="Photo coming soon"><span aria-hidden="true">Photo coming soon</span></div>`;
-  const content = `<section class="section pub-detail-section" id="listings" aria-labelledby="pub-details-title"><div class="shell pub-detail-grid">${detailImage}<div class="pub-detail-copy"><p class="eyebrow">Checked family-pub listing</p><h2 id="pub-details-title">What families can check before visiting</h2><address>${escapeHtml(pub.address)}</address><p class="body-copy">${escapeHtml(pub.description)}</p>${tags.length ? `<ul class="pub-features pub-detail-features" aria-label="Recorded facilities">${tags.map((tag) => `<li>${escapeHtml(tag)}</li>`).join("")}</ul>` : ""}<p class="verification-date pub-detail-verification">Last checked ${escapeHtml(formatDate(pub.lastVerifiedAt))}. Play equipment, opening times and food service can change, so confirm the latest arrangements with the venue.</p><div class="pub-actions pub-detail-actions">${website ? `<a href="${escapeHtml(website)}" target="_blank" rel="noopener">Official website</a>` : ""}${menu ? `<a href="${escapeHtml(menu)}" target="_blank" rel="noopener">Children’s menu</a>` : ""}<a href="${escapeHtml(directions)}" target="_blank" rel="noopener">Directions</a>${pub.phone ? `<a href="tel:${escapeHtml(String(pub.phone).replace(/[^+\d]/g, ""))}">Call venue</a>` : ""}<a href="mailto:hello@pubswithplaygrounds.com?subject=${correctionSubject}">Report a correction</a></div><aside class="pub-app-panel"><h3>Find ${escapeHtml(pub.name)} in the free app</h3><p>Use the complete UK map, check nearby alternatives and save pubs for later.</p><div class="pub-app-links"><a class="btn btn-coral" href="${appStoreUrl}">Download for iPhone</a><a class="btn btn-outline" href="${playStoreUrl}" target="_blank" rel="noopener">Get it on Android</a></div></aside><p class="back-to-guide"><a href="/pubs-with-playgrounds/${region.slug}/">Browse all pubs in the ${escapeHtml(displayRegion)} guide <span aria-hidden="true">→</span></a></p></div></div></section>
+  const content = `<section class="section pub-detail-section" id="listings" aria-labelledby="pub-details-title"><div class="shell pub-detail-grid">${detailImage}<div class="pub-detail-copy"><p class="eyebrow">Checked family-pub listing</p><h2 id="pub-details-title">What families can check before visiting</h2><address>${escapeHtml(pub.address)}</address><p class="body-copy">${escapeHtml(pub.description)}</p>${tags.length ? `<ul class="pub-features pub-detail-features" aria-label="Recorded facilities">${tags.map((tag) => `<li>${escapeHtml(tag)}</li>`).join("")}</ul>` : ""}<p class="verification-date pub-detail-verification">Last checked ${escapeHtml(formatDate(pub.lastVerifiedAt))}. Play equipment, opening times and food service can change, so confirm the latest arrangements with the venue.</p><div class="pub-actions pub-detail-actions">${website ? `<a href="${escapeHtml(website)}" target="_blank" rel="noopener">Official website</a>` : ""}${menu ? `<a href="${escapeHtml(menu)}" target="_blank" rel="noopener">Children’s menu</a>` : ""}<a href="${escapeHtml(directions)}" target="_blank" rel="noopener">Directions</a>${pub.phone ? `<a href="tel:${escapeHtml(String(pub.phone).replace(/[^+\d]/g, ""))}">Call venue</a>` : ""}<a href="mailto:hello@pubswithplaygrounds.com?subject=${correctionSubject}">Report a correction</a></div><aside class="pub-app-panel"><h3>Find ${escapeHtml(pub.name)} in the free app</h3><p>Use the complete UK map, check nearby alternatives and save pubs for later.</p>${storeBadgesHtml()}</aside><p class="back-to-guide"><a href="/pubs-with-playgrounds/${region.slug}/">Browse all pubs in the ${escapeHtml(displayRegion)} guide <span aria-hidden="true">→</span></a></p></div></div></section>
   <section class="section section-mint related-pubs" aria-labelledby="related-pubs-title"><div class="shell"><div class="directory-list-heading"><div><p class="eyebrow">Nearby ideas</p><h2 id="related-pubs-title">More checked pubs from this guide</h2></div><a class="text-link" href="/pubs-with-playgrounds/${region.slug}/">Open the ${escapeHtml(displayRegion)} guide <span aria-hidden="true">→</span></a></div><div class="directory-pub-grid directory-featured-grid">${relatedCards}</div></div></section>
   ${methodologyHtml(manifest)}${appCtaHtml()}`;
   const titleWithQualifier = `${pub.name}, ${locality} | Family Pub`;
