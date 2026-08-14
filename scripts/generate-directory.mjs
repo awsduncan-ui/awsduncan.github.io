@@ -463,6 +463,24 @@ function cardHtml(pub, { heading = "h2", internalHref = "" } = {}) {
   </article>`;
 }
 
+function homepageCardHtml(pub, internalHref) {
+  const photo = photoFor(pub);
+  const tags = featureLabels(pub).slice(0, 3);
+  const image = photo.url
+    ? `<img src="${escapeHtml(photo.url)}" alt="${escapeHtml(pub.name)}" loading="lazy" decoding="async" width="480" height="320">`
+    : `<div class="home-pub-photo-placeholder" role="img" aria-label="Photo coming soon"><span>Photo coming soon</span></div>`;
+  return `<article class="home-pub-card">
+    <div class="home-pub-photo">${image}</div>
+    <div class="home-pub-copy">
+      <span class="home-pub-checked">Checked ${escapeHtml(formatDate(pub.lastVerifiedAt))}</span>
+      <h3><a href="${escapeHtml(internalHref)}">${escapeHtml(pub.name)}</a></h3>
+      <address>${escapeHtml(pub.address)}</address>
+      ${tags.length ? `<ul class="home-pub-features" aria-label="Recorded facilities">${tags.map((tag) => `<li>${escapeHtml(tag)}</li>`).join("")}</ul>` : ""}
+      <a class="home-card-link" href="${escapeHtml(internalHref)}">View checked listing <span aria-hidden="true">→</span></a>
+    </div>
+  </article>`;
+}
+
 function regionCardHtml(region, count) {
   const displayName = region.shortName || region.name;
   return `<a class="region-card" href="/pubs-with-playgrounds/${region.slug}/">
@@ -616,10 +634,10 @@ function footerHtml() {
         <div class="footer-brand"><img src="/assets/app-logo.png" alt="" width="34" height="34"><span>Pubs With Playgrounds</span></div>
         <p class="footer-fine">The UK family pub finder. Made in the UK, mostly in beer gardens.</p>
       </div>
-      <div class="footer-col"><h4>Explore</h4><a href="/pubs-with-playgrounds/">Browse pubs with playgrounds</a><a href="/about/">About</a><a href="/#showcase">The app</a><a href="/#facilities">What’s listed</a></div>
+      <div class="footer-col"><h4>Explore</h4><a href="/pubs-with-playgrounds/">Browse pubs with playgrounds</a><a href="/about/">About</a><a href="/#app">The app</a><a href="/#how">How it works</a></div>
       <div class="footer-col"><h4>Help</h4><a href="/support/">Support</a><a href="/contact/">Contact</a><a href="/account-deletion.html">Account Deletion</a></div>
       <div class="footer-col"><h4>Policies</h4><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Use</a><a href="/affiliate-disclosure/">Affiliate Disclosure</a></div>
-      <div class="footer-col"><h4>Get in touch</h4><a href="mailto:hello@pubswithplaygrounds.com">hello@pubswithplaygrounds.com</a><div class="footer-stores"><a href="${appStoreUrl}">App Store</a><a href="${playStoreUrl}" target="_blank" rel="noopener">Google Play</a></div></div>
+      <div class="footer-col"><h4>Follow and download</h4><a href="https://www.instagram.com/pubswithplaygroundsapp/" target="_blank" rel="noopener">Instagram</a><a href="mailto:hello@pubswithplaygrounds.com">hello@pubswithplaygrounds.com</a><div class="footer-stores"><a href="${appStoreUrl}">App Store</a><a href="${playStoreUrl}" target="_blank" rel="noopener">Google Play</a></div></div>
     </div>
     <div class="shell footer-base"><p>&copy; 2026 Pubs With Playgrounds. All rights reserved.</p></div>
   </footer>`;
@@ -880,29 +898,43 @@ function homepageGateway(regionPubs, regionCounts, detailEntryById) {
     seen.add(pub.id);
     chosen.push({ pub, region });
   }
-  const regionCards = regions
-    .map((region) => regionCardHtml(region, regionCounts.get(region.slug)))
+  const homepageRegions = [
+    "london",
+    "dorset-bournemouth-and-poole",
+    "west-midlands",
+    "devon-and-cornwall",
+  ].map((slug) => regions.find((region) => region.slug === slug));
+  const regionCards = homepageRegions
+    .map((region) => `<a class="home-region-card" href="/pubs-with-playgrounds/${region.slug}/">
+      <strong>${escapeHtml(region.shortName || region.name)}</strong>
+      <span>${regionCounts.get(region.slug)} checked venues</span>
+    </a>`)
     .join("\n");
   const cards = chosen
+    .filter(({ pub }) => photoFor(pub).url)
+    .slice(0, 3)
     .map(({ pub, region }) => {
       const detailEntry = detailEntryById.get(pub.id);
-      return cardHtml(pub, {
-        heading: "h3",
-        internalHref: detailEntry
+      return homepageCardHtml(
+        pub,
+        detailEntry
           ? detailPath(detailEntry)
           : `/pubs-with-playgrounds/${region.slug}/#pub-${pub.id.replace(/[^a-zA-Z0-9_-]/g, "")}`,
-      });
+      );
     })
     .join("\n");
   return `<!-- DIRECTORY_GATEWAY_START -->
-    <section class="section directory-gateway" id="directory" aria-labelledby="directory-title">
+    <section class="home-directory" id="directory" aria-labelledby="directory-title">
       <div class="shell">
-        <div class="directory-intro-grid directory-intro-no-search">
-          <div><p class="eyebrow">Preview the directory</p><h2 id="directory-title">Browse pubs with playgrounds by region</h2><p class="body-copy">The free app is the quickest way to search the complete UK map, see what is nearby and save favourites. These regional guides let you preview checked listings on the web.</p></div>
+        <div class="home-section-heading">
+          <div><p class="eyebrow">Start nearby</p><h2 id="directory-title">Browse pubs with playgrounds by region</h2></div>
+          <p>Use a regional guide for a quick shortlist, or open the complete UK directory to explore every checked listing.</p>
         </div>
-        <div class="region-grid homepage-region-grid">${regionCards}</div>
-        <div class="directory-list-heading homepage-listing-heading"><div><p class="eyebrow">Real listings</p><h2>Recently checked family pubs</h2></div><a class="text-link" href="/pubs-with-playgrounds/">Open the UK directory <span aria-hidden="true">→</span></a></div>
-        <div class="directory-pub-grid directory-featured-grid">${cards}</div>
+        <div class="home-region-grid">${regionCards}
+          <a class="home-region-card home-region-all" href="/pubs-with-playgrounds/"><strong>All regions</strong><span>Open the UK directory →</span></a>
+        </div>
+        <div class="home-listing-heading"><div><p class="eyebrow">Recently checked</p><h2>Useful listings from around the UK</h2></div><a class="home-text-link" href="/pubs-with-playgrounds/">See every listing <span aria-hidden="true">→</span></a></div>
+        <div class="home-pub-grid">${cards}</div>
       </div>
     </section>
     <!-- DIRECTORY_GATEWAY_END -->`;

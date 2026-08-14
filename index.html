@@ -6,11 +6,11 @@
   <title>Pubs With Playgrounds Near You | UK Family Pub Finder</title>
   <meta name="description" content="Find checked pubs with playgrounds near you. Browse UK regional guides with real addresses, play types, family facilities and verification dates.">
   <meta property="og:title" content="Pubs With Playgrounds Near You | UK Family Pub Finder">
-  <meta property="og:description" content="The UK family pub finder, with more than 900 pubs and hotels with real playgrounds and play areas mapped across the UK.">
+  <meta property="og:description" content="A free UK pub finder with more than 1,000 pubs and hotels with real playgrounds and play areas.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.pubswithplaygrounds.com/">
-  <meta property="og:image" content="https://www.pubswithplaygrounds.com/assets/app-logo.png">
-  <meta name="theme-color" content="#173527">
+  <meta property="og:image" content="https://www.pubswithplaygrounds.com/assets/photo-manor-farm.jpg">
+  <meta name="theme-color" content="#5f6f52">
   <link rel="canonical" href="https://www.pubswithplaygrounds.com/">
   <link rel="icon" href="favicon.png" type="image/png" sizes="96x96">
   <link rel="icon" href="favicon.ico" sizes="32x32">
@@ -32,9 +32,10 @@
         "url": "https://www.pubswithplaygrounds.com/",
         "logo": "https://www.pubswithplaygrounds.com/assets/app-logo.png",
         "email": "hello@pubswithplaygrounds.com",
+        "sameAs": ["https://www.instagram.com/pubswithplaygroundsapp/"],
         "subjectOf": {
           "@type": "NewsArticle",
-          "headline": "Father of two from Poole creates \"Pubs with Playgrounds\"",
+          "headline": "Father of two from Poole creates ‘Pubs with Playgrounds’",
           "url": "https://www.bournemouthecho.co.uk/news/26289263.father-two-poole-creates-pubs-playgrounds/",
           "datePublished": "2026-07-18",
           "publisher": {
@@ -55,7 +56,7 @@
         "name": "Pubs With Playgrounds",
         "operatingSystem": "iOS, Android",
         "applicationCategory": "TravelApplication",
-        "description": "The UK family pub finder, with more than 900 pubs and hotels with real playgrounds and play areas mapped across the UK.",
+        "description": "A free UK pub finder with more than 1,000 pubs and hotels with real playgrounds and play areas.",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
         "installUrl": [
           "https://apps.apple.com/gb/app/pubs-with-playgrounds/id6757747311",
@@ -67,561 +68,212 @@
   }
   </script>
 </head>
-<body>
+<body class="home-page">
 
-  <header class="nav-wrap">
-    <div class="shell nav">
-      <a class="brand" href="/">
-        <img class="brand-logo" src="assets/app-logo.png" alt="" width="38" height="38">
-        <span>Pubs With<br>Playgrounds</span>
+  <header class="home-nav-wrap">
+    <div class="shell home-nav">
+      <a class="home-brand" href="/" aria-label="Pubs With Playgrounds home">
+        <img src="assets/app-logo.png" alt="" width="40" height="40">
+        <span>Pubs With Playgrounds</span>
       </a>
-      <nav class="nav-links" aria-label="Page links">
-        <a href="/pubs-with-playgrounds/">Browse pubs with playgrounds</a>
-        <a href="#showcase">The app</a>
+      <nav class="home-nav-links" aria-label="Main navigation">
+        <a href="/pubs-with-playgrounds/">Browse pubs</a>
         <a href="#how">How it works</a>
-        <a href="#facilities">What's listed</a>
-        <a href="#support">Support</a>
+        <a href="/about/">About</a>
       </nav>
-      <a class="btn btn-coral btn-nav" href="https://apps.apple.com/gb/app/pubs-with-playgrounds/id6757747311">Get the app</a>
+      <a class="home-nav-cta" href="https://apps.apple.com/gb/app/pubs-with-playgrounds/id6757747311">Get the app</a>
     </div>
   </header>
 
   <main>
-
-    <!-- ============ HERO ============ -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-map" aria-hidden="true">
-        <svg class="hero-roads" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
-          <path d="M-40 620 C 220 560, 380 700, 640 640 S 1100 520, 1480 600" stroke="rgba(255,255,255,0.85)" stroke-width="14"/>
-          <path d="M-40 620 C 220 560, 380 700, 640 640 S 1100 520, 1480 600" stroke="rgba(23,53,39,0.10)" stroke-width="2" stroke-dasharray="14 18"/>
-          <path d="M180 -40 C 240 240, 120 420, 320 660 S 420 880, 380 980" stroke="rgba(255,255,255,0.75)" stroke-width="9"/>
-          <path d="M1240 -60 C 1140 200, 1320 380, 1180 560 S 1060 840, 1120 980" stroke="rgba(255,255,255,0.75)" stroke-width="9"/>
-          <path d="M-40 260 C 320 300, 560 180, 900 240 S 1300 320, 1480 270" stroke="rgba(255,255,255,0.6)" stroke-width="6"/>
-          <ellipse cx="1300" cy="160" rx="190" ry="110" fill="rgba(178,222,236,0.55)"/>
-          <ellipse cx="90" cy="820" rx="230" ry="120" fill="rgba(178,222,236,0.4)"/>
-          <circle cx="500" cy="430" r="120" fill="rgba(196,228,196,0.5)"/>
-          <circle cx="1050" cy="720" r="150" fill="rgba(196,228,196,0.45)"/>
-        </svg>
-      </div>
-
-      <div class="shell hero-grid">
-        <div class="hero-copy">
+    <section class="home-hero" aria-labelledby="hero-title">
+      <div class="shell home-hero-grid">
+        <div class="home-hero-copy">
           <p class="eyebrow">The UK family pub finder</p>
-          <h1 id="hero-title">Find pubs with playgrounds <em>near you.</em></h1>
-          <p class="lead">
-            Browse checked UK pub listings and regional guides on the web, then use the
-            free app for the complete map wherever you're heading.
-          </p>
-          <div class="store-actions">
-            <a class="btn-store" href="https://apps.apple.com/gb/app/pubs-with-playgrounds/id6757747311">
-              <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M17.05 12.54c-.03-2.89 2.36-4.28 2.47-4.35-1.35-1.97-3.44-2.24-4.18-2.27-1.78-.18-3.47 1.05-4.37 1.05-.9 0-2.29-1.02-3.76-1-1.94.03-3.72 1.13-4.72 2.86-2.01 3.49-.51 8.66 1.45 11.49.96 1.39 2.1 2.94 3.6 2.88 1.45-.06 2-.93 3.75-.93s2.25.93 3.78.9c1.56-.03 2.55-1.41 3.5-2.8 1.1-1.61 1.55-3.17 1.58-3.25-.04-.02-3.03-1.16-3.1-4.58zM14.16 4.04c.8-.97 1.34-2.32 1.19-3.66-1.15.05-2.55.77-3.38 1.74-.74.86-1.39 2.23-1.22 3.55 1.29.1 2.6-.65 3.41-1.63z"/></svg>
-              <span><small>Download on the</small><strong>App Store</strong></span>
-            </a>
-            <a class="btn-store btn-store-ghost" href="https://play.google.com/store/apps/details?id=com.pubswithplaygrounds.app" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill="currentColor" d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85a.637.637 0 0 0-.83.22l-1.88 3.24a11.46 11.46 0 0 0-8.94 0L5.65 5.67a.637.637 0 0 0-.83-.22c-.3.16-.42.54-.26.85L6.4 9.48A10.78 10.78 0 0 0 1 18h22a10.78 10.78 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>
-              <span><small>Get it on</small><strong>Google Play</strong></span>
-            </a>
+          <h1 id="hero-title">Find a pub where the kids can actually play.</h1>
+          <p class="home-lead">Browse checked UK pubs and hotels with real play areas, useful family facilities and photos that help you know what to expect.</p>
+          <div class="home-hero-actions">
+            <a class="home-primary-action" href="/pubs-with-playgrounds/">Browse pubs by region</a>
+            <a class="home-text-link" href="https://apps.apple.com/gb/app/pubs-with-playgrounds/id6757747311">Get the free app <span aria-hidden="true">→</span></a>
           </div>
-          <ul class="hero-trust" aria-label="App highlights">
-            <li><span class="tick" aria-hidden="true">&#10003;</span>Free to download</li>
-            <li><span class="tick" aria-hidden="true">&#10003;</span>No subscription</li>
-            <li><span class="tick" aria-hidden="true">&#10003;</span>Built by UK parents</li>
-          </ul>
+          <p class="home-platforms"><a href="https://apps.apple.com/gb/app/pubs-with-playgrounds/id6757747311">iPhone</a> and <a href="https://play.google.com/store/apps/details?id=com.pubswithplaygrounds.app" target="_blank" rel="noopener">Android</a> · Free to download · No subscription</p>
         </div>
-
-        <div class="hero-visual" aria-hidden="true">
-          <div class="phone phone-hero">
-            <img src="assets/shot1.png" alt="" loading="eager" width="600" height="1304">
+        <div class="home-hero-media">
+          <figure class="home-playground-photo">
+            <img src="assets/photo-manor-farm.jpg" alt="Colourful play equipment in the garden at Manor Farm, Rainhill" width="1400" height="1050">
+            <figcaption>Manor Farm, Rainhill</figcaption>
+          </figure>
+          <div class="home-phone home-hero-phone">
+            <img src="assets/shot4.png" alt="Nearby pubs screen in the Pubs With Playgrounds app" width="600" height="1304">
           </div>
+          <div class="home-checked-note"><strong>Recently checked</strong><span>Real play-area details</span></div>
         </div>
       </div>
     </section>
 
-    <!-- ============ STATS ============ -->
-    <section class="stats" aria-label="Key numbers">
-      <div class="shell stats-grid">
-        <div class="stat">
-          <strong>900+</strong>
-          <span>public listings mapped across the UK</span>
-        </div>
-        <div class="stat">
-          <strong>Evidence-led</strong>
-          <span>checked against pub websites, photos and parent reports</span>
-        </div>
-        <div class="stat">
-          <strong>Community-built</strong>
-          <span>with corrections, photos, reviews and missing pubs welcomed</span>
-        </div>
+    <section class="home-proof" aria-label="Directory highlights">
+      <div class="shell home-proof-grid">
+        <div><strong>1,000+</strong><span>pubs mapped in the app</span></div>
+        <div><strong>Real photos</strong><span>of play areas where available</span></div>
+        <div><strong>Easy corrections</strong><span>from parents and pubs</span></div>
       </div>
     </section>
 
     <!-- DIRECTORY_GATEWAY_START -->
-    <section class="section directory-gateway" id="directory" aria-labelledby="directory-title">
+    <section class="home-directory" id="directory" aria-labelledby="directory-title">
       <div class="shell">
-        <div class="directory-intro-grid directory-intro-no-search">
-          <div><p class="eyebrow">Preview the directory</p><h2 id="directory-title">Browse pubs with playgrounds by region</h2><p class="body-copy">The free app is the quickest way to search the complete UK map, see what is nearby and save favourites. These regional guides let you preview checked listings on the web.</p></div>
+        <div class="home-section-heading">
+          <div><p class="eyebrow">Start nearby</p><h2 id="directory-title">Browse pubs with playgrounds by region</h2></div>
+          <p>Use a regional guide for a quick shortlist, or open the complete UK directory to explore every checked listing.</p>
         </div>
-        <div class="region-grid homepage-region-grid"><a class="region-card" href="/pubs-with-playgrounds/dorset-bournemouth-and-poole/">
-    <span class="region-count">30 checked venues</span>
-    <h3>Dorset, Bournemouth and Poole</h3>
-    <p>Poole, Bournemouth, Christchurch, Wimborne, Wareham, Dorchester and Weymouth</p>
-    <span class="region-link">Browse the guide <span aria-hidden="true">→</span></span>
-  </a>
-<a class="region-card" href="/pubs-with-playgrounds/london/">
-    <span class="region-count">43 checked venues</span>
-    <h3>London</h3>
-    <p>Greater London and nearby areas around the M25</p>
-    <span class="region-link">Browse the guide <span aria-hidden="true">→</span></span>
-  </a>
-<a class="region-card" href="/pubs-with-playgrounds/west-midlands/">
-    <span class="region-count">89 checked venues</span>
-    <h3>West Midlands</h3>
-    <p>Birmingham, Coventry, Wolverhampton and surrounding counties</p>
-    <span class="region-link">Browse the guide <span aria-hidden="true">→</span></span>
-  </a>
-<a class="region-card" href="/pubs-with-playgrounds/kent/">
-    <span class="region-count">33 checked venues</span>
-    <h3>Kent</h3>
-    <p>Maidstone, Medway, Sevenoaks and central Kent</p>
-    <span class="region-link">Browse the guide <span aria-hidden="true">→</span></span>
-  </a>
-<a class="region-card" href="/pubs-with-playgrounds/bristol-and-bath/">
-    <span class="region-count">39 checked venues</span>
-    <h3>Bristol and Bath</h3>
-    <p>Bristol, Bath, North Somerset and South Gloucestershire</p>
-    <span class="region-link">Browse the guide <span aria-hidden="true">→</span></span>
-  </a>
-<a class="region-card" href="/pubs-with-playgrounds/greater-manchester/">
-    <span class="region-count">45 checked venues</span>
-    <h3>Greater Manchester</h3>
-    <p>Manchester, Salford, Stockport, Wigan, Bolton and nearby towns</p>
-    <span class="region-link">Browse the guide <span aria-hidden="true">→</span></span>
-  </a>
-<a class="region-card" href="/pubs-with-playgrounds/essex/">
-    <span class="region-count">38 checked venues</span>
-    <h3>Essex</h3>
-    <p>Chelmsford, Brentwood, Colchester and surrounding Essex</p>
-    <span class="region-link">Browse the guide <span aria-hidden="true">→</span></span>
-  </a>
-<a class="region-card" href="/pubs-with-playgrounds/surrey/">
-    <span class="region-count">33 checked venues</span>
-    <h3>Surrey</h3>
-    <p>Guildford, Woking, Reigate and nearby Surrey towns</p>
-    <span class="region-link">Browse the guide <span aria-hidden="true">→</span></span>
-  </a>
-<a class="region-card" href="/pubs-with-playgrounds/devon-and-cornwall/">
-    <span class="region-count">30 checked venues</span>
-    <h3>Devon and Cornwall</h3>
-    <p>Exeter, Plymouth, Torbay, Truro and the wider peninsula</p>
-    <span class="region-link">Browse the guide <span aria-hidden="true">→</span></span>
-  </a></div>
-        <div class="directory-list-heading homepage-listing-heading"><div><p class="eyebrow">Real listings</p><h2>Recently checked family pubs</h2></div><a class="text-link" href="/pubs-with-playgrounds/">Open the UK directory <span aria-hidden="true">→</span></a></div>
-        <div class="directory-pub-grid directory-featured-grid"><article class="directory-pub-card" id="pub-6PjEfnrfTl6R9alobtzr" data-directory-card data-search="the old thatch 285 wimborne rd w, ferndown, wimborne bh21 7nw, uk thatched 17th-century gatehouse with beams, an open fire and traditional british pub grub. playground beer garden car park high chairs childrens menu cask ales menu accommodation free wifi dog friendly open fire ev charger accessible drawing / colouring board games kids table toys kids entertainment baby change ping pong">
-    <figure class="directory-photo">
-        <img src="https://firebasestorage.googleapis.com/v0/b/pubs-with-playgrounds-8b9d4.firebasestorage.app/o/pub_photos%2F6PjEfnrfTl6R9alobtzr%2F1768947903450.jpg?alt=media&amp;token=2f9ac6c8-280e-4442-bb6c-7bd9854f0950" alt="The Old Thatch" loading="lazy" decoding="async" width="480" height="320">
-
-      </figure>
-    <div class="directory-pub-body">
-      <div class="pub-card-heading">
-        <h3><a class="pub-card-title" href="/pubs-with-playgrounds/pub/the-old-thatch-wimborne/">The Old Thatch</a></h3>
-        <span class="verified-badge">Checked</span>
-      </div>
+        <div class="home-region-grid"><a class="home-region-card" href="/pubs-with-playgrounds/london/">
+      <strong>London</strong>
+      <span>45 checked venues</span>
+    </a>
+<a class="home-region-card" href="/pubs-with-playgrounds/dorset-bournemouth-and-poole/">
+      <strong>Dorset, Bournemouth and Poole</strong>
+      <span>30 checked venues</span>
+    </a>
+<a class="home-region-card" href="/pubs-with-playgrounds/west-midlands/">
+      <strong>West Midlands</strong>
+      <span>90 checked venues</span>
+    </a>
+<a class="home-region-card" href="/pubs-with-playgrounds/devon-and-cornwall/">
+      <strong>Devon and Cornwall</strong>
+      <span>31 checked venues</span>
+    </a>
+          <a class="home-region-card home-region-all" href="/pubs-with-playgrounds/"><strong>All regions</strong><span>Open the UK directory →</span></a>
+        </div>
+        <div class="home-listing-heading"><div><p class="eyebrow">Recently checked</p><h2>Useful listings from around the UK</h2></div><a class="home-text-link" href="/pubs-with-playgrounds/">See every listing <span aria-hidden="true">→</span></a></div>
+        <div class="home-pub-grid"><article class="home-pub-card">
+    <div class="home-pub-photo"><img src="https://firebasestorage.googleapis.com/v0/b/pubs-with-playgrounds-8b9d4.firebasestorage.app/o/pub_photos%2F6PjEfnrfTl6R9alobtzr%2F1768947903450.jpg?alt=media&amp;token=2f9ac6c8-280e-4442-bb6c-7bd9854f0950" alt="The Old Thatch" loading="lazy" decoding="async" width="480" height="320"></div>
+    <div class="home-pub-copy">
+      <span class="home-pub-checked">Checked 14 July 2026</span>
+      <h3><a href="/pubs-with-playgrounds/pub/the-old-thatch-wimborne/">The Old Thatch</a></h3>
       <address>285 Wimborne Rd W, Ferndown, Wimborne BH21 7NW, UK</address>
-      <p class="pub-description">Thatched 17th-century gatehouse with beams, an open fire and traditional British pub grub.</p>
-      <ul class="pub-features" aria-label="Recorded facilities"><li>Outdoor playground</li><li>Children’s menu</li><li>Baby change</li><li>Parking</li><li>Accessible</li><li>Beer garden</li><li>High chairs</li></ul>
-      <p class="verification-date">Last checked 14 July 2026. Details can change—please confirm opening and food service with the venue.</p>
-      <div class="pub-actions">
-        <a href="https://www.theoldthatch.com/" target="_blank" rel="noopener">Official website</a>
-        <a href="https://firebasestorage.googleapis.com/v0/b/pubs-with-playgrounds-8b9d4.firebasestorage.app/o/pub_menus%2F6PjEfnrfTl6R9alobtzr%2Fchildrens_menu%2F1769849450785.jpg?alt=media&amp;token=f1e97ce2-8adf-4421-9a8f-07299badd44b" target="_blank" rel="noopener">Children’s menu</a>
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=50.8047222%2C-1.9252778" target="_blank" rel="noopener">Directions</a>
-        <a href="tel:01202406779">Call venue</a>
-        <a href="mailto:hello@pubswithplaygrounds.com?subject=Listing%20correction%3A%20The%20Old%20Thatch">Report a correction</a>
-      </div>
+      <ul class="home-pub-features" aria-label="Recorded facilities"><li>Outdoor playground</li><li>Children’s menu</li><li>Baby change</li></ul>
+      <a class="home-card-link" href="/pubs-with-playgrounds/pub/the-old-thatch-wimborne/">View checked listing <span aria-hidden="true">→</span></a>
     </div>
   </article>
-<article class="directory-pub-card" id="pub-AlFeJJWsx0wX9SqnKCYA" data-directory-card data-search="ballot box horsenden ln n, greenford ub6 7ql, uk chain pub/restaurant serving classic comfort food, with kids&#39; and dessert menus. playground childrens menu soft play indoor play area high chairs beer garden car park drawing / colouring menu">
-    <figure class="directory-photo">
-        <img src="https://firebasestorage.googleapis.com/v0/b/pubs-with-playgrounds-8b9d4.firebasestorage.app/o/pub_photos%2FAlFeJJWsx0wX9SqnKCYA%2F1769335262816.jpg?alt=media&amp;token=0048ac6b-c409-4506-b6e1-642d3b023b6f" alt="Ballot Box" loading="lazy" decoding="async" width="480" height="320">
-
-      </figure>
-    <div class="directory-pub-body">
-      <div class="pub-card-heading">
-        <h3><a class="pub-card-title" href="/pubs-with-playgrounds/london/#pub-AlFeJJWsx0wX9SqnKCYA">Ballot Box</a></h3>
-        <span class="verified-badge">Checked</span>
-      </div>
-      <address>Horsenden Ln N, Greenford UB6 7QL, UK</address>
-      <p class="pub-description">Chain pub/restaurant serving classic comfort food, with kids&#39; and dessert menus.</p>
-      <ul class="pub-features" aria-label="Recorded facilities"><li>Outdoor playground</li><li>Indoor play</li><li>Soft play</li><li>Children’s menu</li><li>Parking</li><li>Beer garden</li><li>High chairs</li></ul>
-      <p class="verification-date">Last checked 19 May 2026. Details can change—please confirm opening and food service with the venue.</p>
-      <div class="pub-actions">
-        <a href="https://www.hungryhorse.co.uk/pubs/middlesex/ballot-box" target="_blank" rel="noopener">Official website</a>
-
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=51.5491822%2C-0.3297911" target="_blank" rel="noopener">Directions</a>
-        <a href="tel:02089022825">Call venue</a>
-        <a href="mailto:hello@pubswithplaygrounds.com?subject=Listing%20correction%3A%20Ballot%20Box">Report a correction</a>
-      </div>
-    </div>
-  </article>
-<article class="directory-pub-card" id="pub-DXGQVFqYJ7It424UQzcc" data-directory-card data-search="bees knees meridian way, leicester le19 1lw bees knees in thorpe astley is a lively family pub near meridian leisure park. it offers pub food, kids&#39; meals, sports screens, wacky warehouse soft play, an outdoor play area, free wi-fi and parking. playground indoor play area soft play car park accessible free wifi dart board menu childrens menu soft play">
-    <div class="directory-photo directory-photo-placeholder" role="img" aria-label="Photo coming soon"><span aria-hidden="true">Photo coming soon</span></div>
-    <div class="directory-pub-body">
-      <div class="pub-card-heading">
-        <h3><a class="pub-card-title" href="/pubs-with-playgrounds/pub/bees-knees-leicester/">Bees Knees</a></h3>
-        <span class="verified-badge">Checked</span>
-      </div>
-      <address>Meridian Way, Leicester LE19 1LW</address>
-      <p class="pub-description">Bees Knees in Thorpe Astley is a lively family pub near Meridian Leisure Park. It offers pub food, kids&#39; meals, sports screens, Wacky Warehouse soft play, an outdoor play area, free Wi-Fi and parking.</p>
-      <ul class="pub-features" aria-label="Recorded facilities"><li>Outdoor playground</li><li>Indoor play</li><li>Soft play</li><li>Children’s menu</li><li>Parking</li><li>Accessible</li><li>Food menu</li></ul>
-      <p class="verification-date">Last checked 19 May 2026. Details can change—please confirm opening and food service with the venue.</p>
-      <div class="pub-actions">
-        <a href="https://www.hungryhorse.co.uk/pubs/leicestershire/bees-knees" target="_blank" rel="noopener">Official website</a>
-        <a href="https://www.hungryhorse.co.uk/pubs/leicestershire/bees-knees/menu" target="_blank" rel="noopener">Children’s menu</a>
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=52.6144165%2C-1.1917113" target="_blank" rel="noopener">Directions</a>
-        <a href="tel:01162630069">Call venue</a>
-        <a href="mailto:hello@pubswithplaygrounds.com?subject=Listing%20correction%3A%20Bees%20Knees">Report a correction</a>
-      </div>
-    </div>
-  </article>
-<article class="directory-pub-card" id="pub-NYaaJHTMfH1xL7PLOAt2" data-directory-card data-search="bobbing apple brewers fayre bobbing corner, sheppey way, bobbing, sittingbourne me9 8rz, united kingdom brewers fayre restaurant near sittingbourne with an indoor soft play area open daily from noon to 7pm (maximum height 145cm; under-1s play free) and a small outdoor garden with play facilities. playground high chairs baby change childrens menu car park menu">
-    <div class="directory-photo directory-photo-placeholder" role="img" aria-label="Photo coming soon"><span aria-hidden="true">Photo coming soon</span></div>
-    <div class="directory-pub-body">
-      <div class="pub-card-heading">
-        <h3><a class="pub-card-title" href="/pubs-with-playgrounds/kent/#pub-NYaaJHTMfH1xL7PLOAt2">Bobbing Apple Brewers Fayre</a></h3>
-        <span class="verified-badge">Checked</span>
-      </div>
-      <address>Bobbing Corner, Sheppey Way, Bobbing, Sittingbourne ME9 8RZ, United Kingdom</address>
-      <p class="pub-description">Brewers Fayre restaurant near Sittingbourne with an indoor soft play area open daily from noon to 7pm (maximum height 145cm; under-1s play free) and a small outdoor garden with play facilities.</p>
-      <ul class="pub-features" aria-label="Recorded facilities"><li>Outdoor playground</li><li>Children’s menu</li><li>Baby change</li><li>Parking</li><li>High chairs</li><li>Food menu</li></ul>
-      <p class="verification-date">Last checked 19 May 2026. Details can change—please confirm opening and food service with the venue.</p>
-      <div class="pub-actions">
-        <a href="https://www.brewersfayre.co.uk/en-gb/locations/kent/bobbing-apple?cid=GLBC_41511010" target="_blank" rel="noopener">Official website</a>
-
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=51.3512687%2C0.7069578" target="_blank" rel="noopener">Directions</a>
-        <a href="tel:01795431890">Call venue</a>
-        <a href="mailto:hello@pubswithplaygrounds.com?subject=Listing%20correction%3A%20Bobbing%20Apple%20Brewers%20Fayre">Report a correction</a>
-      </div>
-    </div>
-  </article>
-<article class="directory-pub-card" id="pub-L5MWF9mvEsLKCF18rjPb" data-directory-card data-search="new inn motel hotel chepstow rd, langstone, newport np18 2jn new inn motel hotel in langstone combines a family pub, restaurant and hotel. it has wacky warehouse indoor soft play, a beer garden, hungry horse pub food, kids&#39; options, ev charging, parking and accessible facilities. playground indoor play area soft play car park accessible free wifi ev charger accommodation pool table menu childrens menu soft play">
-    <div class="directory-photo directory-photo-placeholder" role="img" aria-label="Photo coming soon"><span aria-hidden="true">Photo coming soon</span></div>
-    <div class="directory-pub-body">
-      <div class="pub-card-heading">
-        <h3><a class="pub-card-title" href="/pubs-with-playgrounds/pub/new-inn-motel-hotel-newport/">New Inn Motel Hotel</a></h3>
-        <span class="verified-badge">Checked</span>
-      </div>
-      <address>Chepstow Rd, Langstone, Newport NP18 2JN</address>
-      <p class="pub-description">New Inn Motel Hotel in Langstone combines a family pub, restaurant and hotel. It has Wacky Warehouse indoor soft play, a beer garden, Hungry Horse pub food, kids&#39; options, EV charging, parking and accessible facilities.</p>
-      <ul class="pub-features" aria-label="Recorded facilities"><li>Outdoor playground</li><li>Indoor play</li><li>Soft play</li><li>Children’s menu</li><li>Parking</li><li>Accessible</li><li>Food menu</li></ul>
-      <p class="verification-date">Last checked 19 May 2026. Details can change—please confirm opening and food service with the venue.</p>
-      <div class="pub-actions">
-        <a href="https://www.greenekinginns.co.uk/hotels/gwent/new-inn-motel" target="_blank" rel="noopener">Official website</a>
-        <a href="https://www.hungryhorse.co.uk/pubs/gwent/new-inn-motel/menu" target="_blank" rel="noopener">Children’s menu</a>
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=51.607721999999995%2C-2.8960782" target="_blank" rel="noopener">Directions</a>
-        <a href="tel:01633412426">Call venue</a>
-        <a href="mailto:hello@pubswithplaygrounds.com?subject=Listing%20correction%3A%20New%20Inn%20Motel%20Hotel">Report a correction</a>
-      </div>
-    </div>
-  </article>
-<article class="directory-pub-card" id="pub-WeyD6pHXyaey2Ceriobe" data-directory-card data-search="bee hive 991 chorley new rd, horwich, bolton bl6 4ba bee hive in horwich serves carvery, pub classics and drinks near toughsheet community stadium and middlebrook. families have wacky warehouse soft play, sports screens, a beer garden, free wi-fi, ev charging and parking. playground indoor play area soft play beer garden car park accessible dog friendly free wifi ev charger pool table dart board menu childrens menu soft play">
-    <div class="directory-photo directory-photo-placeholder" role="img" aria-label="Photo coming soon"><span aria-hidden="true">Photo coming soon</span></div>
-    <div class="directory-pub-body">
-      <div class="pub-card-heading">
-        <h3><a class="pub-card-title" href="/pubs-with-playgrounds/pub/bee-hive-bolton/">Bee Hive</a></h3>
-        <span class="verified-badge">Checked</span>
-      </div>
-      <address>991 Chorley New Rd, Horwich, Bolton BL6 4BA</address>
-      <p class="pub-description">Bee Hive in Horwich serves carvery, pub classics and drinks near Toughsheet Community Stadium and Middlebrook. Families have Wacky Warehouse soft play, sports screens, a beer garden, free Wi-Fi, EV charging and parking.</p>
-      <ul class="pub-features" aria-label="Recorded facilities"><li>Outdoor playground</li><li>Indoor play</li><li>Soft play</li><li>Children’s menu</li><li>Parking</li><li>Accessible</li><li>Beer garden</li></ul>
-      <p class="verification-date">Last checked 19 May 2026. Details can change—please confirm opening and food service with the venue.</p>
-      <div class="pub-actions">
-        <a href="https://www.greeneking.co.uk/pubs/lancashire/bee-hive" target="_blank" rel="noopener">Official website</a>
-        <a href="https://www.greeneking.co.uk/pubs/lancashire/bee-hive/menu" target="_blank" rel="noopener">Children’s menu</a>
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=53.584578199999996%2C-2.5223774" target="_blank" rel="noopener">Directions</a>
-        <a href="tel:01204692104">Call venue</a>
-        <a href="mailto:hello@pubswithplaygrounds.com?subject=Listing%20correction%3A%20Bee%20Hive">Report a correction</a>
-      </div>
+<article class="home-pub-card">
+    <div class="home-pub-photo"><img src="https://firebasestorage.googleapis.com/v0/b/pubs-with-playgrounds-8b9d4.firebasestorage.app/o/pub_photos%2F8p4mQafTqGAAcTwVM9on%2F1769815710608.jpg?alt=media&amp;token=ebfd4a62-b65c-4c57-b538-3f01bb37e223" alt="Chafford Hundred Brewers Fayre" loading="lazy" decoding="async" width="480" height="320"></div>
+    <div class="home-pub-copy">
+      <span class="home-pub-checked">Checked 19 May 2026</span>
+      <h3><a href="/pubs-with-playgrounds/london/#pub-8p4mQafTqGAAcTwVM9on">Chafford Hundred Brewers Fayre</a></h3>
+      <address>Unicorn Estate, Fleming Rd, Chafford Hundred, Grays RM16 6YJ, UK</address>
+      <ul class="home-pub-features" aria-label="Recorded facilities"><li>Outdoor playground</li><li>Soft play</li><li>Children’s menu</li></ul>
+      <a class="home-card-link" href="/pubs-with-playgrounds/london/#pub-8p4mQafTqGAAcTwVM9on">View checked listing <span aria-hidden="true">→</span></a>
     </div>
   </article></div>
       </div>
     </section>
     <!-- DIRECTORY_GATEWAY_END -->
 
-    <!-- ============ COVERAGE ============ -->
-    <section class="section coverage" aria-labelledby="coverage-title">
+    <section class="home-product" id="app" aria-labelledby="app-title">
+      <div class="shell home-product-panel">
+        <div class="home-product-copy">
+          <p class="eyebrow">Know before you go</p>
+          <h2 id="app-title">See the playground before you set off.</h2>
+          <p>The app gives you the complete UK map, nearby pubs, saved favourites and the family details that are easy to miss on a pub website.</p>
+          <ul class="home-check-list">
+            <li>Real playground photos where pubs and parents have supplied them</li>
+            <li>Indoor play, soft play, children’s menus and baby changing</li>
+            <li>Visible verification dates and a simple correction route</li>
+          </ul>
+          <div class="home-store-links">
+            <a href="https://apps.apple.com/gb/app/pubs-with-playgrounds/id6757747311">Download for iPhone</a>
+            <a href="https://play.google.com/store/apps/details?id=com.pubswithplaygrounds.app" target="_blank" rel="noopener">Get it on Android</a>
+          </div>
+        </div>
+        <div class="home-product-visual" aria-hidden="true">
+          <div class="home-phone"><img src="assets/shot2.png" alt="" loading="lazy" width="600" height="1304"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-how" id="how" aria-labelledby="how-title">
       <div class="shell">
-        <div class="section-heading coverage-heading">
-          <p class="eyebrow">As featured in</p>
-          <h2 id="coverage-title">Helping families find a better pub lunch.</h2>
+        <div class="home-section-heading">
+          <div><p class="eyebrow">How it works</p><h2 id="how-title">A useful answer in a couple of minutes.</h2></div>
+          <p>No vague “family-friendly” label. Check what is actually there before committing to the drive.</p>
+        </div>
+        <div class="home-steps">
+          <article><span>01</span><h3>Find somewhere nearby</h3><p>Browse the website by region or use the app to search the full map around you.</p></article>
+          <article><span>02</span><h3>Check the play area</h3><p>See photos, recorded play types, practical facilities and when the listing was last checked.</p></article>
+          <article><span>03</span><h3>Plan the family stop</h3><p>Open directions, save favourites and confirm current food service with the venue.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-origin" aria-labelledby="origin-title">
+      <div class="shell home-origin-grid">
+        <figure><img src="assets/founder-family.jpg" alt="Alastair Duncan with his family" loading="lazy" width="751" height="1000"></figure>
+        <div>
+          <p class="eyebrow">Started by a parent</p>
+          <h2 id="origin-title">Built after too many hopeful pub searches.</h2>
+          <p>Pubs With Playgrounds was started by Alastair Duncan, a dad of two. It is a free UK pub finder for parents who want to know whether “family friendly” includes somewhere children can actually play.</p>
+          <p>Listings combine pub websites, Google place information, parent reports, photos and direct corrections from pubs where available.</p>
+          <div class="home-origin-links"><a href="/about/">More about the project</a><a href="/contact/">Report a listing correction</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-coverage" aria-labelledby="coverage-title">
+      <div class="shell">
+        <div class="home-section-heading">
+          <div><p class="eyebrow">In the press</p><h2 id="coverage-title">A simple idea families understand.</h2></div>
         </div>
         <div class="coverage-grid">
-          <a class="coverage-card" href="https://www.birminghammail.co.uk/whats-on/family-kids-news/dad-shares-best-pubs-playgrounds-34299280" target="_blank" rel="noopener">
-            <span class="coverage-outlet">Birmingham Live</span>
-            <strong>Dad shares best pubs with playgrounds around Birmingham ahead of the school holidays</strong>
-            <span class="coverage-link">Read the article</span>
-          </a>
-          <a class="coverage-card" href="https://thebathandwiltshireparent.co.uk/2026/07/free-app-helps-bath-and-bristol-families-find-pubs-with-playgrounds/" target="_blank" rel="noopener">
-            <span class="coverage-outlet">The Bath &amp; Wiltshire Parent</span>
-            <strong>Free app helps Bath and Bristol families find pubs with playgrounds</strong>
-            <span class="coverage-link">Read the article</span>
-          </a>
-          <a class="coverage-card" href="https://www.bournemouthecho.co.uk/news/26289263.father-two-poole-creates-pubs-playgrounds/" target="_blank" rel="noopener">
-            <span class="coverage-outlet">Bournemouth Echo</span>
-            <strong>Father of two from Poole creates “Pubs with Playgrounds”</strong>
-            <span class="coverage-link">Read the article</span>
-          </a>
+          <a href="https://www.birminghammail.co.uk/whats-on/family-kids-news/dad-shares-best-pubs-playgrounds-34299280" target="_blank" rel="noopener"><span>Birmingham Live</span><strong>Dad shares best pubs with playgrounds around Birmingham</strong><small>Read article →</small></a>
+          <a href="https://thebathandwiltshireparent.co.uk/2026/07/free-app-helps-bath-and-bristol-families-find-pubs-with-playgrounds/" target="_blank" rel="noopener"><span>The Bath &amp; Wiltshire Parent</span><strong>Free app helps Bath and Bristol families find pubs with playgrounds</strong><small>Read article →</small></a>
+          <a href="https://www.bournemouthecho.co.uk/news/26289263.father-two-poole-creates-pubs-playgrounds/" target="_blank" rel="noopener"><span>Bournemouth Echo</span><strong>Father of two from Poole creates Pubs With Playgrounds</strong><small>Read article →</small></a>
         </div>
       </div>
     </section>
 
-    <!-- ============ PRODUCT SHOWCASE ============ -->
-    <section class="section showcase" id="showcase" aria-labelledby="showcase-title">
-      <div class="shell showcase-grid">
-        <div class="showcase-copy">
-          <p class="eyebrow">Know before you go</p>
-          <h2 id="showcase-title">See exactly what you're walking into.</h2>
-          <p class="body-copy">
-            Every listing shows the things that decide a family day out — the actual play
-            equipment, whether there's a beer garden, a children's menu, baby change and parking —
-            with real photos and honest details, not vague &ldquo;family friendly&rdquo; tags.
-          </p>
-          <ul class="check-list">
-            <li><span class="tick" aria-hidden="true">&#10003;</span>Real photos of the play area, not stock images</li>
-            <li><span class="tick" aria-hidden="true">&#10003;</span>Opening hours, food times and facilities at a glance</li>
-            <li><span class="tick" aria-hidden="true">&#10003;</span>Distance and directions from wherever you are</li>
-          </ul>
-        </div>
-
-        <figure class="listing-card" aria-label="Example pub listing">
-          <div class="listing-photo">
-            <img src="assets/photo-old-thatch.jpg" alt="A woodland pub garden with a wooden climbing frame and slide" loading="lazy" width="399" height="501">
-            <span class="listing-badge">1/2</span>
-          </div>
-          <figcaption class="listing-body">
-            <div class="listing-head">
-              <div>
-                <h3>The Old Thatch</h3>
-                <p class="listing-meta">285 Wimborne Rd W, Ferndown</p>
-              </div>
-              <span class="listing-rating"><span aria-hidden="true">&#9733;</span> 5.0</span>
-            </div>
-            <p class="listing-sub"><span class="open-dot" aria-hidden="true"></span>Open &middot; Closes 22:30 &middot; 2.5 mi</p>
-            <div class="listing-chips">
-              <span class="chip"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4.5 2.5v11M7.5 2.5v11M4.5 6h3M4.5 9.5h3"/><path d="M7.5 3c3.5.4 5.6 3.6 6 9"/></svg>Outdoor play</span>
-              <span class="chip"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 2v4a1.6 1.6 0 0 0 3.2 0V2M6.6 2v12"/><path d="M11.8 2c-1.2 1.6-1.2 5 0 6.4V14"/></svg>Children's menu</span>
-              <span class="chip"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 2v4a1.6 1.6 0 0 0 3.2 0V2M6.6 2v12"/><path d="M11.8 2c-1.2 1.6-1.2 5 0 6.4V14"/></svg>Food menu</span>
-              <span class="chip"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 2.5h5v4h-5zM5.5 6.5 4.5 14M10.5 6.5l1 7.5M4.8 10.5h6.4"/></svg>High chairs</span>
-            </div>
-          </figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- ============ HOW IT WORKS ============ -->
-    <section class="section section-mint" id="how" aria-labelledby="how-title">
-      <div class="shell">
-        <div class="section-heading">
-          <p class="eyebrow">How it works</p>
-          <h2 id="how-title">From &ldquo;where can we go?&rdquo; to out the door in two minutes.</h2>
-        </div>
-
-        <div class="steps">
-          <article class="step reveal">
-            <span class="step-num">01</span>
-            <div class="phone phone-small"><img src="assets/shot4.png" alt="App screen showing a list of nearby pubs with playgrounds, distances and facilities" loading="lazy" width="600" height="1298"></div>
-            <h3>See what's nearby</h3>
-            <p>Open the app and instantly see pubs with play areas around you — or anywhere you're heading — with distance and facilities at a glance.</p>
-          </article>
-          <article class="step reveal">
-            <span class="step-num">02</span>
-            <div class="phone phone-small"><img src="assets/shot2.png" alt="App screen showing a pub detail page with photos of the playground, opening hours and family facilities" loading="lazy" width="600" height="1298"></div>
-            <h3>Check before you commit</h3>
-            <p>Real photos of the play equipment, opening hours, and the details parents need — children's menus, baby change, high chairs, parking.</p>
-          </article>
-          <article class="step reveal">
-            <span class="step-num">03</span>
-            <div class="phone phone-small"><img src="assets/shot3.png" alt="App screen showing saved favourite pubs" loading="lazy" width="600" height="1298"></div>
-            <h3>Save your favourites</h3>
-            <p>Build your own shortlist for weekends, holidays and emergency pit stops — ready for whenever the question comes up.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ FACILITIES ============ -->
-    <section class="section" id="facilities" aria-labelledby="facilities-title">
-      <div class="shell facilities-grid">
+    <section class="home-social" aria-labelledby="social-title">
+      <div class="shell home-social-grid">
         <div>
-          <p class="eyebrow">What's listed</p>
-          <h2 id="facilities-title">The details that make or break a family lunch.</h2>
-          <p class="body-copy">
-            &ldquo;Family friendly&rdquo; can mean anything. Pubs With Playgrounds tells you exactly
-            what's there — from the climbing frame in the garden to whether you'll get the
-            pram through the door.
-          </p>
-          <p class="body-copy">
-            Listings are checked against available evidence from pub websites, photos and parent
-            reports. The database is a work in progress, so parents and pubs are encouraged to
-            flag anything that has changed.
-          </p>
+          <p class="eyebrow">Follow along</p>
+          <h2 id="social-title">New pub finds and playground photos.</h2>
+          <p>Follow Pubs With Playgrounds for regional lists, recently checked venues and useful family-pub updates.</p>
         </div>
-        <div class="chip-cloud" aria-label="Facilities tracked by the app">
-          <span class="chip chip-hero">Outdoor play</span>
-          <span class="chip">Beer garden</span>
-          <span class="chip">Children's menu</span>
-          <span class="chip">Food menu</span>
-          <span class="chip">Baby change</span>
-          <span class="chip">High chairs</span>
-          <span class="chip">Soft play</span>
-          <span class="chip">Indoor play</span>
-          <span class="chip">Car park</span>
-          <span class="chip">Dog friendly</span>
-          <span class="chip">Cask ales</span>
-          <span class="chip">Farm animals</span>
-          <span class="chip">Miniature railway</span>
-          <span class="chip">Accessible</span>
-          <span class="chip">Open fire</span>
-          <span class="chip">Bouncy castle</span>
-        </div>
+        <a class="home-instagram-link" href="https://www.instagram.com/pubswithplaygroundsapp/" target="_blank" rel="noopener" aria-label="Follow Pubs With Playgrounds on Instagram">
+          <span aria-hidden="true">◎</span>
+          <strong>Instagram</strong>
+          <small>@pubswithplaygroundsapp ↗</small>
+        </a>
       </div>
     </section>
 
-    <!-- ============ COMMUNITY ============ -->
-    <section class="section section-mint" id="community" aria-labelledby="community-title">
-      <div class="shell community">
-        <div class="section-heading">
-          <p class="eyebrow">Community</p>
-          <h2 id="community-title">Built by parents, for parents.</h2>
-          <p class="body-copy centered">
-            Know a brilliant pub that's missing? Spotted a new slide in the garden?
-            Add pubs, photos and reviews in the app and help thousands of other
-            families find their new favourite.
-          </p>
-        </div>
-        <div class="value-grid">
-          <div class="value-card">
-            <span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg></span>
-            <h3>Add missing pubs</h3>
-            <p>Suggest a pub in under a minute. We check it and add it to the map.</p>
-          </div>
-          <div class="value-card">
-            <span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 17V7a2 2 0 0 1 2-2h2l1.5-2h5L18 5h0a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
-            <h3>Share photos &amp; reviews</h3>
-            <p>A quick photo of the play area is gold for the next parent planning a trip.</p>
-          </div>
-          <div class="value-card">
-            <span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg></span>
-            <h3>Keep listings honest</h3>
-            <p>Flag anything that's changed and we'll put it right.</p>
-          </div>
-        </div>
+    <section class="home-cta" aria-labelledby="cta-title">
+      <div class="shell home-cta-grid">
+        <div><p class="eyebrow">Ready when you are</p><h2 id="cta-title">Find the next family pub stop.</h2><p>Browse checked listings on the website or use the free app for the complete UK map.</p></div>
+        <div class="home-cta-actions"><a class="home-primary-action" href="/pubs-with-playgrounds/">Browse the directory</a><a class="home-cta-text" href="https://apps.apple.com/gb/app/pubs-with-playgrounds/id6757747311">Get the app →</a></div>
       </div>
     </section>
 
-    <!-- ============ BIG CTA ============ -->
-    <section class="cta-band" aria-labelledby="cta-title">
-      <div class="shell cta-grid">
-        <div>
-          <h2 id="cta-title">The next pub lunch is already sorted.</h2>
-          <p>Free to download. No subscription. Just better Sundays.</p>
-          <div class="store-actions">
-            <a class="btn-store btn-store-light" href="https://apps.apple.com/gb/app/pubs-with-playgrounds/id6757747311">
-              <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M17.05 12.54c-.03-2.89 2.36-4.28 2.47-4.35-1.35-1.97-3.44-2.24-4.18-2.27-1.78-.18-3.47 1.05-4.37 1.05-.9 0-2.29-1.02-3.76-1-1.94.03-3.72 1.13-4.72 2.86-2.01 3.49-.51 8.66 1.45 11.49.96 1.39 2.1 2.94 3.6 2.88 1.45-.06 2-.93 3.75-.93s2.25.93 3.78.9c1.56-.03 2.55-1.41 3.5-2.8 1.1-1.61 1.55-3.17 1.58-3.25-.04-.02-3.03-1.16-3.1-4.58zM14.16 4.04c.8-.97 1.34-2.32 1.19-3.66-1.15.05-2.55.77-3.38 1.74-.74.86-1.39 2.23-1.22 3.55 1.29.1 2.6-.65 3.41-1.63z"/></svg>
-              <span><small>Download on the</small><strong>App Store</strong></span>
-            </a>
-            <a class="btn-store btn-store-outline" href="https://play.google.com/store/apps/details?id=com.pubswithplaygrounds.app" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill="currentColor" d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85a.637.637 0 0 0-.83.22l-1.88 3.24a11.46 11.46 0 0 0-8.94 0L5.65 5.67a.637.637 0 0 0-.83-.22c-.3.16-.42.54-.26.85L6.4 9.48A10.78 10.78 0 0 0 1 18h22a10.78 10.78 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>
-              <span><small>Get it on</small><strong>Google Play</strong></span>
-            </a>
-          </div>
-        </div>
-        <div class="cta-pin" aria-hidden="true">
-          <img src="assets/app-logo.png" alt="" width="180" height="180">
-        </div>
+    <section class="home-support" aria-labelledby="support-title">
+      <div class="shell home-support-grid">
+        <div><p class="eyebrow">Help and corrections</p><h2 id="support-title">Need a hand?</h2><p>For app help, account questions, listing corrections, pub-owner requests, press or partnerships, email <a href="mailto:hello@pubswithplaygrounds.com">hello@pubswithplaygrounds.com</a>.</p></div>
+        <div class="home-support-links"><a href="/support/">Support</a><a href="/contact/">Contact</a><a href="/account-deletion.html">Account deletion</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/affiliate-disclosure/">Affiliate disclosure</a></div>
       </div>
     </section>
-
-    <!-- ============ SUPPORT ============ -->
-    <section class="section" id="support" aria-labelledby="support-title">
-      <div class="shell">
-        <div class="section-heading">
-          <p class="eyebrow">Support &amp; policies</p>
-          <h2 id="support-title">Need a hand?</h2>
-        </div>
-        <div class="support-grid">
-          <article class="support-card">
-            <h3>Get in touch</h3>
-            <p>
-              For app help, account questions, incorrect listings or content reports, email
-              <a href="mailto:hello@pubswithplaygrounds.com">hello@pubswithplaygrounds.com</a>.
-            </p>
-            <p>For listing corrections, include the venue name, town and a short note on what's wrong.</p>
-            <p><a href="/contact/">See all contact options</a></p>
-          </article>
-          <article class="support-card">
-            <h3>Important links</h3>
-            <ul class="link-list">
-              <li><a href="/support/">Support</a></li>
-              <li><a href="privacy.html">Privacy Policy</a></li>
-              <li><a href="terms.html">Terms of Use</a></li>
-              <li><a href="account-deletion.html">Account Deletion</a></li>
-              <li><a href="/affiliate-disclosure/">Affiliate Disclosure</a></li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
   </main>
 
-  <footer class="footer">
-    <div class="shell footer-grid">
-      <div class="footer-col footer-about">
-        <div class="footer-brand">
-          <img src="assets/app-logo.png" alt="" width="34" height="34">
-          <span>Pubs With Playgrounds</span>
-        </div>
-        <p class="footer-fine">The UK family pub finder. Made in the UK, mostly in beer gardens.</p>
+  <footer class="home-footer">
+    <div class="shell home-footer-grid">
+      <div class="home-footer-about">
+        <div class="home-footer-brand"><img src="assets/app-logo.png" alt="" width="36" height="36"><strong>Pubs With Playgrounds</strong></div>
+        <p>A free UK pub finder helping parents find pubs and hotels with real play areas.</p>
       </div>
-      <div class="footer-col">
-        <h4>Explore</h4>
-        <a href="/pubs-with-playgrounds/">Browse pubs with playgrounds</a>
-        <a href="/about/">About</a>
-        <a href="#showcase">The app</a>
-        <a href="#facilities">What's listed</a>
-      </div>
-      <div class="footer-col">
-        <h4>Help</h4>
-        <a href="/support/">Support</a>
-        <a href="/contact/">Contact</a>
-        <a href="account-deletion.html">Account Deletion</a>
-      </div>
-      <div class="footer-col">
-        <h4>Policies</h4>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Use</a>
-        <a href="/affiliate-disclosure/">Affiliate Disclosure</a>
-      </div>
-      <div class="footer-col">
-        <h4>Get in touch</h4>
-        <a href="mailto:hello@pubswithplaygrounds.com">hello@pubswithplaygrounds.com</a>
-        <div class="footer-stores">
-          <a href="https://apps.apple.com/gb/app/pubs-with-playgrounds/id6757747311" aria-label="Download on the App Store">App Store</a>
-          <a href="https://play.google.com/store/apps/details?id=com.pubswithplaygrounds.app" target="_blank" rel="noopener" aria-label="Get it on Google Play">Google Play</a>
-        </div>
-      </div>
+      <div><h2>Browse</h2><a href="/pubs-with-playgrounds/">UK directory</a><a href="/#directory">Regional guides</a><a href="/#app">The app</a></div>
+      <div><h2>About and help</h2><a href="/about/">About</a><a href="/support/">Support</a><a href="/contact/">Contact</a><a href="mailto:hello@pubswithplaygrounds.com">Listing corrections</a></div>
+      <div><h2>Policies</h2><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/account-deletion.html">Account deletion</a><a href="/affiliate-disclosure/">Affiliate disclosure</a></div>
+      <div><h2>Follow and download</h2><a href="https://www.instagram.com/pubswithplaygroundsapp/" target="_blank" rel="noopener">Instagram ↗</a><a href="https://apps.apple.com/gb/app/pubs-with-playgrounds/id6757747311">App Store</a><a href="https://play.google.com/store/apps/details?id=com.pubswithplaygrounds.app" target="_blank" rel="noopener">Google Play</a></div>
     </div>
-    <div class="shell footer-base">
-      <p>&copy; 2026 Pubs With Playgrounds. All rights reserved.</p>
-    </div>
+    <div class="shell home-footer-base"><p>&copy; 2026 Pubs With Playgrounds. All rights reserved.</p><p><a href="mailto:hello@pubswithplaygrounds.com">hello@pubswithplaygrounds.com</a></p></div>
   </footer>
 
-  <script>
-    // Scroll-triggered reveals (progressive enhancement; respects reduced motion via CSS)
-    document.body.classList.add('js');
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
-    }, { threshold: 0.18 });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-  </script>
 </body>
 </html>
