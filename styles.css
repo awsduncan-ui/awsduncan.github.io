@@ -823,6 +823,16 @@ body.js .reveal.in { opacity: 1; transform: none; }
 .home-text-link:hover,
 .home-card-link:hover { color: var(--coral-deep); }
 
+.home-app-prompt {
+  max-width: 34rem;
+  margin: 23px 0 0;
+  color: var(--muted);
+  font-size: 0.93rem;
+  line-height: 1.5;
+}
+
+.home-app-prompt strong { color: var(--ink); }
+
 .home-store-badges {
   display: flex;
   flex-wrap: wrap;
@@ -830,7 +840,7 @@ body.js .reveal.in { opacity: 1; transform: none; }
   gap: 10px;
 }
 
-.home-hero-store-badges { margin-top: 20px; }
+.home-hero-store-badges { margin-top: 12px; }
 
 .official-store-badge {
   display: inline-flex;
