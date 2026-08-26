@@ -608,24 +608,6 @@ function cardHtml(pub, { heading = "h2", internalHref = "" } = {}) {
   </article>`;
 }
 
-function homepageCardHtml(pub, internalHref) {
-  const photo = photoFor(pub);
-  const tags = featureLabels(pub).slice(0, 3);
-  const image = photo.url
-    ? `<img src="${escapeHtml(photo.url)}" alt="${escapeHtml(pub.name)}" loading="lazy" decoding="async" width="480" height="320">`
-    : `<div class="home-pub-photo-placeholder" role="img" aria-label="Photo coming soon"><span>Photo coming soon</span></div>`;
-  return `<article class="home-pub-card">
-    <div class="home-pub-photo">${image}</div>
-    <div class="home-pub-copy">
-      <span class="home-pub-checked">Checked ${escapeHtml(formatDate(pub.lastVerifiedAt))}</span>
-      <h3><a href="${escapeHtml(internalHref)}">${escapeHtml(pub.name)}</a></h3>
-      <address>${escapeHtml(pub.address)}</address>
-      ${tags.length ? `<ul class="home-pub-features" aria-label="Recorded facilities">${tags.map((tag) => `<li>${escapeHtml(tag)}</li>`).join("")}</ul>` : ""}
-      <a class="home-card-link" href="${escapeHtml(internalHref)}">View checked listing <span aria-hidden="true">→</span></a>
-    </div>
-  </article>`;
-}
-
 function regionCardHtml(region, count) {
   const displayName = region.shortName || region.name;
   return `<a class="region-card" href="/pubs-with-playgrounds/${region.slug}/" aria-label="Browse pubs with playgrounds in ${escapeHtml(displayName)}">
@@ -1083,16 +1065,7 @@ function nationalPage(regionPubs, regionCounts, manifest, detailEntryById) {
   });
 }
 
-function homepageGateway(regionPubs, regionCounts, detailEntryById) {
-  const chosen = [];
-  const seen = new Set();
-  for (const region of regions.slice(0, 6)) {
-    const pub = [...regionPubs.get(region.slug)]
-      .sort((a, b) => qualityScore(b) - qualityScore(a))[0];
-    if (!pub || seen.has(pub.id)) continue;
-    seen.add(pub.id);
-    chosen.push({ pub, region });
-  }
+function homepageGateway(regionCounts) {
   const homepageRegions = [
     "london",
     "dorset-bournemouth-and-poole",
@@ -1105,19 +1078,6 @@ function homepageGateway(regionPubs, regionCounts, detailEntryById) {
       <span>${regionCounts.get(region.slug)} checked venues</span>
     </a>`)
     .join("\n");
-  const cards = chosen
-    .filter(({ pub }) => photoFor(pub).url)
-    .slice(0, 3)
-    .map(({ pub, region }) => {
-      const detailEntry = detailEntryById.get(pub.id);
-      return homepageCardHtml(
-        pub,
-        detailEntry
-          ? detailPath(detailEntry)
-          : `/pubs-with-playgrounds/${region.slug}/#pub-${pub.id.replace(/[^a-zA-Z0-9_-]/g, "")}`,
-      );
-    })
-    .join("\n");
   return `<!-- DIRECTORY_GATEWAY_START -->
     <section class="home-directory" id="directory" aria-labelledby="directory-title">
       <div class="shell">
@@ -1128,8 +1088,6 @@ function homepageGateway(regionPubs, regionCounts, detailEntryById) {
         <div class="home-region-grid">${regionCards}
           <a class="home-region-card home-region-all" href="/pubs-with-playgrounds/"><strong>All regional guides</strong><span>Choose a UK area →</span></a>
         </div>
-        <div class="home-listing-heading"><div><p class="eyebrow">Recently checked</p><h2>Useful listings from around the UK</h2></div><a class="home-text-link" href="/pubs-with-playgrounds/">Choose a regional guide <span aria-hidden="true">→</span></a></div>
-        <div class="home-pub-grid">${cards}</div>
       </div>
     </section>
     <!-- DIRECTORY_GATEWAY_END -->`;
@@ -1256,7 +1214,7 @@ async function main() {
 
   const homepagePath = path.join(ROOT, "index.html");
   const homepage = await readFile(homepagePath, "utf8");
-  const gateway = homepageGateway(regionPubs, regionCounts, detailEntryById);
+  const gateway = homepageGateway(regionCounts);
   const start = "<!-- DIRECTORY_GATEWAY_START -->";
   const end = "<!-- DIRECTORY_GATEWAY_END -->";
   if (!homepage.includes(start) || !homepage.includes(end)) {
