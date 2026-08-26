@@ -7,6 +7,13 @@ import path from "node:path";
 const ROOT = fileURLToPath(new URL("../", import.meta.url));
 const ORIGIN = "https://www.pubswithplaygrounds.com";
 const failures = [];
+const priorityGuides = new Set([
+  `${ORIGIN}/pubs-with-playgrounds/bristol-and-bath/`,
+  `${ORIGIN}/pubs-with-playgrounds/kent/`,
+  `${ORIGIN}/pubs-with-playgrounds/greater-manchester/`,
+  `${ORIGIN}/pubs-with-playgrounds/west-midlands/`,
+  `${ORIGIN}/pubs-with-playgrounds/surrey/`,
+]);
 
 function pass(message) {
   console.log(`PASS  ${message}`);
@@ -155,6 +162,15 @@ async function main() {
     hero.includes("phone-directory")
       ? pass(`${url} leads with app download actions and product imagery`)
       : fail(`${url} is missing the app-first directory hero`);
+    if (priorityGuides.has(url)) {
+      const topicCards = matches(
+        html,
+        /<article\b[^>]*class=["'][^"']*guide-topic-card[^"']*["']/gi,
+      ).length;
+      html.includes("data-query-guide") && topicCards === 3
+        ? pass(`${url} contains three query-led, evidence-backed guide sections`)
+        : fail(`${url} is missing its three query-led guide sections`);
+    }
   }
 
   for (const url of pubDetailUrls) {
@@ -192,6 +208,7 @@ async function main() {
   const coverageEnd = homepage.indexOf("</div>", coverageStart);
   const coverageHtml = homepage.slice(coverageStart, coverageEnd);
   homepage.includes("Browse pubs with playgrounds by region") &&
+  homepage.includes("playground, children’s play area or play park") &&
   homepage.includes("/pubs-with-playgrounds/") &&
   coverageHtml.includes("https://www.bournemouthecho.co.uk/news/26289263.father-two-poole-creates-pubs-playgrounds/") &&
   !homepage.includes("data-postcode-finder") &&

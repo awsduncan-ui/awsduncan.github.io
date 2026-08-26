@@ -37,6 +37,10 @@ embedded on the static website.
 It does not read Firestore or expose the private `/pubs` collection. Generated
 region pages use documented distance radii and postcode constraints so border
 coverage remains transparent.
+The Bristol and Bath, Kent, Greater Manchester, West Midlands and Surrey guides
+also contain query-led local and facility sections generated from their real
+checked listings. Keep those sections hand-written and evidence-backed; do not
+replace them with generic town-page templates.
 
 The `Refresh public directory` workflow runs each Monday before the production
 SEO audit. It commits only when the approved feed changes, leaving a reviewable

@@ -46,6 +46,9 @@ const regions = [
     slug: "west-midlands",
     name: "the West Midlands",
     shortName: "West Midlands",
+    seoTitle: "Family Pubs With Play Areas in the West Midlands",
+    seoDescription:
+      "Find checked family pubs with playgrounds and play areas across Birmingham, Halesowen and the West Midlands, with facilities and verification dates.",
     centre: "Birmingham",
     lat: 52.4862,
     lng: -1.8904,
@@ -55,10 +58,38 @@ const regions = [
       "The West Midlands has one of the densest groups of family pubs in the directory. Use the play-type and facility labels to separate garden climbing frames from indoor play and to check practical details such as parking and children’s menus.",
     tip:
       "The guide reaches beyond the metropolitan county so families travelling across Warwickshire, Worcestershire and Staffordshire can compare nearby options too.",
+    queryIntro:
+      "Use the local sections below to compare Birmingham and Black Country choices, indoor-play venues and family pubs across the surrounding counties. Every suggestion comes from the checked listings on this page.",
+    guideTopics: [
+      {
+        title: "Play-area pubs around Birmingham and Halesowen",
+        description:
+          "A starting point for Birmingham, Halesowen, Dudley and Wolverhampton searches, including nearby venues where the recorded listing shows a children’s play facility.",
+        kind: "locality",
+        terms: ["birmingham", "halesowen", "dudley", "wolverhampton", "stourbridge"],
+      },
+      {
+        title: "Indoor play and soft play",
+        description:
+          "Useful for wet-weather plans: these listings specifically record indoor play, soft play or a Wacky Warehouse-style facility.",
+        kind: "facility",
+        terms: ["indoor play", "soft play", "wacky warehouse"],
+      },
+      {
+        title: "Warwickshire, Worcestershire and Staffordshire",
+        description:
+          "The guide crosses administrative boundaries so families can compare practical options around Coventry, Kidderminster, Stafford and nearby towns.",
+        kind: "locality",
+        terms: ["coventry", "warwick", "kidderminster", "worcester", "stafford", "nuneaton"],
+      },
+    ],
   },
   {
     slug: "kent",
     name: "Kent",
+    seoTitle: "Pubs With Play Areas in Kent | Checked Family Pub Guide",
+    seoDescription:
+      "Find checked pubs with playgrounds, indoor play and soft play in Kent. Compare real facilities, addresses and verification dates before visiting.",
     centre: "Maidstone",
     lat: 51.2787,
     lng: 0.5217,
@@ -68,10 +99,37 @@ const regions = [
       "Kent’s family-pub options range from village gardens with climbing frames to larger venues with dedicated play facilities. This checked list makes the distinction visible before you choose where to eat.",
     tip:
       "Coastal and far-eastern Kent will be added as the regional cluster expands. The mobile app already covers venues beyond this first guide radius.",
+    queryIntro:
+      "The sections below answer the most common Kent searches directly: pubs with play areas, wet-weather indoor play and useful clusters around Maidstone, Medway and west Kent.",
+    guideTopics: [
+      {
+        title: "Pubs with outdoor play areas in Kent",
+        description:
+          "These checked listings record an outdoor playground or play area, rather than relying on a general family-friendly description.",
+        kind: "outdoor",
+      },
+      {
+        title: "Indoor play and soft play in Kent",
+        description:
+          "A shorter wet-weather list drawn from venues whose records specifically mention indoor play or soft play.",
+        kind: "facility",
+        terms: ["indoor play", "soft play", "wacky warehouse"],
+      },
+      {
+        title: "Maidstone, Medway and west Kent",
+        description:
+          "Use these local suggestions when comparing options around Maidstone, the Medway towns, Tonbridge, Sevenoaks and Westerham.",
+        kind: "locality",
+        terms: ["maidstone", "medway", "chatham", "rochester", "tonbridge", "sevenoaks", "westerham"],
+      },
+    ],
   },
   {
     slug: "bristol-and-bath",
     name: "Bristol and Bath",
+    seoTitle: "Pubs With Play Areas in Bristol & Bath | Checked Guide",
+    seoDescription:
+      "Find checked pubs with playgrounds and play areas across Bristol and Bath, including indoor play, soft play and practical family facilities.",
     centre: "between Bristol and Bath",
     lat: 51.41,
     lng: -2.48,
@@ -81,10 +139,38 @@ const regions = [
       "This guide covers pubs with genuine play facilities across Bristol, Bath and the surrounding family-day-out territory. It is designed for comparing the play offer as well as the food-and-parking details that matter with children in tow.",
     tip:
       "Some venues sit in rural lanes or villages outside the two cities. Use the directions link and confirm current food service with the pub before travelling.",
+    queryIntro:
+      "Bristol searches use several versions of the same idea—playground, play area, soft play and family pub. These sections group the checked listings by the detail families are actually looking for, without creating competing Bristol pages.",
+    guideTopics: [
+      {
+        title: "Pubs with play areas in and around Bristol",
+        description:
+          "A Bristol-focused starting point covering the city, Bradley Stoke, South Gloucestershire and nearby family routes.",
+        kind: "locality",
+        terms: ["bristol", "bradley stoke", "filton", "south gloucestershire", "portishead", "clevedon"],
+      },
+      {
+        title: "Indoor play and soft play near Bristol",
+        description:
+          "These venues specifically record indoor play, soft play or a similar dedicated play facility for wetter days.",
+        kind: "facility",
+        terms: ["indoor play", "soft play", "wacky warehouse"],
+      },
+      {
+        title: "Bath, North Somerset and nearby villages",
+        description:
+          "The combined guide also covers Bath, Keynsham, North Somerset and rural stops between the two cities.",
+        kind: "locality",
+        terms: ["bath", "keynsham", "somerset", "weston-super-mare", "radstock", "frome"],
+      },
+    ],
   },
   {
     slug: "greater-manchester",
     name: "Greater Manchester",
+    seoTitle: "Pubs With Outdoor Play Areas in Manchester | Checked Guide",
+    seoDescription:
+      "Find checked pubs with outdoor playgrounds, indoor play and soft play across Manchester, Stockport, Wigan and Bolton.",
     centre: "Manchester city centre",
     lat: 53.4808,
     lng: -2.2426,
@@ -94,6 +180,30 @@ const regions = [
       "Greater Manchester’s checked listings include outdoor playgrounds, indoor play areas and soft-play venues. Browse the guide to find a practical stop for lunch, a rainy day or a family meet-up.",
     tip:
       "The radius includes border towns because the nearest useful pub is often outside a borough boundary. Every card shows its full address so that choice remains clear.",
+    queryIntro:
+      "The guide separates outdoor playgrounds from indoor and soft-play venues, then highlights the main Greater Manchester town clusters. That makes it easier to match the play facility to the weather and journey.",
+    guideTopics: [
+      {
+        title: "Pubs with outdoor play areas in Manchester",
+        description:
+          "These checked records show an outdoor playground or play area for families looking beyond an ordinary beer garden.",
+        kind: "outdoor",
+      },
+      {
+        title: "Indoor play and soft play",
+        description:
+          "A wet-weather shortlist of Greater Manchester venues that specifically record indoor play or soft play.",
+        kind: "facility",
+        terms: ["indoor play", "soft play", "wacky warehouse"],
+      },
+      {
+        title: "Stockport, Wigan, Bolton and Salford",
+        description:
+          "Use these local clusters to compare venues beyond Manchester city centre and find a more convenient family stop.",
+        kind: "locality",
+        terms: ["stockport", "wigan", "bolton", "salford", "worsley", "leigh"],
+      },
+    ],
   },
   {
     slug: "essex",
@@ -111,6 +221,9 @@ const regions = [
   {
     slug: "surrey",
     name: "Surrey",
+    seoTitle: "Pubs With Play Areas Near Guildford & Across Surrey",
+    seoDescription:
+      "Find checked pubs with playgrounds and children’s play areas near Guildford and across Surrey, with real facilities and verification dates.",
     centre: "Guildford",
     lat: 51.2362,
     lng: -0.5704,
@@ -120,6 +233,30 @@ const regions = [
       "Surrey has plenty of pubs with gardens, but far fewer where the garden includes a real children’s play area. This guide filters for the latter and shows the evidence-led details available for each venue.",
     tip:
       "The search radius deliberately crosses some county borders to reflect how families actually plan journeys. Check the address and distance before choosing.",
+    queryIntro:
+      "The guide starts with the Guildford area, then separates outdoor-play choices from venues around the wider Surrey towns. Listings only appear where a play facility has been recorded.",
+    guideTopics: [
+      {
+        title: "Child-friendly pubs with play near Guildford",
+        description:
+          "A Guildford and Godalming starting point for families who want a recorded play facility, not just a children’s menu.",
+        kind: "locality",
+        terms: ["guildford", "godalming", "gomshall", "cranleigh", "woking"],
+      },
+      {
+        title: "Surrey pubs with outdoor play areas",
+        description:
+          "These listings specifically record an outdoor playground or play area alongside the pub facilities shown on each card.",
+        kind: "outdoor",
+      },
+      {
+        title: "Reigate, Leatherhead and east Surrey",
+        description:
+          "Use this group when comparing family stops around Reigate, Leatherhead, Dorking, Epsom and the eastern side of the guide.",
+        kind: "locality",
+        terms: ["reigate", "leatherhead", "dorking", "epsom", "redhill", "tadworth"],
+      },
+    ],
   },
   {
     slug: "devon-and-cornwall",
@@ -491,12 +628,62 @@ function homepageCardHtml(pub, internalHref) {
 
 function regionCardHtml(region, count) {
   const displayName = region.shortName || region.name;
-  return `<a class="region-card" href="/pubs-with-playgrounds/${region.slug}/">
+  return `<a class="region-card" href="/pubs-with-playgrounds/${region.slug}/" aria-label="Browse pubs with playgrounds in ${escapeHtml(displayName)}">
     <span class="region-count">${count} checked ${count === 1 ? "venue" : "venues"}</span>
     <h3>${escapeHtml(displayName)}</h3>
     <p>${escapeHtml(region.places)}</p>
-    <span class="region-link">Browse the guide <span aria-hidden="true">→</span></span>
+    <span class="region-link">Browse ${escapeHtml(displayName)} pubs <span aria-hidden="true">→</span></span>
   </a>`;
+}
+
+function topicPubsFor(pubs, topic) {
+  if (topic.kind === "outdoor") {
+    return pubs.filter((pub) =>
+      featureLabels(pub).includes("Outdoor playground"),
+    );
+  }
+  const terms = topic.terms.map((term) => term.toLowerCase());
+  return pubs.filter((pub) => {
+    const source =
+      topic.kind === "locality"
+        ? String(pub.address).toLowerCase()
+        : searchableText(pub);
+    return terms.some((term) => source.includes(term));
+  });
+}
+
+function guideIntentHtml(region, pubs, detailEntryById) {
+  if (!region.guideTopics?.length) return "";
+  const displayName = region.shortName || region.name;
+  const topicCards = region.guideTopics
+    .map((topic) => {
+      const matches = topicPubsFor(pubs, topic).sort(
+        (a, b) =>
+          qualityScore(b) - qualityScore(a) ||
+          a.name.localeCompare(b.name, "en-GB"),
+      );
+      if (!matches.length) return "";
+      const links = matches
+        .slice(0, 6)
+        .map((pub) => {
+          const detailEntry = detailEntryById.get(pub.id);
+          const href = detailEntry
+            ? detailPath(detailEntry)
+            : `#pub-${pub.id.replace(/[^a-zA-Z0-9_-]/g, "")}`;
+          return `<li><a href="${escapeHtml(href)}">${escapeHtml(pub.name)}</a><span>${escapeHtml(localityFor(pub))}</span></li>`;
+        })
+        .join("");
+      return `<article class="guide-topic-card">
+        <p class="guide-topic-count">${matches.length} checked ${matches.length === 1 ? "listing" : "listings"}</p>
+        <h3>${escapeHtml(topic.title)}</h3>
+        <p>${escapeHtml(topic.description)}</p>
+        <ul>${links}</ul>
+        <a class="text-link guide-topic-link" href="#listings">See every ${escapeHtml(displayName)} listing <span aria-hidden="true">→</span></a>
+      </article>`;
+    })
+    .filter(Boolean)
+    .join("");
+  return `<section class="section guide-query-section" data-query-guide aria-labelledby="guide-query-title"><div class="shell"><div class="section-heading"><p class="eyebrow">Plan by area and play type</p><h2 id="guide-query-title">Find the right ${escapeHtml(displayName)} family pub</h2><p class="body-copy">${escapeHtml(region.queryIntro)}</p></div><div class="guide-topic-grid">${topicCards}</div></div></section>`;
 }
 
 function breadcrumbJson(items) {
@@ -548,7 +735,7 @@ function pageShell({
     ? breadcrumbs
     : [
         { name: "Home", path: "/" },
-        { name: "Pubs with playgrounds", path: "/pubs-with-playgrounds/" },
+        { name: "Regional pub guides", path: "/pubs-with-playgrounds/" },
         ...(canonicalPath === "/pubs-with-playgrounds/"
           ? []
           : [{ name: eyebrow }]),
@@ -595,7 +782,7 @@ function pageShell({
         <span>Pubs With<br>Playgrounds</span>
       </a>
       <nav class="nav-links" aria-label="Page links">
-        <a href="/pubs-with-playgrounds/">All regions</a>
+        <a href="/pubs-with-playgrounds/">Regional guides</a>
         <a href="#listings">Pub listings</a>
         <a href="#method">How we check</a>
       </nav>
@@ -639,7 +826,7 @@ function footerHtml() {
         <div class="footer-brand"><img src="/assets/app-logo.png" alt="" width="34" height="34"><span>Pubs With Playgrounds</span></div>
         <p class="footer-fine">The UK family pub finder. Made in the UK, mostly in beer gardens.</p>
       </div>
-      <div class="footer-col"><h4>Explore</h4><a href="/pubs-with-playgrounds/">Browse pubs with playgrounds</a><a href="/about/">About</a><a href="/#app">The app</a><a href="/#how">How it works</a></div>
+      <div class="footer-col"><h4>Explore</h4><a href="/pubs-with-playgrounds/">Regional pub guides</a><a href="/about/">About</a><a href="/#app">The app</a><a href="/#how">How it works</a></div>
       <div class="footer-col"><h4>Help</h4><a href="/support/">Support</a><a href="/contact/">Contact</a><a href="/account-deletion.html">Account Deletion</a></div>
       <div class="footer-col"><h4>Policies</h4><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Use</a><a href="/affiliate-disclosure/">Affiliate Disclosure</a></div>
       <div class="footer-col"><h4>Follow and download</h4><a href="https://www.instagram.com/pubswithplaygroundsapp/" target="_blank" rel="noopener">Instagram</a><a href="mailto:hello@pubswithplaygrounds.com">hello@pubswithplaygrounds.com</a><div class="footer-stores"><a href="${appStoreUrl}">App Store</a><a href="${playStoreUrl}" target="_blank" rel="noopener">Google Play</a></div></div>
@@ -756,7 +943,7 @@ function pubDetailPage(entry, relatedEntries, manifest) {
     bodyClass: "directory-page pub-detail-page",
     breadcrumbs: [
       { name: "Home", path: "/" },
-      { name: "Pubs with playgrounds", path: "/pubs-with-playgrounds/" },
+      { name: "Regional pub guides", path: "/pubs-with-playgrounds/" },
       {
         name: displayRegion,
         path: `/pubs-with-playgrounds/${region.slug}/`,
@@ -766,7 +953,7 @@ function pubDetailPage(entry, relatedEntries, manifest) {
     graph: [
       breadcrumbJson([
         { name: "Home", path: "/" },
-        { name: "Pubs with playgrounds", path: "/pubs-with-playgrounds/" },
+        { name: "Regional pub guides", path: "/pubs-with-playgrounds/" },
         {
           name: displayRegion,
           path: `/pubs-with-playgrounds/${region.slug}/`,
@@ -806,6 +993,7 @@ function regionalPage(region, pubs, regionCounts, manifest, detailEntryById) {
     ? `using ${region.postcodePrefixes.join(" and ")} postcode areas within an approximately ${region.radiusKm} km guide radius from ${region.centre}`
     : `using an approximately ${region.radiusKm} km guide radius from ${region.centre}`;
   const content = `<section class="section directory-intro"><div class="shell directory-intro-grid directory-intro-no-search"><div><h2>A practical family-pub shortlist</h2><p class="body-copy">${escapeHtml(region.intro)}</p><p class="coverage-note"><strong>Coverage:</strong> ${escapeHtml(region.places)}, ${escapeHtml(coverageMethod)}. Border areas can overlap neighbouring guides.</p></div></div></section>
+  ${guideIntentHtml(region, pubs, detailEntryById)}
   <section class="section section-mint directory-list" id="listings" aria-labelledby="listings-title"><div class="shell"><div class="directory-list-heading"><div><p class="eyebrow">Checked listings</p><h2 id="listings-title">${pubs.length} pubs with play facilities in and around ${escapeHtml(displayName)}</h2></div><p>${escapeHtml(region.tip)}</p></div><div class="directory-pub-grid">${cards}</div></div></section>
   <section class="section"><div class="shell"><div class="section-heading"><p class="eyebrow">Keep exploring</p><h2>More regional guides</h2></div><div class="region-grid">${neighbourCards}</div></div></section>
   ${methodologyHtml(manifest)}${appCtaHtml()}`;
@@ -813,7 +1001,9 @@ function regionalPage(region, pubs, regionCounts, manifest, detailEntryById) {
     title:
       region.seoTitle ||
       `Pubs With Playgrounds in ${displayName} | Checked Family Pubs`,
-    description: `Browse ${pubs.length} checked pubs with playgrounds, indoor play or soft play in and around ${displayName}. Compare addresses, facilities and verification dates.`,
+    description:
+      region.seoDescription ||
+      `Browse ${pubs.length} checked pubs with playgrounds, indoor play or soft play in and around ${displayName}. Compare addresses, facilities and verification dates.`,
     canonicalPath: pathName,
     h1: `Pubs with playgrounds in ${displayName}`,
     eyebrow: `${displayName} family pub guide`,
@@ -822,7 +1012,7 @@ function regionalPage(region, pubs, regionCounts, manifest, detailEntryById) {
     graph: [
       breadcrumbJson([
         { name: "Home", path: "/" },
-        { name: "Pubs with playgrounds", path: "/pubs-with-playgrounds/" },
+        { name: "Regional pub guides", path: "/pubs-with-playgrounds/" },
         { name: displayName, path: pathName },
       ]),
       itemListJson(pubs, pathName, (pub) => {
@@ -867,17 +1057,17 @@ function nationalPage(regionPubs, regionCounts, manifest, detailEntryById) {
   <section class="section directory-list" id="listings" aria-labelledby="featured-title"><div class="shell"><div class="directory-list-heading"><div><p class="eyebrow">A useful starting point</p><h2 id="featured-title">Checked pubs from across the first regional guides</h2></div><p>These are substantial listings with useful facility information. Follow a card to see it in its full regional guide.</p></div><div class="directory-pub-grid directory-featured-grid">${cards}</div></div></section>
   ${methodologyHtml(manifest)}${appCtaHtml()}`;
   return pageShell({
-    title: "Browse UK Pubs With Playgrounds | Checked Regional Guides",
-    description: `Browse checked UK pubs with playgrounds, indoor play areas and soft play. Start with ${regions.length} regional guides containing real addresses, facilities and verification dates.`,
+    title: "UK Regional Pub Guides | Pubs With Playgrounds",
+    description: `Choose from ${regions.length} checked UK regional pub guides. Compare pubs with playgrounds, indoor play and soft play before using the free app for the complete map.`,
     canonicalPath: "/pubs-with-playgrounds/",
-    h1: "Browse UK pubs with playgrounds by region",
+    h1: "Browse regional guides to UK pubs with playgrounds",
     eyebrow: "UK family pub directory",
     lead: "Download the free app for the complete UK map, nearby results, saved favourites and directions. The regional web guides begin below.",
     content,
     graph: [
       breadcrumbJson([
         { name: "Home", path: "/" },
-        { name: "Pubs with playgrounds", path: "/pubs-with-playgrounds/" },
+        { name: "Regional pub guides", path: "/pubs-with-playgrounds/" },
       ]),
       itemListJson(
         selected.map((item) => item.pub),
@@ -910,7 +1100,7 @@ function homepageGateway(regionPubs, regionCounts, detailEntryById) {
     "devon-and-cornwall",
   ].map((slug) => regions.find((region) => region.slug === slug));
   const regionCards = homepageRegions
-    .map((region) => `<a class="home-region-card" href="/pubs-with-playgrounds/${region.slug}/">
+    .map((region) => `<a class="home-region-card" href="/pubs-with-playgrounds/${region.slug}/" aria-label="Browse pubs with playgrounds in ${escapeHtml(region.shortName || region.name)}">
       <strong>${escapeHtml(region.shortName || region.name)}</strong>
       <span>${regionCounts.get(region.slug)} checked venues</span>
     </a>`)
@@ -933,12 +1123,12 @@ function homepageGateway(regionPubs, regionCounts, detailEntryById) {
       <div class="shell">
         <div class="home-section-heading">
           <div><p class="eyebrow">Start nearby</p><h2 id="directory-title">Browse pubs with playgrounds by region</h2></div>
-          <p>Use a regional guide for a quick shortlist, or open the complete UK directory to explore every checked listing.</p>
+          <p>Looking for a pub with a playground, children’s play area or play park? Use a regional guide for a checked shortlist, or download the app to search the complete UK map near you.</p>
         </div>
         <div class="home-region-grid">${regionCards}
-          <a class="home-region-card home-region-all" href="/pubs-with-playgrounds/"><strong>All regions</strong><span>Open the UK directory →</span></a>
+          <a class="home-region-card home-region-all" href="/pubs-with-playgrounds/"><strong>All regional guides</strong><span>Choose a UK area →</span></a>
         </div>
-        <div class="home-listing-heading"><div><p class="eyebrow">Recently checked</p><h2>Useful listings from around the UK</h2></div><a class="home-text-link" href="/pubs-with-playgrounds/">See every listing <span aria-hidden="true">→</span></a></div>
+        <div class="home-listing-heading"><div><p class="eyebrow">Recently checked</p><h2>Useful listings from around the UK</h2></div><a class="home-text-link" href="/pubs-with-playgrounds/">Choose a regional guide <span aria-hidden="true">→</span></a></div>
         <div class="home-pub-grid">${cards}</div>
       </div>
     </section>
