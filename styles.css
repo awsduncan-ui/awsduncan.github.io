@@ -1109,7 +1109,7 @@ body.js .reveal.in { opacity: 1; transform: none; }
 }
 
 .home-pub-photo {
-  aspect-ratio: 1.5;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   background: var(--mint-deep);
 }
