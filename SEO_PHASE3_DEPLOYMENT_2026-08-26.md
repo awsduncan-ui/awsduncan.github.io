@@ -82,7 +82,7 @@ No new regional or synonym page was added.
 
 - Generated directory audit: 0 failures.
 - Sitemap: 43 canonical URLs, including 9 regional guides and 25 pub pages.
-- Internal-link check: 1,180 links resolved successfully.
+- Internal-link check: 1,349 links resolved successfully.
 - Restricted Google fallback-photo check: passed on every sitemap page.
 - Desktop visual check: no horizontal overflow; all three guide cards displayed in
   columns.
@@ -90,6 +90,9 @@ No new regional or synonym page was added.
   one column and app download actions remained prominent.
 
 ## Changed URLs submitted for recrawling
+
+Search Console accepted all seven URLs into Google's priority crawl queue on
+26 August 2026. No submission quota was reached.
 
 - `https://www.pubswithplaygrounds.com/`
 - `https://www.pubswithplaygrounds.com/pubs-with-playgrounds/`
