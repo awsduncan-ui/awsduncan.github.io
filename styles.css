@@ -1109,12 +1109,11 @@ body.js .reveal.in { opacity: 1; transform: none; }
 }
 
 .home-pub-photo {
-  aspect-ratio: 4 / 3;
   overflow: hidden;
   background: var(--mint-deep);
 }
 
-.home-pub-photo > img { width: 100%; height: 100%; object-fit: cover; }
+.home-pub-photo > img { width: 100%; height: auto; }
 
 .home-pub-photo-placeholder {
   display: grid;
