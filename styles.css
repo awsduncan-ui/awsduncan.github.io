@@ -1109,11 +1109,21 @@ body.js .reveal.in { opacity: 1; transform: none; }
 }
 
 .home-pub-photo {
+  position: relative;
+  aspect-ratio: 1;
   overflow: hidden;
   background: var(--mint-deep);
 }
 
-.home-pub-photo > img { width: 100%; height: auto; }
+.home-pub-photo > img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: auto;
+  max-width: none;
+  height: 100%;
+  transform: translateX(-50%);
+}
 
 .home-pub-photo-placeholder {
   display: grid;
