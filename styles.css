@@ -877,6 +877,8 @@ body.js .reveal.in { opacity: 1; transform: none; }
   object-fit: cover;
 }
 
+.home-playground-photo picture { display: block; width: 100%; height: 100%; }
+
 .home-playground-photo figcaption {
   position: absolute;
   right: 16px;
@@ -898,6 +900,8 @@ body.js .reveal.in { opacity: 1; transform: none; }
 }
 
 .home-phone img { width: 100%; height: auto; }
+.home-phone picture,
+.home-origin figure picture { display: block; }
 
 .home-hero-phone {
   position: absolute;

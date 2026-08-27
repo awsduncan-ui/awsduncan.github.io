@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260826-7">
+  <link rel="stylesheet" href="styles.css?v=20260827-1">
   <script src="/directory.js" defer></script>
   <script src="/marketing.js" defer></script>
   <script type="application/ld+json">
@@ -104,11 +104,17 @@
         </div>
         <div class="home-hero-media">
           <figure class="home-playground-photo">
-            <img src="assets/photo-manor-farm.jpg" alt="Colourful play equipment in the garden at Manor Farm, Rainhill" width="1050" height="1400">
+            <picture>
+              <source type="image/webp" srcset="assets/photo-manor-farm-640.webp 640w, assets/photo-manor-farm-960.webp 960w" sizes="(max-width: 480px) calc(100vw - 50px), (max-width: 980px) calc(100vw - 88px), 45vw">
+              <img src="assets/photo-manor-farm.jpg" alt="Colourful play equipment in the garden at Manor Farm, Rainhill" width="1050" height="1400" decoding="async" fetchpriority="high">
+            </picture>
             <figcaption>Manor Farm, Rainhill</figcaption>
           </figure>
           <div class="home-phone home-hero-phone">
-            <img src="assets/shot4.png" alt="Nearby pubs screen in the Pubs With Playgrounds app" width="600" height="1304">
+            <picture>
+              <source type="image/webp" srcset="assets/shot4-320.webp 320w, assets/shot4-480.webp 480w" sizes="(max-width: 480px) 108px, (max-width: 720px) 126px, 158px">
+              <img src="assets/shot4.png" alt="Nearby pubs screen in the Pubs With Playgrounds app" width="600" height="1304" decoding="async">
+            </picture>
           </div>
           <div class="home-checked-note"><strong>Recently checked</strong><span>Real play-area details</span></div>
         </div>
@@ -169,7 +175,7 @@
           </div>
         </div>
         <div class="home-product-visual" aria-hidden="true">
-          <div class="home-phone"><img src="assets/shot2.png" alt="" loading="lazy" width="600" height="1304"></div>
+          <div class="home-phone"><picture><source type="image/webp" srcset="assets/shot2-320.webp 320w, assets/shot2-480.webp 480w" sizes="(max-width: 720px) 170px, 215px"><img src="assets/shot2.png" alt="" loading="lazy" decoding="async" width="600" height="1304"></picture></div>
         </div>
       </div>
     </section>
@@ -225,7 +231,7 @@
 
     <section class="home-origin" aria-labelledby="origin-title">
       <div class="shell home-origin-grid">
-        <figure><img src="assets/founder-family.jpg" alt="Alastair Duncan with his family" loading="lazy" width="751" height="1000"></figure>
+        <figure><picture><source type="image/webp" srcset="assets/founder-family-240.webp 240w, assets/founder-family-360.webp 360w" sizes="(max-width: 720px) 160px, (max-width: 980px) 170px, 180px"><img src="assets/founder-family.jpg" alt="Alastair Duncan with his family" loading="lazy" decoding="async" width="751" height="1000"></picture></figure>
         <div>
           <p class="eyebrow">Started by a parent</p>
           <h2 id="origin-title">Built after too many hopeful pub searches.</h2>
